@@ -13,10 +13,11 @@
 
 $.getJSON('./data/inventory.json',function(data){
 console.log(data);
-var output = '<ul>';  
 $.each(data, function(key,val){
-  output += '<li>'+ val.name + " " + val.age+ '</li>';
+    output += '<div class="product">'+
+    '<p class="title">'+val.title+'</p>'+
+    '<div class="image_line">'+
+       '<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'val.price+'</p>'+'</div>';
 });
-output += '</ul>';
 $('#update').html(output);
 });

@@ -1,9 +1,7 @@
 [
 { 
-    "name": "Sara",
-    "age": 23,
-    "gender": "Female",
-    "department": "History",
-    "car": "Honda"
+    "title": "Coke",
+    "imagepath": "img/products/banana.jpg",
+    "price": "0.50"
 }
 ]
