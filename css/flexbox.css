@@ -364,8 +364,8 @@ body {
 
 @media (max-width: 767px) and (orientation: landscape) {
 	.image_line {
-    height: 15vw;
-    max-height: 15vW;
+    height: 10vh;
+    max-height: 10vh;
     text-align: center;
 }
 
