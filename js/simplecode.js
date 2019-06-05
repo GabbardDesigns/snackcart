@@ -13,8 +13,9 @@
 
 $.getJSON('./data/inventory.json',function(data){
 console.log(data);
+var output ='';
 $.each(data, function(key,val){
     output += '<div class="product">'+'<p class="title">'+val.title+'</p>'+'<div class="image_line">'+'<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'+val.price+'</p>'+'</div>';
 });
-$('#update').html(output);
+$('#inventory').html(output);
 });
