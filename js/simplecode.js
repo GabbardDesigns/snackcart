@@ -11,7 +11,7 @@
 // }
 
 
-$.getJSON('../data/inventory.json',function(data){
+$.getJSON('./data/inventory.json',function(data){
 console.log(data);
 var output = '<ul>';  
 $.each(data, function(key,val){
