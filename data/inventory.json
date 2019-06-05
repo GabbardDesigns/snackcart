@@ -3,43 +3,43 @@
     "title": "Banana",
     "imagepath": "img/products/banana.jpg",
     "price": "0.50"
-}
+},
 
 { 
     "title": "Cake",
     "imagepath": "img/products/cake.png",
     "price": "1.50"
-}
+},
 
 { 
     "title": "Chips",
     "imagepath": "img/products/chips.jpg",
     "price": "0.50"
-}
+},
 
 { 
     "title": "Coke",
     "imagepath": "img/products/soda.png",
     "price": "0.75"
-}
+},
 
 { 
     "title": "Fruit Snacks",
     "imagepath": "img/products/fruitsnacks.jpg",
     "price": "0.50"
-}
+},
 
 { 
     "title": "Coke",
     "imagepath": "img/products/banana.jpg",
     "price": "0.50"
-}
+},
 
 { 
     "title": "Coke",
     "imagepath": "img/products/banana.jpg",
     "price": "0.50"
-}
+},
 
 { 
     "title": "Coke",
