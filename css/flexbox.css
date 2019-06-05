@@ -1,0 +1,486 @@
+/* ================================= 
+  Base Styles
+==================================== */
+
+body {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+.main-container {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+}
+
+.inv_column, .order_column{
+	width:100vw;
+}
+
+.product {
+	display: flex;
+  flex-direction: column;
+	flex: 0 15vh;
+	border-radius: 10%;
+	background-color: white;
+	margin: .5vw;
+	max-height: 18vh;
+}
+
+
+.product > .title, .product > .price{
+	text-align: center;
+	font-size: 2vh;
+	width:100%;
+	line-height: .8vh;
+}
+
+
+.product > img, .product > .image_line > img  {
+	max-height: 100%;
+	margin: 0 auto;
+	justify-self: center;
+} 
+
+.image_line{
+	height: 8vh;
+	max-height: 8vh;
+	text-align: center;
+}
+
+#inventory_title{
+	order: -6;
+	flex: 1 0 100%;
+
+}
+
+#order_title{
+	order: -4;
+	flex: 1 0 100%;
+}
+
+.inventory_list_section {
+	order: -5;
+	flex: 0 0 100%;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:40vh;
+	max-height:40vh;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+}
+
+
+.order_list_section {
+	order: -3;
+	flex: 1 0 100%;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:20vh;
+	max-height:20vh;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: left;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+}
+
+.new_order_section {
+	order: -2;
+	flex: 1 0 50%;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:15vh;
+	max-height:15vh;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: left;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+	border-top:1vh lightgray solid;
+}
+
+
+
+.pay_section {
+	order: 0;
+	flex: 1 0 30%;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:12vh;
+	max-height:12vh;
+	min-width: 100vw;
+	max-width: 100vw; 
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: left;
+	align-items:center;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+	border-top:1vh lightgray solid;
+
+}
+
+ .new_order, .pay
+{
+	width: 50%;
+	font-size: 2.5vh;
+	border-radius: 10%;
+	height: 100%;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	
+}
+.total_section{
+	width:65vw;
+	display: flex;
+  flex-wrap: wrap;
+}
+
+.section_title{
+	font-family:fantasy;
+	font-size:3vh;
+	max-height: 3vh;
+	min-height: 3vh;
+	line-height:1em;
+	color:lightgrey;
+	background-color: slategray;
+	padding-left:2vw;
+
+}
+
+.total_label{
+	font-size:4vh;
+	color:white;
+	line-height: 1;
+	padding-left:5vw;
+	width:30vw;
+	max-width:30vw;
+}
+
+.total_amount{
+	font-size:4vh;
+	color:white;
+	line-height: 1;
+	padding-right:2vw;
+	width:30vw;
+	max-width:30vw;
+}
+
+.pay_button{
+	width:30vw;
+	max-height:5vh;
+}
+
+.pay{
+	width:100%;
+	height:5vh;
+}
+
+/* ================================= 
+  Media Queries
+==================================== */
+
+
+
+
+@media (orientation: landscape) {
+	body {
+		font-size:.8em;
+		line-height: .8em;
+	
+	}
+
+	.main-header,
+	.main-nav {
+		width:100%;
+		display: flex;
+	}
+	.main-header {
+		flex-direction: column;
+		align-items: center;
+		background-color: blanchedalmond;
+	}
+
+	
+#inventory_title, .inventory_list_section, .new_order_section  {
+	border-right: 1vw lightgray solid;
+	
+}
+
+
+#inventory_title{
+	order: 0;
+	flex: initial;
+	/* flex: 1 0 100%; */
+	min-width: 60vw;
+	max-width: 60vw;	
+	max-height: 8vh;
+	min-height: 8vh;
+
+}
+
+#order_title{
+	order: 0;
+	flex: initial;
+	/* flex: 1 0 100%; */
+	min-width: 40vw;
+	max-width: 40vw;
+	max-height: 8vh;		
+	min-height: 8vh;
+}
+
+.inventory_list_section {
+	order: 0;
+	flex: initial;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:55vh;
+	max-height:55vh;
+	min-width: 60vw;
+	max-width: 60vw;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+}
+
+.product {
+	flex: 0 11vw;
+}
+
+.order_list_section {
+	order: 0;
+	flex: initial;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:55vh;
+	max-height:55vh;
+	min-width: 40vw;
+	max-width: 40vw;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+}
+
+.new_order_section {
+	order: 0;
+	flex: initial;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:15vh;
+	max-height:15vh;
+	min-width: 60vw;
+	max-width: 60vw;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+	border-top:1vh lightgray solid;
+}
+
+.pay_section {
+	order: 0;
+	flex: initial;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:10vh;
+	max-height:10vh;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	align-items:center;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+	border-top:1vh lightgray solid;
+	
+}
+
+ .new_order, .pay
+{
+	flex: initial;
+	width: 100%;
+	font-size: 2.5vh;
+	border-radius: 10%;
+	height: 100%;
+	padding-left: 1vw;
+	padding-right: 1vw;
+	padding-top: 1vh;
+	padding-bottom: 1vh;
+	
+}
+
+.section_title{
+	font-family:fantasy;
+	font-size:6vh;
+	line-height:8vh;
+	color:lightgrey;
+	background-color: slategray;
+	padding-left:2vw;
+	
+}
+
+
+.inv_column{
+	width:60vw;
+}
+	.order_column{
+		width:40vw;
+}
+
+
+.icon-bar a{
+	font-size: 8vh;
+}
+
+#flex-menu > .flex-order button {
+	font-size: 6vh;
+}
+
+.main-header{
+	max-height:13vh;
+	border-bottom: #ccc solid 3vh;
+}
+
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+	.image_line {
+    height: 15vw;
+    max-height: 15vW;
+    text-align: center;
+}
+
+.product > .title, .product > .price {
+	text-align: center;
+	font-size: 4vh;
+	width: 100%;
+	line-height: .8vh;
+}
+
+.product {
+	flex: 0 18vw;
+	max-height: 33vh
+}
+
+.main-header{
+max-height:13vh;
+	border-bottom: #ccc solid 3vh;
+}
+
+.total_label{
+	font-size:8vh;
+	color:white;
+	line-height: 1;
+	vertical-align: middle;
+	padding-right:5vw;
+	width:30vw;
+	max-width:30vw;
+}
+
+.section_title{
+	font-family:fantasy;
+	font-size:6vh;
+	line-height:10vh;
+	color:lightgrey;
+	background-color: slategray;
+	padding-left:2vw;
+	
+}
+
+.total_amount{
+	font-size:8vh;
+	color:white;
+	line-height: 1;
+	vertical-align: middle;
+	padding-right:2vw;
+	width:30vw;
+	max-width:30vw;
+}
+
+#inventory_title, #order_title {
+	max-height: 10vh;
+	min-height: 10vh;
+	align-items: center;
+}
+
+.pay_section {
+	order: 0;
+	flex: initial;
+	flex-wrap: wrap;
+	display: flex;
+	min-height:16vh;
+	max-height:16vh;
+	overflow:scroll;
+	overscroll-behavior-y: contain;
+	justify-content: flex-start;
+	align-items:center;
+	padding-right: 1vw;
+	padding-left:  1vw;
+	background-color:#0e0e0e;
+	border-top:2vh lightgray solid;
+	
+}
+.pay_button{
+	max-height:10vh;
+}
+
+.pay{
+	width:100%;
+	height:10vh;
+	font-size: 6vh;
+}
+}
+
+
+
+.myButton {
+	-moz-box-shadow:inset 0px -3px 7px 0px #29bbff;
+	-webkit-box-shadow:inset 0px -3px 7px 0px #29bbff;
+	box-shadow:inset 0px -3px 7px 0px #29bbff;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #2dabf9), color-stop(1, #0688fa));
+	background:-moz-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-webkit-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-o-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:-ms-linear-gradient(top, #2dabf9 5%, #0688fa 100%);
+	background:linear-gradient(to bottom, #2dabf9 5%, #0688fa 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#2dabf9', endColorstr='#0688fa',GradientType=0);
+	background-color:#2dabf9;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #263666;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #0688fa), color-stop(1, #2dabf9));
+	background:-moz-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-webkit-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-o-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:-ms-linear-gradient(top, #0688fa 5%, #2dabf9 100%);
+	background:linear-gradient(to bottom, #0688fa 5%, #2dabf9 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#0688fa', endColorstr='#2dabf9',GradientType=0);
+	background-color:#0688fa;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
