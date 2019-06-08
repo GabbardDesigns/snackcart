@@ -10,6 +10,6 @@ $.each(data, function(key,val){
     output += '<div class="product" id="product'+inventory_Array[key][0]+'>'+'<p class="title">'+val.title+'</p>'+'<div class="image_line">'+'<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'+val.price+'</p>'+'</div>';
 });
 $('#inventory').html(output);
+console.log([inventory_Array[1][1]]);
 });
 
-console.log[inventory_Array[1][1]];
