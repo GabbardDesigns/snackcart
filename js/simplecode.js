@@ -5,7 +5,9 @@ var order_Array= [[],[]];
 var output ='';
 var ordersblock ='';
 var price= parseFloat('0.00',10);
-var total_Price = currency(price);
+
+// Removed until I can get currency working
+// var total_Price = currency(price);
 
 // Clear initial arrays
 inventory_Array.pop(); inventory_Array.pop();
