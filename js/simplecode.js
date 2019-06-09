@@ -43,7 +43,7 @@ $('#inventory').html(output);
 
 function calculatePrice(priceAdd){
        price+= priceAdd;  
-       $('#order_total').html(formatMoney(price)); 
+       $('#order_total').html('$ '+formatMoney(price)); 
     };
 
 
@@ -64,6 +64,6 @@ function clearOrder(){
     ordersblock =''; 
     price= parseFloat('0.00');
     $('#orders').html(ordersblock); 
-    $('#order_total').html(price); 
+    $('#order_total').html('$ '+formatMoney(price)); 
 };
 
