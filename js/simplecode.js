@@ -20,7 +20,7 @@ var inventory_Array= [[],[]];
 inventory_Array.pop(); inventory_Array.pop();
 
 var order_Array= [[],[]];
-inventory_Array.pop(); inventory_Array.pop();
+order_Array.pop(); order_Array.pop();
 
 
 $.getJSON('./data/inventory.json',function(data){
@@ -34,10 +34,27 @@ $('#inventory').html(output);
 
 });
 
+var ordersblock ='';
+var price=0.00;
+function calculatePrice(){
+    for (var items=0, items <= order_Array.length; items++){
+        price+= parseFloat((order_Array[items][3]),10);
+    };
+}
+
 function moveToCart(p1){
-    var output ='';
     var splits= p1.split('-'); var mykey = parseInt(splits[1]); console.log(mykey);
     var key =  parseInt((inventory_Array[mykey][0]),10);
-    output += '<div class="product">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
-    $('#orders').html(output); console.log(output);
+    order_Array.push[key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]];
+    console.log(inventory_Array[key]);
+    ordersblock += '<div class="product">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
+    $('#orders').html(ordersblock); console.log(ordersblock);
+
+    calculatePrice();
 };
+
+function clearOrder(){
+    ordersblock ='';
+    $('#orders').html(ordersblock); console.log(ordersblock);
+};
+
