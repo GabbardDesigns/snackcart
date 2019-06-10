@@ -71,21 +71,14 @@ function clearOrder(){
 function removeFromCart(p1){
     var splits= p1.split('-'); 
     var mykey = (parseInt(splits[1])-1); 
-    console.log(mykey);
-    
+    var price_reduction;
     for( var i = 0; i < order_Array.length; i++){ 
         if ( order_Array[i] === mykey) { 
-            var price_reduction = orderArray([i][3]);
+            price_reduction = orderArray([i][3]);
             order_Array.splice([i]); 
         }
      }
-
-    // var key =  parseInt((inventory_Array[mykey][0]),10);
-    // order_Array.push[key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]];
-    // console.log(inventory_Array[key]);
-    // ordersblock += '<div class="product">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
-    // $('#orders').html(ordersblock); console.log(ordersblock);
-
+   document.getElementById(p1).remove();
    calculatePrice(parseFloat(price_reduction));
 };
 
