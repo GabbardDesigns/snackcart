@@ -53,11 +53,18 @@ function moveToCart(p1){
     var key =  parseInt((inventory_Array[mykey][0]),10);
     order_Array.push([key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]]);
     console.log(inventory_Array[key]);
-    ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(order_Array.length)+'">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
-    $('#orders').html(ordersblock); console.log(ordersblock);
-
+    redrawOrders();
     calculatePrice(parseFloat((inventory_Array[key][3])));
 };
+
+// Redraws order section after add or removal
+function redrawOrders() {
+    ordersblock='';
+    for( var i = 0; i <= order_Array.length; i++){ 
+        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+order_Array[i][1]+'</p>'+'<div class="image_line">'+'<img src="'+order_Array[i][2]+'">'+'</div>'+'<p class="price">$'+order_Array[i][3]+'</p>'+'</div>';    
+     }
+    $('#orders').html(ordersblock);
+    };
 
 // Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder(){
