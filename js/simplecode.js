@@ -54,7 +54,7 @@ function moveToCart(p1){
     var key =  parseInt((inventory_Array[mykey][0]),10);
     order_Array.push([key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]]);
     console.log(inventory_Array[key]);
-    //redrawOrders();
+    redrawOrders();
     calculatePrice(parseFloat((inventory_Array[key][3])));
 };
 
