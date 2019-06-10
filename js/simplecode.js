@@ -1,7 +1,7 @@
 // Declare Global Variables
 
-var inventory_Array= [[],[]];
-var order_Array= [[],[]];
+var inventory_Array= [];
+var order_Array= [];
 var output ='';
 var ordersblock ='';
 var price= parseFloat('0.00',10);
@@ -61,7 +61,7 @@ function moveToCart(p1){
 function redrawOrders() {
     ordersblock='';
     for( var i = 0; i <= order_Array.length; i++){ 
-        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+order_Array[i][1]+'</p>'+'<div class="image_line">'+'<img src="'+order_Array[i][2]+'">'+'</div>'+'<p class="price">$'+order_Array[i][3]+'</p>'+'</div>';    
+        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+(order_Array[i][1])+'</p>'+'<div class="image_line">'+'<img src="'+order_Array[i][2]+'">'+'</div>'+'<p class="price">$'+order_Array[i][3]+'</p>'+'</div>';    
      }
     $('#orders').html(ordersblock);
     };
