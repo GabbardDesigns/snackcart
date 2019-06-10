@@ -51,9 +51,9 @@ function calculatePrice(priceAdd){
 function moveToCart(p1){
     var splits= p1.split('-'); var mykey = parseInt(splits[1]); console.log(mykey);
     var key =  parseInt((inventory_Array[mykey][0]),10);
-    order_Array.push[key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]];
+    order_Array.push([key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]]);
     console.log(inventory_Array[key]);
-    ordersblock += '<div class="product">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
+    ordersblock += '<div class="product" "id="order-'+(order_Array.length)+'>'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
     $('#orders').html(ordersblock); console.log(ordersblock);
 
     calculatePrice(parseFloat((inventory_Array[key][3])));
