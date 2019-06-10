@@ -53,7 +53,7 @@ function moveToCart(p1){
     var key =  parseInt((inventory_Array[mykey][0]),10);
     order_Array.push([key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]]);
     console.log(inventory_Array[key]);
-    ordersblock += '<div class="product" "id="order-'+(order_Array.length)+'>'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
+    ordersblock += '<div class="product" "id="order-'+(order_Array.length)+'">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
     $('#orders').html(ordersblock); console.log(ordersblock);
 
     calculatePrice(parseFloat((inventory_Array[key][3])));
@@ -68,33 +68,25 @@ function clearOrder(){
 };
 
 
+function removeFromCart(p1){
+    var splits= p1.split('-'); 
+    var mykey = (parseInt(splits[1])-1); 
+    console.log(mykey);
+    
+    for( var i = 0; i < order_Array.length; i++){ 
+        if ( order_Array[i] === mykey) { 
+            var price_reduction = orderArray([i][3]);
+            order_Array.splice([i]); 
+        }
+     }
 
-// Create Modal Popup
+    // var key =  parseInt((inventory_Array[mykey][0]),10);
+    // order_Array.push[key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]];
+    // console.log(inventory_Array[key]);
+    // ordersblock += '<div class="product">'+'<p class="title">'+inventory_Array[key][1]+'</p>'+'<div class="image_line">'+'<img src="'+inventory_Array[key][2]+'">'+'</div>'+'<p class="price">$'+inventory_Array[key][3]+'</p>'+'</div>';
+    // $('#orders').html(ordersblock); console.log(ordersblock);
 
-// Get the modal
-var modal = document.getElementById("myModal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-;}
+   calculatePrice(parseFloat(price_reduction));
+};
 
 
