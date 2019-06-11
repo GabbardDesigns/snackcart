@@ -70,6 +70,7 @@ function moveToCart(p1){
 // Redraws order section after add or removal
 function redrawOrders() {
     ordersblock='';
+    price = 0;
     for( var i = 0; i < order_Array.length; i++){ 
         var myprice= parseFloat(order_Array[i][3]);
         var mytitle = order_Array[i][1];
@@ -79,13 +80,14 @@ function redrawOrders() {
         calculatePrice(parseFloat(myprice));
      }
     $('#orders').html(ordersblock);
+    $('#order_total').html('$ '+formatMoney(price)); 
     };
 
 // Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder(){
     order_Array=[];
     console.log(order_Array)
-    ordersblock ='000'; 
+    ordersblock =''; 
     price= parseFloat('0.00');
     $('#orders').html(ordersblock); 
     $('#order_total').html('$ '+formatMoney(price)); 
@@ -96,10 +98,8 @@ function removeFromCart(p1){
     var splits= p1.split('-'); 
     var mykey = (parseInt(splits[1])); 
     var price_reduction= (-1 * parseFloat(order_Array[mykey][3]));
-    order_Array.splice([mykey]); 
-//    document.getElementById(p1).remove();
-//    calculatePrice(parseFloat(price_reduction));
-redrawOrders();
-};
+    order_Array.splice([mykey],1); 
+   redrawOrders();
 
+};
 
