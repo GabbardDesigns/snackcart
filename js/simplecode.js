@@ -86,7 +86,7 @@ function clearOrder(){
     order_Array=[];
     console.log(order_Array)
     ordersblock ='000'; 
-    price= parseFloat('10.00');
+    price= parseFloat('0.00');
     $('#orders').html(ordersblock); 
     $('#order_total').html('$ '+formatMoney(price)); 
 };
@@ -97,8 +97,9 @@ function removeFromCart(p1){
     var mykey = (parseInt(splits[1])); 
     var price_reduction= (-1 * parseFloat(order_Array[mykey][3]));
     order_Array.splice([mykey]); 
-   document.getElementById(p1).remove();
-   calculatePrice(parseFloat(price_reduction));
+//    document.getElementById(p1).remove();
+//    calculatePrice(parseFloat(price_reduction));
+redrawOrders();
 };
 
 
