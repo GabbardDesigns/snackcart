@@ -18,7 +18,7 @@ body {
 	width:100vw;
 }
 
-.product {
+.product, .coin, .dollar {
 	display: flex;
   flex-direction: column;
 	flex: 0 15vh;
@@ -29,7 +29,7 @@ body {
 }
 
 
-.product > .title, .product > .price{
+ .title, .price{
 	text-align: center;
 	font-size: 2vh;
 	width:100%;
@@ -560,3 +560,31 @@ max-height:13vh;
   background-color: #5cb85c;
   color: white;
 }
+
+
+
+/* Payment section */
+
+.coin, .dollar {
+	display: flex;
+   flex-direction: column;
+	flex: 0 15vh;
+	border-radius: 10%;
+	background-color: white;
+	margin: .5vw;
+	max-height: 18vh;
+}
+
+
+ .title, .price{
+	text-align: center;
+	font-size: 2vh;
+	width:100%;
+	line-height: .8vh;
+}
+
+.coin > img, .coin > .image_line > img, .dollar > img, .dollar > .image_line > img  {
+	max-height: 100%;
+	margin: 0 auto;
+	justify-self: center;
+} 

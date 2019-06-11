@@ -103,3 +103,15 @@ function removeFromCart(p1){
 
 };
 
+function paymentView(){
+var inventorySwitch= '';
+inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">'
+inventorySwitch+= '<div class="dollar" id="payment-5" onclick="pay(this.id)"><p class="title">Five Dollar</p><div class="image_line"><img src="img/money/five.jpg"></div><p class="price">$5.00</p></div>' 
+inventorySwitch+= '<div class="dollar" id="payment-1" onclick="pay(this.id)"><p class="title">One Dollar</p><div class="image_line"><img src="img/money/one.jpg"></div><p class="price">$1.00</p></div>'
+inventorySwitch+= '<div class="coin" id="payment-.25" onclick="pay(this.id)"><p class="title">25 Cents</p><div class="image_line"><img src="img/money/quarter.png"></div><p class="price">$0.25</p></div>' 
+inventorySwitch+= '<div class="coin" id="payment-.10" onclick="pay(this.id)"><p class="title">10 Cents</p><div class="image_line"><img src="img/money/dimes.png"></div><p class="price">$0.10</p></div>'
+inventorySwitch+= '<div class="coin" id="payment-.05" onclick="pay(this.id)"><p class="title">5 Cents</p><div class="image_line"><img src="img/money/nickel.png"></div><p class="price">$0.05</p></div>' 
+inventorySwitch+= '<div class="coin" id="payment-.01" onclick="pay(this.id)"><p class="title">One Cent</p><div class="image_line"><img src="img/money/penny.png"></div><p class="price">$0.01</p></div>'
+inventorySwitch+= '</div>'
+$('#plucky').html(inventorySwitch);
+};
