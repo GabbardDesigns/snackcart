@@ -94,14 +94,9 @@ function clearOrder(){
 
 function removeFromCart(p1){
     var splits= p1.split('-'); 
-    var mykey = (parseInt(splits[1])-1); 
-    var price_reduction;
-    for( var i = 0; i < order_Array.length; i++){ 
-        if ( order_Array[i] === mykey) { 
-            price_reduction = orderArray([i][3]);
-            order_Array.splice([i]); 
-        }
-     }
+    var mykey = (parseInt(splits[1])); 
+    var price_reduction= (-1 * parseFloat(order_Array[mykey][3]));
+    order_Array.splice([mykey]); 
    document.getElementById(p1).remove();
    calculatePrice(parseFloat(price_reduction));
 };
