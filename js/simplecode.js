@@ -30,7 +30,6 @@ order_Array.pop(); order_Array.pop();
 
 // Read JSON Datafile for starter inventory
 $.getJSON('./data/inventory.json',function(data){
-console.log(data);
 $.each(data, function(key,val){
     inventory_Array.push( [key, val.title, val.imagepath, val.price]);
     output += '<div class="product" id="product-'+inventory_Array[key][0]+'" onClick="moveToCart(this.id)">'+'<p class="title">'+val.title+'</p>'+'<div class="image_line">'+'<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'+val.price+'</p>'+'</div>';
@@ -46,31 +45,48 @@ function calculatePrice(priceAdd){
        $('#order_total').html('$ '+formatMoney(price)); 
     };
 
+//use each to write to order arrays
+
+
+
 
 // Moves items to cart, calls calculatePrice to update price 
 function moveToCart(p1){
     var splits= p1.split('-'); 
     var mykey = parseInt(splits[1]);
     var key =  parseInt((inventory_Array[mykey][0]),10);
-    order_Array.push([key, inventory_Array[key][1], inventory_Array[key][2], inventory_Array[key][3]]);
-    console.log(inventory_Array[key]);
+    var orderPrice = parseFloat(inventory_Array[key][3]);
+    var orderImage = inventory_Array[key][2];
+    var orderTitle = inventory_Array[key][1];
+    order_Array.push([key, orderTitle, orderImage, orderPrice]);
+    price = 0;
     redrawOrders();
-    calculatePrice(parseFloat((inventory_Array[key][3])));
+//     var i = order_Array.length;
+//     console.log(order_Array);
+//     ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+i+'">'+'<p class="title">'+orderTitle+'</p>'+'<div class="image_line">'+'<img src="'+orderImage+'">'+'</div>'+'<p class="price">$'+orderPrice+'</p>'+'</div>';    
+//  //   calculatePrice(parseFloat((orderPrice)));
 };
 
 // Redraws order section after add or removal
 function redrawOrders() {
     ordersblock='';
-    for( var i = 0; i <= order_Array.length; i++){ 
-        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+order_Array[i][1]+'</p>'+'<div class="image_line">'+'<img src="'+order_Array[i][2]+'">'+'</div>'+'<p class="price">$'+order_Array[i][3]+'</p>'+'</div>';    
+    for( var i = 0; i < order_Array.length; i++){ 
+        var myprice= parseFloat(order_Array[i][3]);
+        var mytitle = order_Array[i][1];
+        var myimage = order_Array[i][2];
+        console.log('My Price is'+myprice);
+        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+mytitle+'</p>'+'<div class="image_line">'+'<img src="'+myimage+'">'+'</div>'+'<p class="price">$'+myprice+'</p>'+'</div>';    
+        calculatePrice(parseFloat(myprice));
      }
     $('#orders').html(ordersblock);
     };
 
 // Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder(){
-    ordersblock =''; 
-    price= parseFloat('0.00');
+    order_Array=[];
+    console.log(order_Array)
+    ordersblock ='000'; 
+    price= parseFloat('10.00');
     $('#orders').html(ordersblock); 
     $('#order_total').html('$ '+formatMoney(price)); 
 };
