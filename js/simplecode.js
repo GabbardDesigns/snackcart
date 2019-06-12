@@ -32,7 +32,7 @@ function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
 // Read JSON Datafile for starter inventory
 $.getJSON('./data/inventory.json',function(data){
 $.each(data, function(key,val){
-    inventory_Array.push( [key, val.title, val.imagepath, val.price]);
+    inventory_Array.push( [key, val.title, val.imagepath, parseFloat(val.price,10)]);
     output += '<div class="product" id="product-'+inventory_Array[key][0]+'" onClick="moveToCart(this.id)">'+'<p class="title">'+val.title+'</p>'+'<div class="image_line">'+'<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'+val.price+'</p>'+'</div>';
 }); 
 $('#inventory').html(output);
