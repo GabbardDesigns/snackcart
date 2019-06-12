@@ -567,12 +567,19 @@ max-height:13vh;
 
 .coin, .dollar {
 	display: flex;
-   flex-direction: column;
-	flex: 0 15vh;
+  flex-direction: column;
 	border-radius: 10%;
 	background-color: white;
 	margin: .5vw;
 	max-height: 18vh;
+}
+
+.dollar {
+	flex: 0 15vh;
+}
+
+.coin {
+	flex: 0 15vh;
 }
 
 
