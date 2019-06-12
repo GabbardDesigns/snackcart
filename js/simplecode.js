@@ -73,7 +73,7 @@ function redrawOrders() {
     ordersblock='';
     price = 0;
     for( var i = 0; i < order_Array.length; i++){ 
-        var myprice= parseFloat(order_Array[i][3]);
+        var myprice= parseFloat(order_Array[i][3],10);
         var mytitle = order_Array[i][1];
         var myimage = order_Array[i][2];
         console.log('My Price is'+myprice);
@@ -105,7 +105,6 @@ function removeFromCart(p1){
 };
 
 function paymentView(){
-
 var orderSwitch= '';
 var inventorySwitch= '';
 inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';

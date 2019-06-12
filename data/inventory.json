@@ -3,63 +3,63 @@
 { 
     "title": "Animals",
     "imagepath": "img/products/animalcrackers.jpg",
-    "price": "0.50"
+    "price": 0.50
 },
 
 { 
     "title": "Apple Juice",
     "imagepath": "img/products/applejuice.png",
-    "price": "0.50"
+    "price": 0.50
 },
 
 { 
     "title": "Banana",
     "imagepath": "img/products/banana.jpg",
-    "price": "0.50"
+    "price": 0.50
 },
 
 { 
     "title": "Bottled Water",
     "imagepath": "img/products/bottledwater.png",
-    "price": "0.50"
+    "price": 0.50
 },
 
 { 
     "title": "Cake",
     "imagepath": "img/products/cake.png",
-    "price": "1.50"
+    "price": 1.50
 },
 
 { 
     "title": "Chips",
     "imagepath": "img/products/chips.jpg",
-    "price": "0.50"
+    "price": 0.50
 },
 
 { 
     "title": "Coke",
     "imagepath": "img/products/soda.png",
-    "price": "0.75"
+    "price": 0.75
 },
 
 
 { 
     "title": "Cookie",
     "imagepath": "img/products/cookie.jpg",
-    "price": "0.75"
+    "price": 0.75
 },
 
 { 
     "title": "Fruit Snacks",
     "imagepath": "img/products/fruitsnacks.jpg",
-    "price": "0.25"
+    "price": 0.25
 },
 
 
 { 
     "title": "Orange Juice",
     "imagepath": "img/products/orangejuice.png",
-    "price": "1.50"
+    "price": 1.50
 }
 
 

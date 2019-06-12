@@ -3,7 +3,7 @@
 { 
     "title": "Five Dollar Bill",
     "imagepath": "img/money/five.jpg",
-    "price": "5.00",
+    "price": 5.00,
     "type" : "dollar",
     "value" : "5.00"
 },
@@ -11,7 +11,7 @@
 { 
     "title": "One Dollar Bill",
     "imagepath": "img/money/one.jpg",
-    "price": "1.00",
+    "price": 1.00,
     "type" : "dollar",
     "value" : "1.00"
 },
@@ -19,7 +19,7 @@
 { 
     "title": "Twenty Five Cents",
     "imagepath": "img/money/quarter.png",
-    "price": "0.25",
+    "price": 0.25,
     "type" : "coin",
     "value" : "0.25"
 },
@@ -27,7 +27,7 @@
 { 
     "title": "Ten Cents",
     "imagepath": "img/money/dimes.png",
-    "price": "0.10",
+    "price": 0.10,
     "type" : "coin",
     "value" : "0.10"
 },
@@ -35,7 +35,7 @@
 { 
     "title": "Five Cents",
     "imagepath": "img/money/nickel.png",
-    "price": "0.05",
+    "price": 0.05,
     "type" : "coin",
     "value" : "0.05"
 },
@@ -43,7 +43,7 @@
 { 
     "title": "One Cent",
     "imagepath": "img/money/penny.png",
-    "price": "0.01",
+    "price": 0.01,
     "type" : "coin",
     "value" : "0.01"
 }
