@@ -1,5 +1,6 @@
 // Declare Global Variables
 
+var paymentOptions_Array = [];
 var inventory_Array= [];
 var order_Array= [];
 var output ='';
@@ -23,9 +24,9 @@ function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
     }
   };
 
-// Clear initial arrays
-inventory_Array.pop(); inventory_Array.pop();
-order_Array.pop(); order_Array.pop();
+// // Clear initial arrays
+// inventory_Array.pop(); inventory_Array.pop();
+// order_Array.pop(); order_Array.pop();
 
 
 // Read JSON Datafile for starter inventory
@@ -112,17 +113,12 @@ inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Optio
 $.getJSON('./data/pay.json',function(data){
     $.each(data, function(key,val){
         paymentOptions_Array.push( [key, val.title, val.imagepath, val.price, val.type, val.value]);
-        inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><p class="title">'+val.title+'</p><div class="image_line"><img src="'+val.imagepath+'"></div><p class="price">'+val.price+'</p></div>' 
+        inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><p class="title">'+val.title+'</p><div class="image_line"><img src="'+val.imagepath+'"></div><p class="price">'+val.price+'</p></div>'; 
     }); 
-    inventorySwitch += '</div>'
+    inventorySwitch += '</div>';
     $('#plucky').html(inventorySwitch);
 
-orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>'
+orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
 $('#ducky').html(inventorySwitch);
+})
 };
-
-function pay(value){
-
-};
-
-
