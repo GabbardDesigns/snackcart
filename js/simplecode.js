@@ -7,6 +7,7 @@ var output ='';
 var ordersblock ='';
 var inventorySection = '';
 var price= parseFloat('0.00',10);
+var productsPrice = 0;
 
 // formats currency 
 function formatMoney(amount, decimalCount, decimal, thousands) {
@@ -81,6 +82,7 @@ function redrawOrders() {
         ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+mytitle+'</p>'+'<div class="image_line">'+'<img src="'+myimage+'">'+'</div>'+'<p class="price">$'+formatMoney(myprice)+'</p>'+'</div>';    
         calculatePrice(parseFloat(myprice));
      }
+     
     $('#orders').html(ordersblock);
     $('#order_total').html('$ '+formatMoney(price)); 
     };
@@ -109,7 +111,8 @@ function removeFromCart(p1){
 };
 
 function paymentView(){
-    var orderSwitch= '';
+    productsPrice=price;
+    var orderSwitch='';
     var inventorySwitch= '';
     inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';
     // Read JSON Datafile for pay info
@@ -180,6 +183,7 @@ function productView(){
     $('#first_container').html(inventoryReturn);
     $('#second_container').html(orderReturn);    
     $('#paybutton').html(buttonswitch);
+    $('#order_total').html('$ '+formatMoney(productsPrice)); 
 }
 
 
