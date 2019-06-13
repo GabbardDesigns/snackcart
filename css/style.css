@@ -611,10 +611,10 @@ max-height:13vh;
 	justify-self: center;
 } 
 
-.new{
+button.new {
     background-color: #5cb85c;
 }
 
-.refund[
+button.refund {
     background-color: orange;
-]
+}

@@ -167,26 +167,28 @@ function paymentView(){
 
 
 function orderStatus(){
-    var buttonswitch;
+var buttonswitch;
 if (price >0){
     buttonswitch = '<button class="pay" onclick="paymentView()">Pay Now</button>';
 } else if ( price < 0){
     buttonswitch = '<button class="pay refund" onclick="issueRefund()">Issue Refund</button>';
+    $('#paybutton').html(buttonswitch);
 } else {
     buttonswitch = '<button class="pay new" onclick="clearOrder()">New Order</button>';
+    $('#paybutton').html(buttonswitch);
 }
-  $('#paybutton').html(buttonswitch);
-}
+};
 
             
 function removePayment(p1){
     var splits= p1.split('-'); 
     var mykey = (parseInt(splits[1])); 
     var price_increase= parseFloat(paymentArray[mykey][3]);
+    console.log('Now it is : '+paymentArray);
     paymentArray.splice([mykey],1); 
+    console.log('Now it is : '+paymentArray);
     redrawPayment();
     orderStatus();
-
 };
 
 function productView(){
