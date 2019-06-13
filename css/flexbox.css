@@ -580,6 +580,12 @@ max-height:13vh;
 	text-align: center;
 }
 
+.coin > .image_line {
+	height: 12vh;
+	max-height: 12vh;
+	text-align: center;
+}
+
 
 .dollar {
 	flex: 0 26vw;

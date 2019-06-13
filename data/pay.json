@@ -18,7 +18,7 @@
 
 { 
     "title": "Twenty Five Cents",
-    "imagepath": "img/money/quarter.svg",
+    "imagepath": "img/money/Quarter.svg",
     "price": 0.25,
     "type" : "coin",
     "value" : "0.25"
