@@ -176,8 +176,8 @@ function productView(){
     var inventoryReturn= '';
     inventoryReturn+= '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">'+inventorySection+'</div>';
     orderReturn+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section">'+ordersblock+'</div></div>';
-    ('#plucky').html(inventoryReturn);
-    ('#ducky').html(orderReturn);
+    $('#plucky').html(inventoryReturn);
+    $('#ducky').html(orderReturn);
 }
 
 
