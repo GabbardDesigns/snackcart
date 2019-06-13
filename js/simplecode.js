@@ -82,7 +82,6 @@ function redrawOrders() {
         ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+mytitle+'</p>'+'<div class="image_line">'+'<img src="'+myimage+'">'+'</div>'+'<p class="price">$'+formatMoney(myprice)+'</p>'+'</div>';    
         calculatePrice(parseFloat(myprice));
      }
-     
     $('#orders').html(ordersblock);
     $('#order_total').html('$ '+formatMoney(price)); 
     };
@@ -95,6 +94,7 @@ function clearOrder(){
     order_Array=[];
     console.log(order_Array)
     ordersblock =''; 
+    productView();
     price= parseFloat('0.00');
     $('#orders').html(ordersblock); 
     $('#order_total').html('$ '+formatMoney(price)); 
