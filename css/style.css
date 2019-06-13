@@ -611,3 +611,10 @@ max-height:13vh;
 	justify-self: center;
 } 
 
+.new{
+    background-color: #5cb85c;
+}
+
+.refund[
+    background-color: orange;
+]

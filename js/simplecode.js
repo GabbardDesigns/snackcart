@@ -144,6 +144,7 @@ function paymentView(){
             var payTitle = paymentOptions_Array[key][1];
             paymentArray.push([key, payTitle, payImage, payValue]);
             redrawPayment();
+            orderStatus();
         };
     
 
@@ -165,6 +166,18 @@ function paymentView(){
             };
 
 
+function orderStatus(){
+    var buttonswitch;
+if (price >0){
+    buttonswitch = '<button class="pay" onclick="paymentView()">Pay Now</button>';
+} else if ( price < 0){
+    buttonswitch = '<button class="pay refund" onclick="issueRefund()">Issue Refund</button>';
+} else {
+    buttonswitch = '<button class="pay new" onclick="clearOrder()">New Order</button>';
+}
+  $('#paybutton').html(buttonswitch);
+}
+
             
 function removePayment(p1){
     var splits= p1.split('-'); 
@@ -172,6 +185,7 @@ function removePayment(p1){
     var price_increase= parseFloat(paymentArray[mykey][3]);
     paymentArray.splice([mykey],1); 
     redrawPayment();
+    orderStatus();
 
 };
 
