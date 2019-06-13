@@ -146,7 +146,7 @@ function paymentView(){
                 var payTitle = paymentArray[i][1];
                 var payImage = paymentArray[i][2];
                 console.log('My value is '+payValue);
-                paidIn += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+payTitle+'</p>'+'<div class="image_line">'+'<img src="'+payImage+'">'+'</div>'+'<p class="price">$'+formatMoney(payValue)+'</p>'+'</div>';    
+                paidIn += '<div class="product" onclick="removePayment(this.id)" id="order-'+(i)+'">'+'<p class="title">'+payTitle+'</p>'+'<div class="image_line">'+'<img src="'+payImage+'">'+'</div>'+'<p class="price">$'+formatMoney(payValue)+'</p>'+'</div>';    
                 paidAmount += parseFloat(payValue);
              }
              calculatePrice(-1*(parseFloat(payValue)));
@@ -159,7 +159,7 @@ function paymentView(){
         function removePayment(p1){
                 var splits= p1.split('-'); 
                 var mykey = (parseInt(splits[1])); 
-                var price_increase= parseFloat(payment_Array[mykey][3]);
+                var price_increase= parseFloat(paymentArray[mykey][3]);
                 payment_Array.splice([mykey],1); 
                 redrawPayment();
             
