@@ -119,14 +119,14 @@ function paymentView(){
             inventorySwitch += '<div class="'+val.type+'" id="pay-'+key+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>$'+formatMoney(val.price)+'</p></div>'; 
         }); 
         inventorySwitch += '</div>';
-        $('#plucky').html(inventorySwitch);
+        $('#first_container').html(inventorySwitch);
     
         var buttonswitch = '<button class="pay" onclick="productView()">Edit Order</button>'
         $('#paybutton').html(buttonswitch);
         
 
     orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
-    $('#ducky').html(orderSwitch);
+    $('#second_container').html(orderSwitch);
     })
     };
 
@@ -176,8 +176,8 @@ function productView(){
     var inventoryReturn= '';
     inventoryReturn+= '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">'+inventorySection+'</div>';
     orderReturn+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section">'+ordersblock+'</div></div>';
-    $('#plucky').html(inventoryReturn);
-    $('#ducky').html(orderReturn);
+    $('#first_container').html(inventoryReturn);
+    $('#second_container').html(orderReturn);
 }
 
 
