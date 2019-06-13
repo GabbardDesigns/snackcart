@@ -8,7 +8,7 @@ var ordersblock ='';
 var price= parseFloat('0.00',10);
 
 // formats currency 
-function formatMoney(amount, decimalCount, decimal = ".", thousands = ",") {
+function formatMoney(amount, decimalCount=2, decimal =".", thousands =",") {
     decimalCount = 2;
     try {
       decimalCount = Math.abs(decimalCount);
