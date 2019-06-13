@@ -174,10 +174,12 @@ function removePayment(p1){
 function productView(){
     var orderReturn= '';
     var inventoryReturn= '';
+    var buttonswitch = '<button class="pay" onclick="paymentView()">Pay Now</button>';
     inventoryReturn+= '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">'+inventorySection+'</div>';
     orderReturn+= '<div id="order_title" class="section_title">This Order</div><div class="order_list_section" id="orders">'+ordersblock+'</div></div>';
     $('#first_container').html(inventoryReturn);
-    $('#second_container').html(orderReturn);
+    $('#second_container').html(orderReturn);    
+    $('#paybutton').html(buttonswitch);
 }
 
 
