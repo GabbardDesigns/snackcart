@@ -1,5 +1,5 @@
 // Declare Global Variables
-
+var paymentArray = [];
 var paymentOptions_Array = [];
 var inventory_Array= [];
 var order_Array= [];
@@ -65,10 +65,6 @@ function moveToCart(p1){
     order_Array.push([key, orderTitle, orderImage, orderPrice]);
     price = 0;
     redrawOrders();
-//     var i = order_Array.length;
-//     console.log(order_Array);
-//     ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+i+'">'+'<p class="title">'+orderTitle+'</p>'+'<div class="image_line">'+'<img src="'+orderImage+'">'+'</div>'+'<p class="price">$'+orderPrice+'</p>'+'</div>';    
-//  //   calculatePrice(parseFloat((orderPrice)));
 };
 
 // Redraws order section after add or removal
@@ -118,12 +114,53 @@ function paymentView(){
     $.getJSON('./data/pay.json',function(data){
         $.each(data, function(key,val){
             paymentOptions_Array.push( [key, val.title, val.imagepath, val.price, val.type, val.value]);
-            inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>'+formatMoney(val.price)+'</p></div>'; 
+            inventorySwitch += '<div class="'+val.type+'" id="pay-'+key+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>$'+formatMoney(val.price)+'</p></div>'; 
         }); 
         inventorySwitch += '</div>';
         $('#plucky').html(inventorySwitch);
     
     orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
-    $('#ducky').html(inventorySwitch);
+    $('#ducky').html(orderSwitch);
     })
     };
+
+   
+        function pay (p1){
+            var splits= p1.split('-'); 
+            var mykey = parseInt(splits[1]);
+            var key =  parseInt((paymentOptions_Array[mykey][0]),10);
+            var payValue = parseFloat(paymentOptions_Array[key][3]);
+            var payImage = paymentOptions_Array[key][2];
+            var payTitle = paymentOptions_Array[key][1];
+            paymentArray.push([key, payTitle, payImage, payValue]);
+            redrawPayment();
+        };
+    
+
+        function redrawPayment() {
+            paidIn='';
+            var paidAmount=0;
+                        for( var i = 0; i < paymentArray.length; i++){ 
+                
+                var payValue= parseFloat(paymentArray[i][3],10);
+                var payTitle = paymentArray[i][1];
+                var payImage = paymentArray[i][2];
+                console.log('My value is '+payValue);
+                paidIn += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+payTitle+'</p>'+'<div class="image_line">'+'<img src="'+payImage+'">'+'</div>'+'<p class="price">$'+formatMoney(payValue)+'</p>'+'</div>';    
+                paidAmount += parseFloat(payValue);
+             }
+             calculatePrice(-1*(parseFloat(payValue)));
+            $('#paidIn').html(paidIn);
+            $('#order_total').html('$ '+formatMoney(price)); 
+            };
+
+
+            
+        function removePayment(p1){
+                var splits= p1.split('-'); 
+                var mykey = (parseInt(splits[1])); 
+                var price_increase= parseFloat(payment_Array[mykey][3]);
+                payment_Array.splice([mykey],1); 
+                redrawPayment();
+            
+            };
