@@ -77,12 +77,15 @@ function redrawOrders() {
         var mytitle = order_Array[i][1];
         var myimage = order_Array[i][2];
         console.log('My Price is'+myprice);
-        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+mytitle+'</p>'+'<div class="image_line">'+'<img src="'+myimage+'">'+'</div>'+'<p class="price">$'+myprice+'</p>'+'</div>';    
+        ordersblock += '<div class="product" onclick="removeFromCart(this.id)" id="order-'+(i)+'">'+'<p class="title">'+mytitle+'</p>'+'<div class="image_line">'+'<img src="'+myimage+'">'+'</div>'+'<p class="price">$'+formatMoney(myprice)+'</p>'+'</div>';    
         calculatePrice(parseFloat(myprice));
      }
     $('#orders').html(ordersblock);
     $('#order_total').html('$ '+formatMoney(price)); 
     };
+
+
+
 
 // Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder(){
@@ -112,7 +115,7 @@ function paymentView(){
     $.getJSON('./data/pay.json',function(data){
         $.each(data, function(key,val){
             paymentOptions_Array.push( [key, val.title, val.imagepath, val.price, val.type, val.value]);
-            inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>$'+formatMoney(val.price)+'</p></div>'; 
+            inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>'+formatMoney(val.price)+'</p></div>'; 
         }); 
         inventorySwitch += '</div>';
         $('#plucky').html(inventorySwitch);
