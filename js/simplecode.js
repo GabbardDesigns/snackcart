@@ -8,8 +8,10 @@ var ordersblock ='';
 var price= parseFloat('0.00',10);
 
 // formats currency 
-function formatMoney(amount, decimalCount=2, decimal =".", thousands =",") {
+function formatMoney(amount, decimalCount, decimal, thousands) {
     decimalCount = 2;
+    decimal =".";
+    thousands =",";
     try {
       decimalCount = Math.abs(decimalCount);
       decimalCount = isNaN(decimalCount) ? 2 : decimalCount;
