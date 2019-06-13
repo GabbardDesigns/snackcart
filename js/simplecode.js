@@ -105,19 +105,19 @@ function removeFromCart(p1){
 };
 
 function paymentView(){
-var orderSwitch= '';
-var inventorySwitch= '';
-inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';
-// Read JSON Datafile for pay info
-$.getJSON('./data/pay.json',function(data){
-    $.each(data, function(key,val){
-        paymentOptions_Array.push( [key, val.title, val.imagepath, val.price, val.type, val.value]);
-        inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><p class="title">'+val.title+'</p><div class="image_line"><img src="'+val.imagepath+'"></div><p class="price">'+val.price+'</p></div>'; 
-    }); 
-    inventorySwitch += '</div>';
-    $('#plucky').html(inventorySwitch);
-
-orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
-$('#ducky').html(inventorySwitch);
-})
-};
+    var orderSwitch= '';
+    var inventorySwitch= '';
+    inventorySwitch+= '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';
+    // Read JSON Datafile for pay info
+    $.getJSON('./data/pay.json',function(data){
+        $.each(data, function(key,val){
+            paymentOptions_Array.push( [key, val.title, val.imagepath, val.price, val.type, val.value]);
+            inventorySwitch += '<div class="'+val.type+'" id="'+val.value+'" onclick="pay(this.id)"><div class="image_line"><img src="'+val.imagepath+'"></div><p class="title">'+val.title+'<br>$'+formatMoney(val.price)+'</p></div>'; 
+        }); 
+        inventorySwitch += '</div>';
+        $('#plucky').html(inventorySwitch);
+    
+    orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
+    $('#ducky').html(inventorySwitch);
+    })
+    };

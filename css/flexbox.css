@@ -574,20 +574,29 @@ max-height:13vh;
 	max-height: 18vh;
 }
 
+.dollar > .image_line {
+	height: 13vh;
+	max-height: 13vh;
+	text-align: center;
+}
+
+
 .dollar {
-	flex: 0 15vh;
+	flex: 0 26vw;
 }
 
 .coin {
-	flex: 0 15vh;
+	flex: 0 12vw;
 }
 
 
- .title, .price{
+
+.coin > .title, .dollar > .title {
 	text-align: center;
 	font-size: 2vh;
 	width:100%;
-	line-height: .8vh;
+	line-height: 2.5vh;
+	margin-top:.5vh;
 }
 
 .coin > img, .coin > .image_line > img, .dollar > img, .dollar > .image_line > img  {
@@ -595,3 +604,4 @@ max-height:13vh;
 	margin: 0 auto;
 	justify-self: center;
 } 
+
