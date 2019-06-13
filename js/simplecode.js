@@ -5,6 +5,7 @@ var inventory_Array= [];
 var order_Array= [];
 var output ='';
 var ordersblock ='';
+var inventorySection = '';
 var price= parseFloat('0.00',10);
 
 // formats currency 
@@ -38,6 +39,7 @@ $.each(data, function(key,val){
     inventory_Array.push( [key, val.title, val.imagepath, parseFloat(val.price,10)]);
     output += '<div class="product" id="product-'+inventory_Array[key][0]+'" onClick="moveToCart(this.id)">'+'<p class="title">'+val.title+'</p>'+'<div class="image_line">'+'<img src="'+val.imagepath+'">'+'</div>'+'<p class="price">$'+val.price+'</p>'+'</div>';
 }); 
+inventorySection= output;
 $('#inventory').html(output);
 
 });
@@ -119,6 +121,10 @@ function paymentView(){
         inventorySwitch += '</div>';
         $('#plucky').html(inventorySwitch);
     
+        var buttonswitch = '<button class="pay" onclick="productView()">Edit Order</button>'
+        $('#paybutton').html(buttonswitch);
+        
+
     orderSwitch+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
     $('#ducky').html(orderSwitch);
     })
@@ -164,3 +170,15 @@ function paymentView(){
                 redrawPayment();
             
             };
+
+function productView(){
+    var orderReturn= '';
+    var inventoryReturn= '';
+    inventoryReturn+= '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">'+inventorySection+'</div>';
+    orderReturn+= '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section">'+ordersblock+'</div></div>';
+    ('#plucky').html(inventoryReturn);
+    ('#ducky').html(orderReturn);
+}
+
+
+            
