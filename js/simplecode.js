@@ -98,6 +98,7 @@ function clearOrder(){
     price= parseFloat('0.00');
     $('#orders').html(ordersblock); 
     $('#order_total').html('$ '+formatMoney(price)); 
+    paymentArray=[];
 };
 
 
@@ -184,6 +185,7 @@ function productView(){
     $('#second_container').html(orderReturn);    
     $('#paybutton').html(buttonswitch);
     $('#order_total').html('$ '+formatMoney(productsPrice)); 
+    paymentArray=[];
 }
 
 
