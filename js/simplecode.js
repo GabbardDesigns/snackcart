@@ -162,14 +162,14 @@ function paymentView(){
 
 
             
-        function removePayment(p1){
-                var splits= p1.split('-'); 
-                var mykey = (parseInt(splits[1])); 
-                var price_increase= parseFloat(paymentArray[mykey][3]);
-                paymentArray.splice([mykey],1); 
-                redrawPayment();
-            
-            };
+function removePayment(p1){
+    var splits= p1.split('-'); 
+    var mykey = (parseInt(splits[1])); 
+    var price_increase= parseFloat(paymentArray[mykey][3]);
+    paymentArray.splice([mykey],1); 
+    redrawPayment();
+
+};
 
 function productView(){
     var orderReturn= '';
