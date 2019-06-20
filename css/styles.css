@@ -75,23 +75,16 @@
       
 
       #flex-menu > .flex-order button{
-        font-size:3vh;
+        font-size:2vh;
         padding-top:.5vh;
         padding-bottom:.5vh;
         margin-top:.5vh;
         margin-bottom:.5vh;
       }
-      
-      
 
       #flex-menu > .flex-help {
         flex: 25%;
       }
-
-
-
-      
-
 
 /* ================================= 
   Media Queries
