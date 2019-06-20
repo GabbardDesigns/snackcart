@@ -20,8 +20,8 @@ body {
 
 .product, .coin, .dollar {
 	display: flex;
-  flex-direction: column;
-	flex: 0 15vh;
+    flex-direction: column;
+	flex: 0 14vh;
 	border-radius: 10%;
 	background-color: #D7FFBE;
 	margin: .5vw;
@@ -142,7 +142,7 @@ body {
  .new_order, .pay
 {
 	width: 50%;
-	font-size: 2.5vh;
+	font-size: 2vh;
 	border-radius: 10%;
 	height: 100%;
 	padding-left: 1vw;
@@ -170,21 +170,21 @@ body {
 }
 
 .total_label{
-	font-size:4vh;
+	font-size:2.5vh;
 	color:white;
 	line-height: 1;
 	padding-left:5vw;
-	width:30vw;
-	max-width:30vw;
+	width:40vw;
+	max-width:40vw;
 }
 
 .total_amount{
-	font-size:4vh;
+	font-size:2.5vh;
 	color:white;
 	line-height: 1;
 	padding-right:2vw;
-	width:30vw;
-	max-width:30vw;
+	width:25vw;
+	max-width:25vw;
 }
 
 .pay_button{
@@ -196,6 +196,17 @@ body {
 	width:100%;
 	height:5vh;
 }
+
+
+
+.dollar {
+	flex: 0 48vw;
+}
+
+.coin {
+	flex: 0 23vw;
+}
+
 
 /* ================================= 
   Media Queries
@@ -362,13 +373,23 @@ body {
 }
 
 #flex-menu > .flex-order button {
-	font-size: 6vh;
+	font-size: 3vh;
 }
 
 .main-header{
 	max-height:13vh;
 	border-bottom: #ccc solid 3vh;
 }
+
+
+.dollar {
+	flex: 0 26vw;
+}
+
+.coin {
+	flex: 0 12vw;
+}
+
 
 }
 
@@ -457,6 +478,15 @@ max-height:13vh;
 	height:10vh;
 	font-size: 6vh;
 }
+
+.dollar {
+	flex: 0 26vw;
+}
+
+.coin {
+	flex: 0 12vw;
+}
+
 }
 
 
@@ -577,7 +607,7 @@ max-height:13vh;
 
 .coin, .dollar {
 	display: flex;
-  flex-direction: column;
+    flex-direction: column;
 	border-radius: 10%;
 	background-color: #D7FFBE;
 	margin: .5vw;
@@ -594,15 +624,6 @@ max-height:13vh;
 	height: 12vh;
 	max-height: 12vh;
 	text-align: center;
-}
-
-
-.dollar {
-	flex: 0 26vw;
-}
-
-.coin {
-	flex: 0 12vw;
 }
 
 

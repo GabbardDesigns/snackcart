@@ -1,53 +1,53 @@
 [
 
-{ 
-    "title": "Five Dollar Bill",
-    "imagepath": "img/money/Fivedollar.svg",
-    "price": 5.00,
-    "type" : "dollar",
-    "value" : "5.00"
-},
-
-{ 
-    "title": "One Dollar Bill",
-    "imagepath": "img/money/onedollar.svg",
-    "price": 1.00,
-    "type" : "dollar",
-    "value" : "1.00"
-},
-
-{ 
-    "title": "Twenty Five Cents",
-    "imagepath": "img/money/Quarter.svg",
-    "price": 0.25,
-    "type" : "coin",
-    "value" : "0.25"
-},
-
-{ 
-    "title": "Ten Cents",
-    "imagepath": "img/money/Dime.svg",
-    "price": 0.10,
-    "type" : "coin",
-    "value" : "0.10"
-},
-
-{ 
-    "title": "Five Cents",
-    "imagepath": "img/money/Nickel.svg",
-    "price": 0.05,
-    "type" : "coin",
-    "value" : "0.05"
-},
-
-{ 
-    "title": "One Cent",
-    "imagepath": "img/money/Penny.svg",
-    "price": 0.01,
-    "type" : "coin",
-    "value" : "0.01"
-}
-
-
-
-]
+    { 
+        "title": "Five Dollars",
+        "imagepath": "img/money/Fivedollar.svg",
+        "price": 5.00,
+        "type" : "dollar",
+        "value" : "5.00"
+    },
+    
+    { 
+        "title": "One Dollar",
+        "imagepath": "img/money/onedollar.svg",
+        "price": 1.00,
+        "type" : "dollar",
+        "value" : "1.00"
+    },
+    
+    { 
+        "title": "Quarter",
+        "imagepath": "img/money/Quarter.svg",
+        "price": 0.25,
+        "type" : "coin",
+        "value" : "0.25"
+    },
+    
+    { 
+        "title": "Dime",
+        "imagepath": "img/money/Dime.svg",
+        "price": 0.10,
+        "type" : "coin",
+        "value" : "0.10"
+    },
+    
+    { 
+        "title": "Nickel",
+        "imagepath": "img/money/Nickel.svg",
+        "price": 0.05,
+        "type" : "coin",
+        "value" : "0.05"
+    },
+    
+    { 
+        "title": "Penny",
+        "imagepath": "img/money/Penny.svg",
+        "price": 0.01,
+        "type" : "coin",
+        "value" : "0.01"
+    }
+    
+    
+    
+    ]

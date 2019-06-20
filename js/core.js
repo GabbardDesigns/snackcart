@@ -11,7 +11,7 @@ var price = parseFloat("0.00", 10);
 var productsPrice = 0;
 var paymentTotal = 0;
 var refundOptions_Array = [];
-var refundArray=[];
+var refundArray = [];
 var refundAmount;
 var refundTotal = 0;
 
@@ -298,57 +298,58 @@ function removeFromCart(p1) {
 }
 
 function refundView() {
-  refundDue = -1* paymentTotal;
-  refundAmount = 0; 
+  refundDue = -1 * paymentTotal;
+  refundAmount = 0;
   var refundSwitch = "";
   var inventorySwitch = "";
   inventorySwitch +=
     '<div id="inventory_title" class="section_title">Refund Options</div> <div id="payOptions" class="inventory_list_section">';
 
-    for (let i = 0; i < refundOptions_Array.length; i++ ){
-      inventorySwitch +=
-        '<div class="' +
-        refundOptions_Array[i][4] +
-        '" id="pay-' +
-        refundOptions_Array[i][0] +
-        '" onclick="refund(this.id)"><div class="image_line"><img src="' +
-        refundOptions_Array[i][2] +
-        '"></div><p class="title">' +
-        refundOptions_Array[i][1] +
-        "<br>$" +
-        formatMoney(refundOptions_Array[i][5]) +
-        "</p></div>";
-    };
-    
-    inventorySwitch += "</div>";
-    $("#first_container").html(inventorySwitch);
+  for (let i = 0; i < refundOptions_Array.length; i++) {
+    inventorySwitch +=
+      '<div class="' +
+      refundOptions_Array[i][4] +
+      '" id="pay-' +
+      refundOptions_Array[i][0] +
+      '" onclick="refund(this.id)"><div class="image_line"><img src="' +
+      refundOptions_Array[i][2] +
+      '"></div><p class="title">' +
+      refundOptions_Array[i][1] +
+      "<br>$" +
+      formatMoney(refundOptions_Array[i][5]) +
+      "</p></div>";
+  }
 
-    var buttonswitch =
-      '<button class="pay" onclick="productView()">Edit Order</button>';
-    $("#paybutton").html(buttonswitch);
+  inventorySwitch += "</div>";
+  $("#first_container").html(inventorySwitch);
 
-    refundSwitch +=
-      '<div id="order_title" class="section_title">Refunded Amount</div> <div id="refunded" class="order_list_section"></div></div>';
-    $("#second_container").html(refundSwitch);
-    $("#order_total_label").html("Refund This Amount:");
-    $("#order_total").html("$ " + formatMoney((refundDue - refundAmount)));
-
-    issueRefund(refundDue);  
-}
-
-function issueRefund(stillDue){
-  for (let i = 0; i < refundOptions_Array.length; i++ ){
-    let refundItemValue = parseFloat(refundOptions_Array[0][3],10);
-      if ((refundOptions_Array[i][3])>(stillDue)) {
-    let name = ("pay-"+[i]); console.log("Element Name is "+name);
-    document.getElementById(name).classList.add("disable");
-      }
-   };
-   if (stillDue == 0){
-    buttonswitch =
-    '<button class="pay new" onclick="clearOrder()">New Order</button>';
+  var buttonswitch =
+    '<button class="pay" onclick="productView()">Edit Order</button>';
   $("#paybutton").html(buttonswitch);
+
+  refundSwitch +=
+    '<div id="order_title" class="section_title">Refunded Amount</div> <div id="refunded" class="order_list_section"></div></div>';
+  $("#second_container").html(refundSwitch);
+  $("#order_total_label").html("Refund This Amount:");
+  $("#order_total").html("$ " + formatMoney(refundDue - refundAmount));
+
+  issueRefund(refundDue);
 }
+
+function issueRefund(stillDue) {
+  for (let i = 0; i < refundOptions_Array.length; i++) {
+    let refundItemValue = parseFloat(refundOptions_Array[0][3], 10);
+    if (refundOptions_Array[i][3] > stillDue) {
+      let name = "pay-" + [i];
+      console.log("Element Name is " + name);
+      document.getElementById(name).classList.add("disable");
+    }
+  }
+  if (stillDue == 0) {
+    buttonswitch =
+      '<button class="pay new" onclick="clearOrder()">New Order</button>';
+    $("#paybutton").html(buttonswitch);
+  }
 }
 
 //Splits payment
@@ -356,34 +357,31 @@ function refund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
   var key = parseInt(refundOptions_Array[mykey][0], 10);
-  var payValue = -1 * formatMoney(refundOptions_Array[key][3],2);
+  var payValue = -1 * formatMoney(refundOptions_Array[key][3], 2);
   var payImage = refundOptions_Array[key][2];
   var payTitle = refundOptions_Array[key][1];
   refundArray.push([key, payTitle, payImage, payValue]);
   redrawRefund();
   issueRefund();
-//  orderStatus();
+  //  orderStatus();
 }
-
 
 function removeRefund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
   refundArray.splice([mykey], 1);
   redrawRefund();
- 
-  for (let i = 0; i < refundOptions_Array.length; i++ ){
-    if ((refundOptions_Array[i][3])<=(formatMoney(refundTotal))) {
-    let name = ("pay-"+[i]); console.log("Element Name is "+name);
-    document.getElementById(name).classList.remove("disable");
-      }
-   };
 
+  for (let i = 0; i < refundOptions_Array.length; i++) {
+    if (refundOptions_Array[i][3] <= formatMoney(refundTotal)) {
+      let name = "pay-" + [i];
+      console.log("Element Name is " + name);
+      document.getElementById(name).classList.remove("disable");
+    }
+  }
 }
 
-
 function redrawRefund() {
-  
   let refunded = "";
   let paidAmount = 0;
   for (var i = 0; i < refundArray.length; i++) {
@@ -410,30 +408,28 @@ function redrawRefund() {
       "</div>";
     paidAmount += parseFloat(payValue);
     console.log("Total paid so far is " + paidAmount);
-  
   }
-  calculateRefund(-1* parseFloat(paidAmount));
+  calculateRefund(-1 * parseFloat(paidAmount));
   issueRefund(formatMoney(refundTotal));
-  
+
   $("#refunded").html(refunded);
-  $("#order_total").html("$ " + (formatMoney(refundTotal.toFixed(2))));
+  $("#order_total").html("$ " + formatMoney(refundTotal.toFixed(2)));
 }
 
-
-  // Read JSON Datafile for refund info
-  $.getJSON("./data/refund.json", function(data) {
-    $.each(data, function(key, val) {
-      refundOptions_Array.push([
-        key,
-        val.title,
-        val.imagepath,
-        val.price,
-        val.type,
-        val.value
-      ]);
-    });
+// Read JSON Datafile for refund info
+$.getJSON("./data/refund.json", function(data) {
+  $.each(data, function(key, val) {
+    refundOptions_Array.push([
+      key,
+      val.title,
+      val.imagepath,
+      val.price,
+      val.type,
+      val.value
+    ]);
   });
+});
 
 function calculateRefund(amount) {
-    refundTotal = refundDue - amount;
-  }
+  refundTotal = refundDue - amount;
+}
