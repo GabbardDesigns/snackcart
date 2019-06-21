@@ -82,7 +82,7 @@ body {
 	justify-content: flex-start;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	
 }
 
 
@@ -98,7 +98,7 @@ body {
 	justify-content: left;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	
 }
 
 .new_order_section {
@@ -211,7 +211,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    min-height: 95vh;
+	min-height: 95vh;
+	background-color: rgba(245,247,251,1);
 }
 
 
