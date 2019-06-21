@@ -77,6 +77,14 @@ $.getJSON("./data/inventory.json", function(data) {
   $("#inventory").html(output);
 });
 
+// Scroll to bottom on item overflow add
+
+function scrollToBottom(id){
+  let scroll = document.getElementById(id);
+  scroll.scrollTop = scroll.scrollHeight;
+  scroll.animate({scrollTop: scroll.scrollHeight});
+}
+
 // Recalculate and rewrite price
 function calculatePrice(priceAdd) {
   price += priceAdd;
@@ -128,7 +136,9 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
+  
   $("#orders").html(ordersBlock);
+  scrollToBottom('orders');
   $("#order_total").html("$ " + formatMoney(price));
 }
 
@@ -283,9 +293,10 @@ function redrawPayment() {
     paidAmount += parseFloat(payValue);
     console.log("Total paid so far is " + paidAmount);
   }
-
+  
   calculatePayment(parseFloat(paidAmount));
   $("#paidIn").html(paidIn);
+  scrollToBottom('paidIn');
   $("#order_total").html("$ " + formatMoney(paymentTotal));
 }
 
@@ -411,8 +422,8 @@ function redrawRefund() {
   }
   calculateRefund(-1 * parseFloat(paidAmount));
   issueRefund(formatMoney(refundTotal));
-
   $("#refunded").html(refunded);
+  scrollToBottom('refunded');
   $("#order_total").html("$ " + formatMoney(refundTotal.toFixed(2)));
 }
 
