@@ -23,7 +23,7 @@ body {
     flex-direction: column;
 	flex: 0 14vh;
 	border-radius: 10%;
-	background-color: #D7FFBE;
+	background-color: #ffffff;
 	margin: .5vw;
 	max-height: 18vh;
 }
@@ -728,7 +728,7 @@ max-height:13vh;
 	display: flex;
     flex-direction: column;
 	border-radius: 10%;
-	background-color: #D7FFBE;
+	background-color: #ffffff;
 	margin: .5vw;
 	max-height: 18vh;
 }
@@ -773,7 +773,7 @@ button.refund {
 	pointer-events: none;
     -webkit-filter: grayscale(100%);
 	filter: grayscale(100%), blur(20%);
-	background-color: ##ccc;
+	background-color: #ccc;
 }
 
 /* 
