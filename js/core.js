@@ -444,3 +444,7 @@ $.getJSON("./data/refund.json", function(data) {
 function calculateRefund(amount) {
   refundTotal = refundDue - amount;
 }
+
+/********************************************
+ **************     MODALS     **************
+ ********************************************/

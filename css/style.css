@@ -113,7 +113,7 @@ body {
 	justify-content: left;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color:transparent;
 	border-top:1vh lightgray solid;
 }
 
@@ -134,7 +134,7 @@ body {
 	align-items:center;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 	border-top:1vh lightgray solid;
 
 }
@@ -169,9 +169,9 @@ body {
 
 }
 
-.total_label{
+/* .total_label{
 	font-size:2.5vh;
-	color:white;
+	color: #0e0e0e;
 	line-height: 1;
 	padding-left:5vw;
 	width:40vw;
@@ -180,12 +180,12 @@ body {
 
 .total_amount{
 	font-size:2.5vh;
-	color:white;
+	color:#0e0e0e;
 	line-height: 1;
 	padding-right:2vw;
 	width:25vw;
 	max-width:25vw;
-}
+} */
 
 .pay_button{
 	width:30vw;
@@ -280,7 +280,7 @@ body {
 .product, .coin, .dollar {
     display: flex;
     flex-direction: column;
-    flex: 0 30vw;
+    /* flex: 0 30vw; */
     border-radius: 10%;
     background-color: #ffffff;
     margin: .5vh;
@@ -299,7 +299,7 @@ body {
 
 .total_label {
     font-size: 1.4em;
-    color: white;
+    color: #0e0e0e;;
     line-height: 1;
     padding-left: 5vw;
     width: 40vw;
@@ -308,7 +308,7 @@ body {
 
 .total_amount {
     font-size: 1.4em;
-    color: white;
+    color: #0e0e0e;;
     line-height: 1;
     padding-right: 2vw;
     width: 25vw;
@@ -395,7 +395,7 @@ body {
 	justify-content: flex-start;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 }
 
 .product {
@@ -416,7 +416,7 @@ body {
 	justify-content: flex-start;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 }
 
 .new_order_section {
@@ -433,7 +433,7 @@ body {
 	justify-content: flex-start;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 	border-top:1vh lightgray solid;
 }
 
@@ -450,7 +450,7 @@ body {
 	align-items:center;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 	border-top:1vh lightgray solid;
 	
 }
@@ -539,7 +539,7 @@ max-height:13vh;
 
 .total_label{
 	font-size:8vh;
-	color:white;
+	color:#0e0e0e;;
 	line-height: 1;
 	vertical-align: middle;
 	padding-right:5vw;
@@ -558,7 +558,7 @@ max-height:13vh;
 
 .total_amount{
 	font-size:8vh;
-	color:white;
+	color:#0e0e0e;;
 	line-height: 1;
 	vertical-align: middle;
 	padding-right:2vw;
@@ -585,7 +585,7 @@ max-height:13vh;
 	align-items:center;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	background-color:#0e0e0e;
+	background-color: transparent;
 	border-top:2vh lightgray solid;
 	
 }
@@ -805,3 +805,48 @@ button.refund {
 .order_list_section{
 	max-height:25vh;
 } */
+
+/******************************************************
+MODAL CSS
+*******************************************************/
+.modal {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transform: scale(1.1);
+        transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    }
+    .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 1rem 1.5rem;
+        width: 24rem;
+        border-radius: 0.5rem;
+    }
+    .close-button {
+        float: right;
+        width: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 0.25rem;
+        background-color: lightgray;
+    }
+    .close-button:hover {
+        background-color: darkgray;
+    }
+    .show-modal {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1.0);
+        transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+    }
+	
