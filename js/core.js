@@ -424,7 +424,8 @@ function redrawRefund() {
   issueRefund(formatMoney(refundTotal));
   $("#refunded").html(refunded);
   scrollToBottom('refunded');
-  $("#order_total").html("$ " + formatMoney(refundTotal.toFixed(2)));
+  console.log(refundTotal);
+  $("#order_total").html("$ " + formatMoney(refundTotal));
 }
 
 // Read JSON Datafile for refund info
@@ -442,7 +443,8 @@ $.getJSON("./data/refund.json", function(data) {
 });
 
 function calculateRefund(amount) {
-  refundTotal = refundDue - amount;
+  refundTotal = formatMoney(refundDue.toFixed(2)) - formatMoney(amount.toFixed(2));
+  refundTotal = formatMoney(refundTotal.toFixed(2));
 }
 
 /********************************************
