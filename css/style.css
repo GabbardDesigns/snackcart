@@ -211,7 +211,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-	min-height: 95vh;
+	min-height: 100vh;
 	background-color: rgba(245,247,251,1);
 }
 
@@ -234,6 +234,8 @@ body {
 .main-footer{
 	max-height:5vh;
 	min-height:5vh;
+	width:100%;
+
 }
 
 .section_title {
@@ -328,12 +330,65 @@ body {
 	filter: grayscale(100%), blur(20%);
 	background-color: #ccc;
 }
+
+/* ================================= 
+ROTATE PHONE MESSAGE
+**********************************/
+.phone {
+	height: 50px;
+	width: 100px;
+	border: 3px solid white;
+	border-radius: 10px;
+	animation: rotate 1.5s ease-in-out infinite alternate;
+	display: none;
+  }
+  
+  .message {
+	color: white;
+	font-size: 1em;
+	margin-top: 40px;
+	display: none;
+  }
+
+
 /* ================================= 
   Media Queries
 ==================================== */
 
+@media (max-height: 300px) and (orientation: landscape) {
+	html, body {
+		background: black;
+		height: 100%;
+		width: 100%;
+	  }
+	  
+	  .main-container{
+		  display:none;
+	  }
 
-
+	  body {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+	  }
+	  
+	  @keyframes rotate {
+		0% {
+			  transform: rotate(0deg)
+		  }
+		  50% {
+			  transform: rotate(-90deg)
+		  }
+		  100% {
+			  transform: rotate(-90deg)
+		  }
+	  }
+	  
+		.phone, .message {
+		  display: block;
+		}
+	  }
 
 @media (orientation: landscape) {
 	body {
@@ -353,11 +408,14 @@ body {
 		background-color: blanchedalmond;
 	}
 
-	
-#inventory_title, .inventory_list_section, .new_order_section  {
-	border-right: 1vw lightgray solid;
-	
-}
+	.inv_column,  .order_column{
+		max-height: 70vh;
+		min-height: 70vh;
+	}
+
+	.inv_column{
+		border-right: 1vw lightgray solid;
+	}
 
 
 #inventory_title{
@@ -368,7 +426,6 @@ body {
 	max-width: 60vw;	
 	max-height: 8vh;
 	min-height: 8vh;
-
 }
 
 #order_title{
@@ -386,8 +443,8 @@ body {
 	flex: initial;
 	flex-wrap: wrap;
 	display: flex;
-	min-height:55vh;
-	max-height:55vh;
+	min-height:25vh;
+	max-height:62vh;
 	min-width: 60vw;
 	max-width: 60vw;
 	overflow-y:scroll;
@@ -407,8 +464,8 @@ body {
 	flex: initial;
 	flex-wrap: wrap;
 	display: flex;
-    min-height: unset;
-    max-height: 60vh;
+    min-height: 25vh;
+    max-height: 62vh;
 	min-width: 40vw;
 	max-width: 40vw;
 	overflow-y:scroll;
@@ -442,8 +499,8 @@ body {
 	flex: initial;
 	flex-wrap: wrap;
 	display: flex;
-	min-height:10vh;
-	max-height:10vh;
+	min-height:25vh;
+	max-height:25vh;
 	overflow-y:scroll;
 	overscroll-behavior-y: contain;
 	justify-content: flex-start;
@@ -501,13 +558,19 @@ body {
 	border-bottom: #ccc solid 3vh;
 }
 
-
 .dollar {
 	flex: 0 26vw;
+}
+.dollar.paidIn {
+	flex: 0 18vw;
 }
 
 .coin {
 	flex: 0 12vw;
+}
+
+.coin.paidIn{
+	flex: 0 10vw;
 }
 
 
@@ -538,7 +601,7 @@ max-height:13vh;
 }
 
 .total_label{
-	font-size:8vh;
+	font-size:1.4em;
 	color:#0e0e0e;;
 	line-height: 1;
 	vertical-align: middle;
@@ -557,7 +620,7 @@ max-height:13vh;
 }
 
 .total_amount{
-	font-size:8vh;
+	font-size:1.4em;
 	color:#0e0e0e;;
 	line-height: 1;
 	vertical-align: middle;

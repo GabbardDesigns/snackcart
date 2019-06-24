@@ -14,8 +14,70 @@ var refundOptions_Array = [];
 var refundArray = [];
 var refundAmount;
 var refundTotal = 0;
+var refundDue;
 
-// formats currency
+// Read JSON Datafile for refundOptions
+$.getJSON("./data/refund.json", function(data) {
+  $.each(data, function(key, val) {
+    refundOptions_Array.push([
+      key,
+      val.title,
+      val.imagepath,
+      val.price,
+      val.type,
+      val.value
+    ]);
+  });
+});
+
+// Read JSON Datafile for paymentOptions
+$.getJSON("./data/pay.json", function(data) {
+  $.each(data, function(key, val) {
+    paymentOptions_Array.push([
+      key,
+      val.title,
+      val.imagepath,
+      val.price,
+      val.type,
+      val.value
+    ]);
+  });
+});
+
+
+// Read JSON Datafile for starter inventory and define inventory section in the HTML
+$.getJSON("./data/inventory.json", function(data) {
+  $.each(data, function(key, val) {
+    inventory_Array.push([
+      key,
+      val.title,
+      val.imagepath,
+      parseFloat(val.price, 10)
+    ]);
+    output +=
+      '<div class="product" id="product-' +
+      inventory_Array[key][0] +
+      '" onClick="moveToCart(this.id)">' +
+      '<p class="title noselect">' +
+      val.title +
+      "</p>" +
+      '<div class="image_line noselect">' +
+      '<img src="' +
+      val.imagepath +
+      '">' +
+      "</div>" +
+      '<p class="price noselect">$' +
+      val.price +
+      "</p>" +
+      "</div>";
+  });
+  inventorySection = output;
+  $("#inventory").html(output);
+});
+
+
+// Function: formatMoney - beautiful borrowed script that parses the provided amount and applies a .fixed(decimal) to the it amoung other things (logic for thousands place operator)
+// May come back and trim the thousands place items out since this application does not need to worry about them.
 function formatMoney(amount, decimalCount, decimal, thousands) {
   decimalCount = 2;
   decimal = ".";
@@ -47,56 +109,20 @@ function formatMoney(amount, decimalCount, decimal, thousands) {
   }
 }
 
-// Read JSON Datafile for starter inventory
-$.getJSON("./data/inventory.json", function(data) {
-  $.each(data, function(key, val) {
-    inventory_Array.push([
-      key,
-      val.title,
-      val.imagepath,
-      parseFloat(val.price, 10)
-    ]);
-    output +=
-      '<div class="product" id="product-' +
-      inventory_Array[key][0] +
-      '" onClick="moveToCart(this.id)">' +
-      '<p class="title noselect">' +
-      val.title +
-      "</p>" +
-      '<div class="image_line noselect">' +
-      '<img src="' +
-      val.imagepath +
-      '">' +
-      "</div>" +
-      '<p class="price noselect">$' +
-      val.price +
-      "</p>" +
-      "</div>";
-  });
-  inventorySection = output;
-  $("#inventory").html(output);
-});
-
-// Scroll to bottom on item overflow add
-
+// Function scrollToBottom - Forces scroll to the bottom of container, used when payment, refund, or cart containers overflow on add.
 function scrollToBottom(id){
   let scroll = document.getElementById(id);
   scroll.scrollTop = scroll.scrollHeight;
   scroll.animate({scrollTop: scroll.scrollHeight});
 }
 
-// Recalculate and rewrite price
+// Function redrawOrders - Recalculates and rewrites price
 function calculatePrice(priceAdd) {
   price += priceAdd;
   $("#order_total").html("$ " + formatMoney(price));
 }
 
-//use each to write to order arrays
-document.addEventListener("click", event => {
-  console.log(event.target.id);
-});
-
-// Moves items to cart, calls calculatePrice to update price
+// Function moveToCart - Moves items to cart, calls redrawOrders to update cart contents and price
 function moveToCart(p1) {
   var splits = p1.split("-");
   var mykey = parseInt(splits[1]);
@@ -109,7 +135,9 @@ function moveToCart(p1) {
   redrawOrders();
 }
 
-// Redraws order section after add or removal
+
+// Function redrawOrders - Redraws order section after add or removal, wipes HTML container, loops through the orders array and rebuilds the HTML for the section.
+// This is an area that may benefit from further optimization. 
 function redrawOrders() {
   ordersBlock = "";
   price = 0;
@@ -136,13 +164,12 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
-  
   $("#orders").html(ordersBlock);
-  scrollToBottom('orders');
   $("#order_total").html("$ " + formatMoney(price));
+  scrollToBottom('orders');
 }
 
-// Clears entire order, clears and redraws Orders Section and resets price
+// Function clearOrder - Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder() {
   order_Array = [];
   console.log(order_Array);
@@ -155,64 +182,65 @@ function clearOrder() {
   refundArray = [];
 }
 
+// Function paymentView - Redraws the Screen when going from Inventory view to Payment view, saves the value of cart inventory in global productsPrice.
+// This is an area that may benefit from further optimization. 
 function paymentView() {
   productsPrice = price;
   var orderSwitch = "";
   var inventorySwitch = "";
   inventorySwitch +=
     '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';
-  // Read JSON Datafile for pay info
-  $.getJSON("./data/pay.json", function(data) {
-    $.each(data, function(key, val) {
-      paymentOptions_Array.push([
-        key,
-        val.title,
-        val.imagepath,
-        val.price,
-        val.type,
-        val.value
-      ]);
-      inventorySwitch +=
-        '<div class="' +
-        val.type +
-        '" id="pay-' +
-        key +
-        '" onclick="pay(this.id)"><div class="image_line"><img src="' +
-        val.imagepath +
-        '"></div><p class="title">' +
-        val.title +
-        "<br>$" +
-        formatMoney(val.price) +
-        "</p></div>";
-    });
+ 
+  for (let i = 0; i < paymentOptions_Array.length; i++) {
+    inventorySwitch +=
+      '<div class="' +
+      paymentOptions_Array[i][4] +
+      '" id="pay-' +
+      paymentOptions_Array[i][0] +
+      '" onclick="pay(this.id)"><div class="image_line"><img src="' +
+      paymentOptions_Array[i][2] +
+      '"></div><p class="title">' +
+      paymentOptions_Array[i][1];
+      if (paymentOptions_Array[i][4]=='coin'){
+        inventorySwitch += "<br>$";
+      } else {
+        inventorySwitch += "   $";
+      }
+      inventorySwitch += formatMoney(paymentOptions_Array[i][5]) +
+      "</p></div>";
+    }
+ 
     inventorySwitch += "</div>";
     $("#first_container").html(inventorySwitch);
-
     var buttonswitch =
       '<button class="pay" onclick="productView()">Edit Order</button>';
-    $("#paybutton").html(buttonswitch);
 
+      $("#paybutton").html(buttonswitch);
     orderSwitch +=
       '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
     $("#second_container").html(orderSwitch);
-  });
+
   $("#order_total_label").html("Amount Due: ");
   refundArray = [];
 }
 
-//Splits payment
-function pay(p1) {
-  var splits = p1.split("-");
+// Function Pay - Calculates Payment
+// Parses the id passed to the function, reads the information from the paymentOptions array, pushes that information to the end of the payment array.
+function pay(id) {
+  var splits = id.split("-");
   var mykey = parseInt(splits[1]);
   var key = parseInt(paymentOptions_Array[mykey][0], 10);
   var payValue = parseFloat(paymentOptions_Array[key][3]);
   var payImage = paymentOptions_Array[key][2];
   var payTitle = paymentOptions_Array[key][1];
-  paymentArray.push([key, payTitle, payImage, payValue]);
+  var paymentClass = paymentOptions_Array[key][4];
+  paymentArray.push([key, payTitle, payImage, payValue, paymentClass]);
   redrawPayment();
   orderStatus();
 }
 
+// Function Order Status - Checks for state of cart, if amount is greater than 0 prompt to pay, if less than 0 refund, if 0 new order. 
+// This is where I will add pop-up that congratulates/prompts for actions on new order and refund.
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
@@ -229,17 +257,16 @@ function orderStatus() {
   }
 }
 
+// Function removePayment - removes payment from Array, calls redrawPayment and OrderStatus 
 function removePayment(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
-  var price_increase = parseFloat(paymentArray[0][3]);
-  console.log("Now it is : " + paymentArray);
   paymentArray.splice([mykey], 1);
-  console.log("Now it is : " + paymentArray);
   redrawPayment();
   orderStatus();
 }
 
+// Function productView - Invoked when returning to product view from Payment view, redraws the Inventory and the cart, wipes payment and refund arrays
 function productView() {
   var orderReturn = "";
   var inventoryReturn = "";
@@ -262,10 +289,12 @@ function productView() {
   $("#order_total_label").html("Total:");
 }
 
+// Function calculatePayment - receives amount paid, subtracts this from the total amount due.  
 function calculatePayment(amount) {
   paymentTotal = productsPrice - amount;
 }
 
+// Function redrawPayment - redrawrs the HTML for the Amount Paid section
 function redrawPayment() {
   let paidIn = "";
   var paidAmount = 0;
@@ -273,20 +302,19 @@ function redrawPayment() {
     var payValue = parseFloat(paymentArray[i][3], 10);
     var payTitle = paymentArray[i][1];
     var payImage = paymentArray[i][2];
+    var payClass = paymentArray[i][4];
     console.log("My value is " + payValue);
     paidIn +=
-      '<div class="product" onclick="removePayment(this.id)" id="order-' +
+      '<div class="' + payClass+ ' paidIn" onclick="removePayment(this.id)" id="order-' +
       i +
-      '">' +
-      '<p class="title">' +
-      payTitle +
-      "</p>" +
-      '<div class="image_line">' +
+      '"> <div class="image_line">' +
       '<img src="' +
       payImage +
       '">' +
       "</div>" +
-      '<p class="price">$' +
+      '<p class="title">' +
+      payTitle +
+      '   $' +
       formatMoney(payValue) +
       "</p>" +
       "</div>";
@@ -296,10 +324,11 @@ function redrawPayment() {
   
   calculatePayment(parseFloat(paidAmount));
   $("#paidIn").html(paidIn);
-  scrollToBottom('paidIn');
+   scrollToBottom('paidIn');
   $("#order_total").html("$ " + formatMoney(paymentTotal));
 }
 
+// Function removeFromCart -  removes selected item from order_Array, calls redrawOrders  
 function removeFromCart(p1) {
   var splits = p1.split("-");
   var mykey = parseInt(splits[1]);
@@ -308,6 +337,7 @@ function removeFromCart(p1) {
   redrawOrders();
 }
 
+// Function refundView - Redraws page using refund information, invoked when moving from Payment view to Refund view, 
 function refundView() {
   refundDue = -1 * paymentTotal;
   refundAmount = 0;
@@ -325,9 +355,13 @@ function refundView() {
       '" onclick="refund(this.id)"><div class="image_line"><img src="' +
       refundOptions_Array[i][2] +
       '"></div><p class="title">' +
-      refundOptions_Array[i][1] +
-      "<br>$" +
-      formatMoney(refundOptions_Array[i][5]) +
+      refundOptions_Array[i][1];
+      if (refundOptions_Array[i][4]=='coin'){
+        inventorySwitch += "<br>$";
+      } else {
+        inventorySwitch += "   $";
+      }
+      inventorySwitch += formatMoney(refundOptions_Array[i][5]) +
       "</p></div>";
   }
 
@@ -346,13 +380,12 @@ function refundView() {
 
   issueRefund(refundDue);
 }
-
+// Function issueRefund - For each payment option, checks to see if it is greater than the total amount needed to be refunded, if so, disables.
 function issueRefund(stillDue) {
   for (let i = 0; i < refundOptions_Array.length; i++) {
     let refundItemValue = parseFloat(refundOptions_Array[0][3], 10);
     if (refundOptions_Array[i][3] > stillDue) {
       let name = "pay-" + [i];
-      console.log("Element Name is " + name);
       document.getElementById(name).classList.add("disable");
     }
   }
@@ -363,7 +396,8 @@ function issueRefund(stillDue) {
   }
 }
 
-//Splits payment
+// Function refund - Intakes refund
+// Parses the id passed to the function, reads the information from the refundOptions array, pushes that information to the end of the refundArray.
 function refund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -377,6 +411,7 @@ function refund(id) {
   //  orderStatus();
 }
 
+// Function removeRefund - removes a refund payment 
 function removeRefund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -386,17 +421,17 @@ function removeRefund(id) {
   for (let i = 0; i < refundOptions_Array.length; i++) {
     if (refundOptions_Array[i][3] <= formatMoney(refundTotal)) {
       let name = "pay-" + [i];
-      console.log("Element Name is " + name);
       document.getElementById(name).classList.remove("disable");
     }
   }
 }
 
+// Function redrawRefund - redraws the HTML for the Refunded Amount section
 function redrawRefund() {
   let refunded = "";
   let paidAmount = 0;
   for (var i = 0; i < refundArray.length; i++) {
-    var payValue = parseFloat(refundArray[i][3], 10);
+    var payValue = parseFloat(refundArray[i][3], 10); 
     var payTitle = refundArray[i][1];
     var payImage = refundArray[i][2];
     let showPrice = -1 * parseFloat(refundArray[i][3], 10);
@@ -424,27 +459,14 @@ function redrawRefund() {
   issueRefund(formatMoney(refundTotal));
   $("#refunded").html(refunded);
   scrollToBottom('refunded');
-  $("#order_total").html("$ " + formatMoney(refundTotal.toFixed(2)));
+  console.log(refundTotal);
+  $("#order_total").html("$ " + formatMoney(refundTotal));
 }
 
-// Read JSON Datafile for refund info
-$.getJSON("./data/refund.json", function(data) {
-  $.each(data, function(key, val) {
-    refundOptions_Array.push([
-      key,
-      val.title,
-      val.imagepath,
-      val.price,
-      val.type,
-      val.value
-    ]);
-  });
-});
 
+// Function calculateRefund - Calculates the amount still needing to be returned as a refund
+// 
 function calculateRefund(amount) {
-  refundTotal = refundDue - amount;
+  refundTotal = formatMoney(refundDue) - formatMoney(amount);
+  refundTotal = formatMoney(refundTotal);
 }
-
-/********************************************
- **************     MODALS     **************
- ********************************************/
