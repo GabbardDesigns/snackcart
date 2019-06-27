@@ -355,7 +355,7 @@ ROTATE PHONE MESSAGE
   Media Queries
 ==================================== */
 
-@media (max-height: 300px) and (orientation: landscape) {
+@media (max-height: 541px) and (orientation: landscape) {
 	html, body {
 		background: black;
 		height: 100%;
