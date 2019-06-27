@@ -164,6 +164,8 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
+  buttonswitch = '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';    
+  $("#paybutton").html(buttonswitch);
   $("#orders").html(ordersBlock);
   $("#order_total").html("$ " + formatMoney(price));
   scrollToBottom('orders');
@@ -180,6 +182,8 @@ function clearOrder() {
   $("#order_total").html("$ " + formatMoney(price));
   paymentArray = [];
   refundArray = [];
+  
+
 }
 
 // Function paymentView - Redraws the Screen when going from Inventory view to Payment view, saves the value of cart inventory in global productsPrice.
@@ -213,8 +217,7 @@ function paymentView() {
     inventorySwitch += "</div>";
     $("#first_container").html(inventorySwitch);
     var buttonswitch =
-      '<button class="pay" onclick="productView()">Edit Order</button>';
-
+      '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';
       $("#paybutton").html(buttonswitch);
     orderSwitch +=
       '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
@@ -244,17 +247,15 @@ function pay(id) {
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
-    buttonswitch =
-      '<button class="pay" onclick="paymentView()">Pay Now</button>';
+    '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';
   } else if (paymentTotal < 0) {
     buttonswitch =
-      '<button class="pay refund" onclick="refundView()">Issue Refund</button>';
-    $("#paybutton").html(buttonswitch);
+      '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay refund" onclick="refundView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';    
   } else {
     buttonswitch =
-      '<button class="pay new" onclick="clearOrder()">New Order</button>';
-    $("#paybutton").html(buttonswitch);
+    '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
   }
+  $("#paybutton").html(buttonswitch);
 }
 
 // Function removePayment - removes payment from Array, calls redrawPayment and OrderStatus 
@@ -271,7 +272,7 @@ function productView() {
   var orderReturn = "";
   var inventoryReturn = "";
   var buttonswitch =
-    '<button class="pay" onclick="paymentView()">Pay Now</button>';
+  '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>';
   inventoryReturn +=
     '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">' +
     inventorySection +
@@ -369,7 +370,7 @@ function refundView() {
   $("#first_container").html(inventorySwitch);
 
   var buttonswitch =
-    '<button class="pay" onclick="productView()">Edit Order</button>';
+  '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';
   $("#paybutton").html(buttonswitch);
 
   refundSwitch +=
@@ -391,7 +392,7 @@ function issueRefund(stillDue) {
   }
   if (stillDue == 0) {
     buttonswitch =
-      '<button class="pay new" onclick="clearOrder()">New Order</button>';
+    '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
     $("#paybutton").html(buttonswitch);
   }
 }
