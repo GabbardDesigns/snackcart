@@ -1,4 +1,7 @@
 # snackcart
+
+  ![Image](https://repository-images.githubusercontent.com/190465745/13eb3200-9431-11e9-8e36-acca721e66e0 "snackcart")
+  
 Purpose
 
      - Point of Sales (POS) system for a student run snack cart   
