@@ -15,6 +15,22 @@ body {
 	min-height: 100vh;
 }
 
+.main-footer {
+    text-align: center;
+    font-size: .8em;
+	line-height: 1.5;
+	max-height:5vh;
+	min-height:5vh;
+	width:100%;
+	background-color: slategrey;
+}
+
+.footer-inner
+{
+padding-top: 1vh;
+color: white;
+}
+
 ul {
   margin: 0;
   padding: 0;
@@ -49,6 +65,7 @@ img {
 	display: flex;
 	flex-wrap: wrap;
 	flex-direction: row;
+	width: 100vw;
 }
 
 .inv_column, .order_column{
@@ -119,7 +136,6 @@ img {
 	justify-content: flex-start;
 	padding-right: 1vw;
 	padding-left:  1vw;
-	
 }
 
 
@@ -221,14 +237,12 @@ img {
 	height:5vh;
 }
 
-
-
 .dollar {
-	flex: 0 48vw;
+	flex: 0 43vw;
 }
 
 .coin {
-	flex: 0 23vw;
+	flex: 0 21vw;
 }
 
 .main-container {
@@ -238,7 +252,6 @@ img {
 	min-height: 100vh;
 	background-color: rgba(245,247,251,1);
 }
-
 
 .inv_column{
 	max-height: 45vh;
@@ -253,13 +266,6 @@ img {
 .pay_section{
 	max-height:20vh;
 	min-height:20vh;
-}
-
-.main-footer{
-	max-height:5vh;
-	min-height:5vh;
-	width:100%;
-
 }
 
 .section_title {
@@ -310,7 +316,7 @@ img {
     background-color: #ffffff;
     margin: .5vh;
 	max-height: 18vh;
-	min-width: 110px;
+	min-width: 100px;
 }
 
 #inventory_title {
@@ -328,7 +334,7 @@ img {
     /* font-size: 1.4em; */
     color: #0e0e0e;;
     line-height: 1;
-    padding-left: 5vw;
+    padding-left: 3vw;
     width: 60vw;
     max-width: 60vw;
 }
@@ -339,16 +345,9 @@ img {
     color: #0e0e0e;;
     line-height: 1;
     padding-right: 2vw;
-    width: 38vw;
-    max-width: 38vw;
+    width: 35vw;
+    max-width: 35vw;
 }
-
-.banner, .main-footer {
-    text-align: center;
-    font-size: .8em;
-    line-height: 1;
-}
-
 
 .disable{
 	pointer-events: none;
@@ -357,8 +356,13 @@ img {
 	background-color: #ccc;
 }
 
+.pale{
+	filter: saturate(50%);
+}
 
-
+.inventory_list_section::-webkit-scrollbar, .order_list_section::-webkit-scrollbar { 
+	display: none; 
+}
 /* Payment section */
 
 .coin, .dollar {
@@ -436,9 +440,6 @@ ROTATE PHONE MESSAGE
 	margin-top: 40px;
 	display: none;
   }
-
-
-
 
 /* ================================= 
   Media Queries
@@ -539,8 +540,8 @@ ROTATE PHONE MESSAGE
 	overflow-y:scroll;
 	overscroll-behavior-y: contain;
 	justify-content: flex-start;
-	padding-right: 1vw;
-	padding-left:  1vw;
+	/* padding-right: 1vw;
+	padding-left:  1vw; */
 	background-color: transparent;
 }
 
@@ -560,8 +561,8 @@ ROTATE PHONE MESSAGE
 	overflow-y:scroll;
 	overscroll-behavior-y: contain;
 	justify-content: flex-start;
-	padding-right: 1vw;
-	padding-left:  1vw;
+	/* padding-right: 1vw;
+	padding-left:  1vw; */
 	background-color: transparent;
 }
 
@@ -649,7 +650,7 @@ ROTATE PHONE MESSAGE
 	flex: 0 26vw;
 }
 .dollar.paidIn {
-	flex: 0 18vw;
+	flex: 0 17vw;
 }
 
 .coin {
@@ -664,3 +665,9 @@ ROTATE PHONE MESSAGE
 }
 
 
+#modal{
+	display:none;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+}

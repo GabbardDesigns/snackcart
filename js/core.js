@@ -15,6 +15,7 @@ var refundArray = [];
 var refundAmount;
 var refundTotal = 0;
 var refundDue;
+var modal = document.getElementById("modal");
 
 // Read JSON Datafile for refundOptions
 $.getJSON("./data/refund.json", function(data) {
@@ -182,7 +183,8 @@ function clearOrder() {
   $("#order_total").html("$ " + formatMoney(price));
   paymentArray = [];
   refundArray = [];
-  
+  buttonswitch = '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>';    
+  $("#paybutton").html(buttonswitch);
 
 }
 
@@ -247,11 +249,13 @@ function pay(id) {
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
-    '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';
+    '<button class="pay pale" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';
   } else if (paymentTotal < 0) {
     buttonswitch =
       '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay refund" onclick="refundView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';    
   } else {
+    document.getElementById("payOptions").classList.add("disable");
+    document.getElementById("paidIn").classList.add("disable");
     buttonswitch =
     '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
   }
@@ -272,7 +276,7 @@ function productView() {
   var orderReturn = "";
   var inventoryReturn = "";
   var buttonswitch =
-  '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>';
+  '<button class="pay pale" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="paymentView()">Pay Now</button>';
   inventoryReturn +=
     '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">' +
     inventorySection +
@@ -295,7 +299,7 @@ function calculatePayment(amount) {
   paymentTotal = productsPrice - amount;
 }
 
-// Function redrawPayment - redrawrs the HTML for the Amount Paid section
+// Function redrawPayment - redraws the HTML for the Amount Paid section
 function redrawPayment() {
   let paidIn = "";
   var paidAmount = 0;
@@ -336,6 +340,7 @@ function removeFromCart(p1) {
   var price_reduction = -1 * parseFloat(order_Array[mykey][3]);
   order_Array.splice([mykey], 1);
   redrawOrders();
+  if(order_Array.length == 0){$("#paybutton").html('<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>');}
 }
 
 // Function refundView - Redraws page using refund information, invoked when moving from Payment view to Refund view, 
@@ -390,10 +395,16 @@ function issueRefund(stillDue) {
       document.getElementById(name).classList.add("disable");
     }
   }
+
   if (stillDue == 0) {
-    buttonswitch =
-    '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
+    for (let i = 0; i < refundArray.length; i++) {
+      let refundId = 'refund-'+[i];
+      console.log(refundId);
+      document.getElementById(refundId).classList.add("disable");
+    }
+    buttonswitch= '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
     $("#paybutton").html(buttonswitch);
+  //  showModal();
   }
 }
 
@@ -406,10 +417,11 @@ function refund(id) {
   var payValue = -1 * formatMoney(refundOptions_Array[key][3], 2);
   var payImage = refundOptions_Array[key][2];
   var payTitle = refundOptions_Array[key][1];
-  refundArray.push([key, payTitle, payImage, payValue]);
+  var payClass = refundOptions_Array[key][4];
+  refundArray.push([key, payTitle, payImage, payValue, payClass]);
   redrawRefund();
   issueRefund();
-  //  orderStatus();
+  // orderStatus();
 }
 
 // Function removeRefund - removes a refund payment 
@@ -435,21 +447,20 @@ function redrawRefund() {
     var payValue = parseFloat(refundArray[i][3], 10); 
     var payTitle = refundArray[i][1];
     var payImage = refundArray[i][2];
+    var payClass = refundArray[i][4];
     let showPrice = -1 * parseFloat(refundArray[i][3], 10);
     console.log("My value is " + payValue);
     refunded +=
-      '<div class="product" onclick="removeRefund(this.id)" id="refund-' +
+      '<div class="paidIn '+ payClass +'" onclick="removeRefund(this.id)" id="refund-' +
       i +
       '">' +
-      '<p class="title">' +
-      payTitle +
-      "</p>" +
       '<div class="image_line">' +
       '<img src="' +
       payImage +
       '">' +
-      "</div>" +
-      '<p class="price">$' +
+      "</div>" +'<p class="title">' +
+      payTitle +
+     '   $' +
       formatMoney(showPrice) +
       "</p>" +
       "</div>";
@@ -457,13 +468,12 @@ function redrawRefund() {
     console.log("Total paid so far is " + paidAmount);
   }
   calculateRefund(-1 * parseFloat(paidAmount));
-  issueRefund(formatMoney(refundTotal));
   $("#refunded").html(refunded);
   scrollToBottom('refunded');
+  issueRefund(formatMoney(refundTotal));
   console.log(refundTotal);
   $("#order_total").html("$ " + formatMoney(refundTotal));
 }
-
 
 // Function calculateRefund - Calculates the amount still needing to be returned as a refund
 // 
@@ -471,3 +481,15 @@ function calculateRefund(amount) {
   refundTotal = formatMoney(refundDue) - formatMoney(amount);
   refundTotal = formatMoney(refundTotal);
 }
+
+// // Modal Close
+// modal_X.onclick = function(){
+//   modal.style.display= 'none';
+// };
+
+// // Show Modal 
+// function showModal(){
+//   modal.style.display = "block";
+// };
+
+

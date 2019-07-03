@@ -4,13 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snack Cart Plus</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round" type="text/css" />
-    <!-- <link rel="stylesheet" href="css/base.css" /> -->
-	  <link rel="stylesheet" href="css/style.css?v=9"/>
-    <!-- <link rel="stylesheet" href="css/style-min.css?v=9"/> -->
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/>
 	
     <script src="js/jquery-3.4.1.js"></script>
-    <script src="js/core.js?v=1"></script>
+
+    <link rel="stylesheet" href="css/style.css?v=9"/>
 
   </head>
 
@@ -30,13 +29,33 @@
       </div>
     </header>
     /.main-header -->
+
     <div class="phone">
     </div>
     <div class="message">
       Please rotate your device!
     </div>
+
+    <div id="modal">
+
+      <!-- Modal content -->
+      <div id="modal_message">
+        <span id="modal_X">&times;</span>
+        <p>Some text in the Modal..</p>
+      </div>
     
+    </div>
+
+    <!-- 
+    <div id="modal">
+      <div id="modal_message">
+        <div id="modal_X">X</div>
+        This is a message.
+      </div>
+    </div>
+     -->
     <div class="main-container">
+  
       <div class="inv_column" id="first_container">
         <div id="inventory_title" class="section_title">Our Products</div>
         <div id="inventory" class="inventory_list_section"></div>
@@ -68,6 +87,6 @@
     </div>
     <!--/.main-container-->
  
-   
+    <script src="js/core.js?v=1"></script>
   </body>
 </html>
