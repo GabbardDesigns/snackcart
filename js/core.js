@@ -16,6 +16,9 @@ var refundAmount;
 var refundTotal = 0;
 var refundDue;
 var modal = document.getElementById("modal");
+var overlay = document.getElementById("overlay");
+var modalMessage = document.getElementById("modal_message")
+var modalPermissions = true;
 
 // Read JSON Datafile for refundOptions
 $.getJSON("./data/refund.json", function(data) {
@@ -174,6 +177,7 @@ function redrawOrders() {
 
 // Function clearOrder - Clears entire order, clears and redraws Orders Section and resets price
 function clearOrder() {
+  clearModal();
   order_Array = [];
   console.log(order_Array);
   ordersBlock = "";
@@ -251,6 +255,11 @@ function orderStatus() {
   if (paymentTotal > 0) {
     '<button class="pay pale" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';
   } else if (paymentTotal < 0) {
+    for (let i = 0; i < paymentOptions_Array.length; i++) {
+      let payId = 'pay-'+[i];
+      console.log(payId);
+      document.getElementById(payId).classList.add("disable");
+    }
     buttonswitch =
       '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay refund" onclick="refundView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';    
   } else {
@@ -262,6 +271,15 @@ function orderStatus() {
   $("#paybutton").html(buttonswitch);
 }
 
+//Payment Enable
+function paymentEnable(){
+  for (let i = 0; i < paymentOptions_Array.length; i++) {
+    let payId = 'pay-'+[i];
+    console.log(payId);
+    document.getElementById(payId).classList.remove("disable");
+  }
+}
+
 // Function removePayment - removes payment from Array, calls redrawPayment and OrderStatus 
 function removePayment(id) {
   var splits = id.split("-");
@@ -269,6 +287,7 @@ function removePayment(id) {
   paymentArray.splice([mykey], 1);
   redrawPayment();
   orderStatus();
+  paymentEnable();
 }
 
 // Function productView - Invoked when returning to product view from Payment view, redraws the Inventory and the cart, wipes payment and refund arrays
@@ -351,7 +370,6 @@ function refundView() {
   var inventorySwitch = "";
   inventorySwitch +=
     '<div id="inventory_title" class="section_title">Refund Options</div> <div id="payOptions" class="inventory_list_section">';
-
   for (let i = 0; i < refundOptions_Array.length; i++) {
     inventorySwitch +=
       '<div class="' +
@@ -363,7 +381,7 @@ function refundView() {
       '"></div><p class="title">' +
       refundOptions_Array[i][1];
       if (refundOptions_Array[i][4]=='coin'){
-        inventorySwitch += "<br>$";
+        inventorySwitch += "<br/>$";
       } else {
         inventorySwitch += "   $";
       }
@@ -383,7 +401,6 @@ function refundView() {
   $("#second_container").html(refundSwitch);
   $("#order_total_label").html("Refund This Amount:");
   $("#order_total").html("$ " + formatMoney(refundDue - refundAmount));
-
   issueRefund(refundDue);
 }
 // Function issueRefund - For each payment option, checks to see if it is greater than the total amount needed to be refunded, if so, disables.
@@ -404,7 +421,10 @@ function issueRefund(stillDue) {
     }
     buttonswitch= '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
     $("#paybutton").html(buttonswitch);
-  //  showModal();
+    if(modalPermissions){
+    $(modalMessage).html( '<h1>Congratulations!</h1> <p class="modalText" >You completed the order.  <br/><br/>Please start a new order.</p>  <button class="pay new" onclick="clearOrder()">New Order</button><br/> <a href="#" onclick="clearPermissions()">Do not show again.</a>');
+    showModal();
+    }
   }
 }
 
@@ -482,14 +502,25 @@ function calculateRefund(amount) {
   refundTotal = formatMoney(refundTotal);
 }
 
-// // Modal Close
-// modal_X.onclick = function(){
-//   modal.style.display= 'none';
-// };
+// Modal Close
+modal_X.onclick = function(){
+  modal.style.display= 'none';
+  overlay.style.display = "none";
+};
 
-// // Show Modal 
-// function showModal(){
-//   modal.style.display = "block";
-// };
+// Show Modal 
+function showModal(){
+  modal.style.display = "block";
+  overlay.style.display = "block";
+};
 
+// Show Modal 
+function clearModal(){
+  modal.style.display= 'none';
+  overlay.style.display = "none";
+};
 
+function clearPermissions() {
+  modalPermissions = false;
+  clearModal();
+}

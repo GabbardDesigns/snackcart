@@ -116,7 +116,6 @@ img {
 #inventory_title{
 	order: -6;
 	flex: 1 0 100%;
-
 }
 
 #order_title{
@@ -170,8 +169,6 @@ img {
 	border-top:1vh lightgray solid;
 }
 
-
-
 .pay_section {
 	order: 0;
 	flex: 1 0 30%;
@@ -189,7 +186,6 @@ img {
 	padding-left:  1vw;
 	background-color: transparent;
 	border-top:1vh lightgray solid;
-
 }
 
  .new_order, .pay
@@ -204,6 +200,7 @@ img {
 	padding-bottom: 1vh;
 	
 }
+
 .total_section{
 	width:100vw;
 	display: flex;
@@ -219,7 +216,6 @@ img {
 	color:lightgrey;
 	background-color: slategray;
 	padding-left:2vw;
-
 }
 
 .pay_button{
@@ -227,8 +223,6 @@ img {
 	max-height:5vh;
 	justify-content: space-evenly;  
 	display: flex;
-
-
 }
 
 .pay{
@@ -363,6 +357,7 @@ img {
 .inventory_list_section::-webkit-scrollbar, .order_list_section::-webkit-scrollbar { 
 	display: none; 
 }
+
 /* Payment section */
 
 .coin, .dollar {
@@ -385,8 +380,6 @@ img {
 	max-height: 12vh;
 	text-align: center;
 }
-
-
 
 .coin > .title, .dollar > .title {
 	text-align: center;
@@ -661,13 +654,70 @@ ROTATE PHONE MESSAGE
 	flex: 0 10vw;
 }
 
-
 }
 
-
-#modal{
+/* modal styles */
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+	z-index: 10;
 	display:none;
-	top: 50% !important;
-	left: 50% !important;
-	transform: translate(-50%, -50%) !important;
+}
+
+#modal {
+    display: none;
+    width: 50%;
+    line-height: 3em;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+ 	padding-bottom: 5%;
+	background-color: #fff;
+	border: #426de2 3px solid;
+    border-radius: 5px;
+    text-align: center;
+    z-index: 11;
+}
+
+#modal_X{
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+	padding-right: 5%;
+}
+
+@media (orientation: landscape) {
+	.modalText {
+		font-size: 4vh;
+		line-height: 3vh;
+	}
+	
+	#modal_message h1{
+		font-size:3vh;
+	}
+	
+	#modal_message a{
+		font-size:2vh;
+	}
+	}
+	
+
+@media (orientation: portrait) {
+.modalText {
+    font-size: 4vw;
+    line-height: 3vh;
+}
+
+#modal_message h1{
+	font-size:3vw;
+}
+
+#modal_message a{
+	font-size:2vw;
+}
 }
