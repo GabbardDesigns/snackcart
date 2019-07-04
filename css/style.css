@@ -66,7 +66,7 @@ img {
   text-align: center;
   font-size: 2vh;
   width: 100%;
-  line-height: 0.8vh;
+  line-height: 1em;
 }
 
 .noselect {
@@ -136,6 +136,7 @@ img {
   padding-left: 1vw;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  margin: 0 auto;
 }
 
 .total_section {
@@ -505,7 +506,7 @@ ROTATE PHONE MESSAGE
   }
 
   .section_title {
-    font-size: 6vh;
+    font-size: 3vw;
     line-height: 8vh;
     color: lightgrey;
     background-color: slategray;
