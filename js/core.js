@@ -17,7 +17,6 @@ var refundTotal = 0;
 var refundDue;
 var modal = document.getElementById("modal");
 var overlay = document.getElementById("overlay");
-var modalMessage = document.getElementById("modal_message")
 var modalPermissions = true;
 
 // Read JSON Datafile for refundOptions
@@ -168,7 +167,7 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
-  buttonswitch = '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';    
+  buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button " onclick="paymentView()">Pay Now</button>';    
   $("#paybutton").html(buttonswitch);
   $("#orders").html(ordersBlock);
   $("#order_total").html("$ " + formatMoney(price));
@@ -187,7 +186,7 @@ function clearOrder() {
   $("#order_total").html("$ " + formatMoney(price));
   paymentArray = [];
   refundArray = [];
-  buttonswitch = '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>';    
+  buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>';    
   $("#paybutton").html(buttonswitch);
 
 }
@@ -223,7 +222,7 @@ function paymentView() {
     inventorySwitch += "</div>";
     $("#first_container").html(inventorySwitch);
     var buttonswitch =
-      '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';
+      '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
       $("#paybutton").html(buttonswitch);
     orderSwitch +=
       '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
@@ -253,7 +252,7 @@ function pay(id) {
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
-    '<button class="pay pale" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay " onclick="paymentView()">Pay Now</button>';
+    '<button class="button pale" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button " onclick="paymentView()">Pay Now</button>';
   } else if (paymentTotal < 0) {
     for (let i = 0; i < paymentOptions_Array.length; i++) {
       let payId = 'pay-'+[i];
@@ -261,12 +260,16 @@ function orderStatus() {
       document.getElementById(payId).classList.add("disable");
     }
     buttonswitch =
-      '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay refund" onclick="refundView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';    
+      '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
   } else {
     document.getElementById("payOptions").classList.add("disable");
     document.getElementById("paidIn").classList.add("disable");
     buttonswitch =
-    '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
+    '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
+    if(modalPermissions){
+      document.getElementById("order_Completed").style.display='block';
+      showModal();
+     };
   }
   $("#paybutton").html(buttonswitch);
 }
@@ -295,7 +298,7 @@ function productView() {
   var orderReturn = "";
   var inventoryReturn = "";
   var buttonswitch =
-  '<button class="pay pale" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="paymentView()">Pay Now</button>';
+  '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="paymentView()">Pay Now</button>';
   inventoryReturn +=
     '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">' +
     inventorySection +
@@ -359,12 +362,12 @@ function removeFromCart(p1) {
   var price_reduction = -1 * parseFloat(order_Array[mykey][3]);
   order_Array.splice([mykey], 1);
   redrawOrders();
-  if(order_Array.length == 0){$("#paybutton").html('<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>');}
+  if(order_Array.length == 0){$("#paybutton").html('<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>');}
 }
 
 // Function refundView - Redraws page using refund information, invoked when moving from Payment view to Refund view, 
 function refundView() {
-  refundDue = -1 * paymentTotal;
+  refundDue = -1 * formatMoney(paymentTotal);
   refundAmount = 0;
   var refundSwitch = "";
   var inventorySwitch = "";
@@ -393,7 +396,7 @@ function refundView() {
   $("#first_container").html(inventorySwitch);
 
   var buttonswitch =
-  '<button class="pay disable" onclick="paymentView()">New Order</button> <button class="pay disable" onclick="paymentView()">Issue Refund</button> <button class="pay" onclick="productView()">Edit Order</button>';
+  '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
   $("#paybutton").html(buttonswitch);
 
   refundSwitch +=
@@ -419,11 +422,11 @@ function issueRefund(stillDue) {
       console.log(refundId);
       document.getElementById(refundId).classList.add("disable");
     }
-    buttonswitch= '<button class="pay new" onclick="clearOrder()">New Order</button> <button class="pay disable" onclick="refundView()">Issue Refund</button> <button class="pay disable" onclick="paymentView()">Pay Now</button>'; 
+    buttonswitch= '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
     $("#paybutton").html(buttonswitch);
     if(modalPermissions){
-    $(modalMessage).html( '<h1>Congratulations!</h1> <p class="modalText" >You completed the order.  <br/><br/>Please start a new order.</p>  <button class="pay new" onclick="clearOrder()">New Order</button><br/> <a href="#" onclick="clearPermissions()">Do not show again.</a>');
-    showModal();
+     document.getElementById("order_Completed").style.display="block";
+     showModal();
     }
   }
 }
@@ -503,9 +506,10 @@ function calculateRefund(amount) {
 }
 
 // Modal Close
-modal_X.onclick = function(){
+function closeModal(){
   modal.style.display= 'none';
   overlay.style.display = "none";
+  clearModal();
 };
 
 // Show Modal 
@@ -518,9 +522,22 @@ function showModal(){
 function clearModal(){
   modal.style.display= 'none';
   overlay.style.display = "none";
+  document.getElementById("order_Completed").style.display="none";
+  document.getElementById("new_Order").style.display="none";
 };
 
 function clearPermissions() {
   modalPermissions = false;
   clearModal();
+  clearOrder();
+}
+
+function areYouSure(){
+  if(modalPermissions){
+    document.getElementById("new_Order").style.display="block";
+    showModal();
+   }else{
+     clearOrder();
+   }
+
 }

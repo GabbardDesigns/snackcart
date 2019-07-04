@@ -38,11 +38,25 @@
 
     <div id="overlay"></div>
     <div id="modal">
-      <div id="modal_X">&times;</div>
-      <!-- Modal content -->
-      <div id="modal_message">
+      <div id="modal_X" onclick="closeModal()">&times;</div>
+      
+      <div class="modal_message" id="order_Completed" >
+          <h1>Congratulations!</h1>
+          <p class="modalText" >You completed the order. </p>  
+          <p>Please start a new order.</p>  
+          <button class="button new" onclick="clearOrder()">New Order</button><br/> 
+          <a href="#" onclick="clearPermissions()">Do not show again.</a>
       </div>
-    
+
+      <div class="modal_message" id="new_Order" >
+          <h1>Clear current order and start a new one?</h1>
+          <button class="button new" onclick="clearOrder()">Yes</button>
+          <button class="button new" onclick="closeModal()">No</button>
+          <br/>
+          <a href="#" onclick="clearPermissions()">Clear order and do not show again.</a>
+      </div>
+
+
     </div>
 
     <div class="main-container">
@@ -63,9 +77,9 @@
         </div>
 
         <div class="pay_button" id="paybutton">
-          <button class="pay disable" onclick="paymentView()">New Order</button>
-          <button class="pay disable" onclick="paymentView()">Issue Refund</button>
-          <button class="pay disable" onclick="paymentView()">Pay Now</button>
+          <button class="button disable" onclick="paymentView()">New Order</button>
+          <button class="button disable" onclick="paymentView()">Issue Refund</button>
+          <button class="button disable" onclick="paymentView()">Pay Now</button>
         </div>
       </div>
 
