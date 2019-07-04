@@ -116,7 +116,7 @@ function formatMoney(amount, decimalCount, decimal, thousands) {
 function scrollToBottom(id){
   let scroll = document.getElementById(id);
   scroll.scrollTop = scroll.scrollHeight;
-  scroll.animate({scrollTop: scroll.scrollHeight});
+  //scroll.animate({scrollTop: scroll.scrollHeight});
 }
 
 // Function redrawOrders - Recalculates and rewrites price
