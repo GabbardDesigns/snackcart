@@ -42,18 +42,21 @@
       
       <div class="modal_message" id="order_Completed" >
           <h1>Congratulations!</h1>
-          <p class="modalText" >You completed the order. </p>  
-          <p>Please start a new order.</p>  
+          <p class="modalText" > You completed the order. </p>  
+          <p class="modalText" > Please start a new order.</p>  
           <button class="button new" onclick="clearOrder()">New Order</button><br/> 
           <a href="#" onclick="clearPermissions()">Do not show again.</a>
       </div>
 
       <div class="modal_message" id="new_Order" >
           <h1>Clear current order and start a new one?</h1>
-          <button class="button new" onclick="clearOrder()">Yes</button>
-          <button class="button new" onclick="closeModal()">No</button>
+          <p class="modalText modalButtons">
+          <button class="clear_Yes" onclick="clearOrder()">Yes</button>
+          <button class="clear_No" onclick="closeModal()">No</button>
           <br/>
-          <a href="#" onclick="clearPermissions()">Clear order and do not show again.</a>
+          <br/>
+          <a href="#" onclick="clearPermissions()">Clear order and do not show again</a>.
+        </p>
       </div>
 
 
@@ -61,19 +64,19 @@
 
     <div class="main-container">
   
-      <div class="inv_column" id="first_container">
+      <div class="inv_column" id="first_container" aria-live="polite">
         <div id="inventory_title" class="section_title">Our Products</div>
         <div id="inventory" class="inventory_list_section"></div>
       </div>
 
       <div class="order_column" id="second_container">
         <div id="order_title" class="section_title">This Order</div>
-        <div class="order_list_section" id="orders"></div>
+        <div class="order_list_section" id="orders" aria-live="polite"></div>
       </div>
 
       <div class="pay_section">
         <div class="total_section">
-          <div class="total_label" id="order_total_label">Order Total:</div> <div class="total_amount" id="order_total">$ 0.00</div>
+          <div aria-live="polite" class="total_label" id="order_total_label">Order Total:</div> <div class="total_amount" id="order_total">$ 0.00</div>
         </div>
 
         <div class="pay_button" id="paybutton">

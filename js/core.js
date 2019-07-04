@@ -116,7 +116,6 @@ function formatMoney(amount, decimalCount, decimal, thousands) {
 function scrollToBottom(id){
   let scroll = document.getElementById(id);
   scroll.scrollTop = scroll.scrollHeight;
-  //scroll.animate({scrollTop: scroll.scrollHeight});
 }
 
 // Function redrawOrders - Recalculates and rewrites price
@@ -229,6 +228,7 @@ function paymentView() {
     $("#second_container").html(orderSwitch);
 
   $("#order_total_label").html("Amount Due: ");
+  $("#order_total").html("$ " + formatMoney(price));
   refundArray = [];
 }
 
@@ -453,7 +453,7 @@ function removeRefund(id) {
   var mykey = parseInt(splits[1]);
   refundArray.splice([mykey], 1);
   redrawRefund();
-
+  console.log(refundTotal);
   for (let i = 0; i < refundOptions_Array.length; i++) {
     if (refundOptions_Array[i][3] <= formatMoney(refundTotal)) {
       let name = "pay-" + [i];

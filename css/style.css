@@ -443,7 +443,6 @@ ROTATE PHONE MESSAGE
   #inventory_title {
     order: 0;
     flex: initial;
-    /* flex: 1 0 100%; */
     min-width: 60vw;
     max-width: 60vw;
     max-height: 8vh;
@@ -453,7 +452,6 @@ ROTATE PHONE MESSAGE
   #order_title {
     order: 0;
     flex: initial;
-    /* flex: 1 0 100%; */
     min-width: 40vw;
     max-width: 40vw;
     max-height: 8vh;
@@ -484,26 +482,6 @@ ROTATE PHONE MESSAGE
     justify-content: flex-start;
     background-color: transparent;
   }
-
-/* 
-  .new_order_section {
-    order: 0;
-    flex: initial;
-    flex-wrap: wrap;
-    display: flex;
-    min-height: 15vh;
-    max-height: 15vh;
-    min-width: 60vw;
-    max-width: 60vw;
-    overflow-y: scroll;
-    overscroll-behavior-y: contain;
-    justify-content: flex-start;
-    padding-right: 1vw;
-    padding-left: 1vw;
-    background-color: transparent;
-    border-top: 1vh lightgray solid;
-  } */
-
 
   .pay_section {
     order: 0;
@@ -581,10 +559,9 @@ ROTATE PHONE MESSAGE
   position: fixed;
   top: 25%;
   left: 25%;
-  padding-bottom: 5%;
   background-color: #fff;
   border: #426de2 3px solid;
-  border-radius: 5px;
+  border-radius: 20px;
   text-align: center;
   z-index: 11;
 }
@@ -601,6 +578,41 @@ ROTATE PHONE MESSAGE
 
 #order_Completed, #new_Order {
 	display: none;
+}
+
+.modal_message {
+  padding:0 5%;
+  
+}
+
+.clear_Yes {
+  margin-right: 3%;
+  width: 40%;
+  height: 100%;
+  background-color: #5cb85c;
+  color: #fff;
+  font-size: 2.5vh;
+  border-radius: 20px;
+  border:none;
+  padding: 1vh 1vw;
+}
+
+.clear_No {
+  margin-left: 3%;
+  width: 40%;
+  height: 100%;
+  background-color: coral;
+  color: #fff;
+  font-size: 2.5vh;
+  border-radius: 20px;
+  border:none;
+  padding: 1vh 1vw;
+}
+
+
+.modalButtons{
+  text-align:center;
+
 }
 
 .modal_message a {
