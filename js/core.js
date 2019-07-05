@@ -118,7 +118,7 @@ function scrollToBottom(id){
   scroll.scrollTop = scroll.scrollHeight;
 }
 
-// Function redrawOrders - Recalculates and rewrites price
+// Function calculatePrice - Recalculates and rewrites price
 function calculatePrice(priceAdd) {
   price += priceAdd;
   $("#order_total").html("$ " + formatMoney(price));
@@ -139,7 +139,6 @@ function moveToCart(p1) {
 
 
 // Function redrawOrders - Redraws order section after add or removal, wipes HTML container, loops through the orders array and rebuilds the HTML for the section.
-// This is an area that may benefit from further optimization. 
 function redrawOrders() {
   ordersBlock = "";
   price = 0;
@@ -187,11 +186,9 @@ function clearOrder() {
   refundArray = [];
   buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>';    
   $("#paybutton").html(buttonswitch);
-
 }
 
 // Function paymentView - Redraws the Screen when going from Inventory view to Payment view, saves the value of cart inventory in global productsPrice.
-// This is an area that may benefit from further optimization. 
 function paymentView() {
   productsPrice = price;
   var orderSwitch = "";
@@ -232,8 +229,7 @@ function paymentView() {
   refundArray = [];
 }
 
-// Function Pay - Calculates Payment
-// Parses the id passed to the function, reads the information from the paymentOptions array, pushes that information to the end of the payment array.
+// Function Pay - Calculates Payment, Parses the id passed to the function, reads the information from the paymentOptions array, pushes that information to the end of the payment array.
 function pay(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -248,7 +244,6 @@ function pay(id) {
 }
 
 // Function Order Status - Checks for state of cart, if amount is greater than 0 prompt to pay, if less than 0 refund, if 0 new order. 
-// This is where I will add pop-up that congratulates/prompts for actions on new order and refund.
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
@@ -274,7 +269,7 @@ function orderStatus() {
   $("#paybutton").html(buttonswitch);
 }
 
-//Payment Enable
+//Function paymentEnable - Checks that previously disabled payment amounts are should still be disabled, enables if needed. 
 function paymentEnable(){
   for (let i = 0; i < paymentOptions_Array.length; i++) {
     let payId = 'pay-'+[i];
@@ -406,6 +401,7 @@ function refundView() {
   $("#order_total").html("$ " + formatMoney(refundDue - refundAmount));
   issueRefund(refundDue);
 }
+
 // Function issueRefund - For each payment option, checks to see if it is greater than the total amount needed to be refunded, if so, disables.
 function issueRefund(stillDue) {
   for (let i = 0; i < refundOptions_Array.length; i++) {
@@ -431,8 +427,7 @@ function issueRefund(stillDue) {
   }
 }
 
-// Function refund - Intakes refund
-// Parses the id passed to the function, reads the information from the refundOptions array, pushes that information to the end of the refundArray.
+// Function refund - Intakes refund, parses the id passed to the function, reads the information from the refundOptions array, pushes that information to the end of the refundArray.
 function refund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -444,10 +439,9 @@ function refund(id) {
   refundArray.push([key, payTitle, payImage, payValue, payClass]);
   redrawRefund();
   issueRefund();
-  // orderStatus();
 }
 
-// Function removeRefund - removes a refund payment 
+// Function removeRefund - removes a refund payment, checks that previously disabled refundable amounts are should still be disabled, enables if needed. 
 function removeRefund(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -499,26 +493,25 @@ function redrawRefund() {
 }
 
 // Function calculateRefund - Calculates the amount still needing to be returned as a refund
-// 
 function calculateRefund(amount) {
   refundTotal = formatMoney(refundDue) - formatMoney(amount);
   refundTotal = formatMoney(refundTotal);
 }
 
-// Modal Close
+// Function: closeModal - closes the modal popup.
 function closeModal(){
   modal.style.display= 'none';
   overlay.style.display = "none";
   clearModal();
 };
 
-// Show Modal 
+// Function: Show Modal - Shows the modal popup.
 function showModal(){
   modal.style.display = "block";
   overlay.style.display = "block";
 };
 
-// Show Modal 
+// Function: clearModal - Hides the modal and wipes its contents.
 function clearModal(){
   modal.style.display= 'none';
   overlay.style.display = "none";
@@ -526,12 +519,14 @@ function clearModal(){
   document.getElementById("new_Order").style.display="none";
 };
 
+// Function:  ClearPermissions:  If the user decides not to see the modal pop-ups anymore, this changes the permission flag to false, clears and hides teh modal HTML and closes the modal popup.
 function clearPermissions() {
   modalPermissions = false;
   clearModal();
   clearOrder();
 }
 
+// Function: areYouSure: If modal viewing flag is true, sets the content of the modal to the Are You Sure You Want to Clear this order message.
 function areYouSure(){
   if(modalPermissions){
     document.getElementById("new_Order").style.display="block";
