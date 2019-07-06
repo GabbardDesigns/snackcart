@@ -276,17 +276,6 @@ img {
   max-width: 35vw;
 }
 
-.disable {
-  pointer-events: none;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%), blur(20%);
-  background-color: #ccc;
-}
-
-.pale {
-  filter: saturate(50%);
-}
-
 .inventory_list_section::-webkit-scrollbar,
 .order_list_section::-webkit-scrollbar {
   display: none;
@@ -648,4 +637,19 @@ ROTATE PHONE MESSAGE
   .modal_message a {
     font-size: 2vw;
   }
+}
+
+.button.cta{
+  background-color: #5cb85c;
+}
+
+.disable {
+  pointer-events: none;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%), blur(20%);
+  background-color: #ccc;
+}
+
+.pale {
+  filter: saturate(50%);
 }
