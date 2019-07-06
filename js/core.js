@@ -29,7 +29,8 @@ request.onload = function() {
   if (request.status >= 200 && request.status < 400) {
     // Success!
     var data = JSON.parse(request.responseText);
-    $.each(data, function(key, val) {
+    console.log(data);
+    data.forEach(function(val, key){
       refundOptions_Array.push([
         key,
         val.title,
