@@ -1,65 +1,75 @@
 [
 
 { 
-    "title": "Animals",
+    "title": "Animal Crackers",
     "imagepath": "img/products/animalcrackers.jpg",
-    "price": "0.50"
+    "price": "0.50",
+    "alt" : "Small package of Animal Crackers"
 },
 
 { 
     "title": "Apple Juice",
     "imagepath": "img/products/applejuice.png",
-    "price": "0.50"
+    "price": "0.50",
+    "alt" : "A small bottle of Apple Juice"
 },
 
 { 
     "title": "Banana",
     "imagepath": "img/products/banana.jpg",
-    "price": "0.50"
+    "price": "0.50",
+    "alt" : "A single banana"
 },
 
 { 
     "title": "Bottled Water",
     "imagepath": "img/products/bottledwater.png",
-    "price": "0.50"
+    "price": "0.50",
+    "alt" : "A 16 ounce bottle of water"
 },
 
 { 
     "title": "Cake",
     "imagepath": "img/products/cake.png",
-    "price": "1.50"
+    "price": "1.50",
+    "alt" : "A single slice of chocolate cake"
 },
 
 { 
     "title": "Chips",
     "imagepath": "img/products/chips.jpg",
-    "price": "0.50"
+    "price": "0.50",
+    "alt" : "A small (10oz) bag of plain chips"
 },
 
 { 
     "title": "Coke",
     "imagepath": "img/products/soda.png",
-    "price": "0.75"
+    "price": "0.75",
+    "alt" : "A 12 ounce can of Coke"
 },
 
 
 { 
     "title": "Cookie",
     "imagepath": "img/products/cookie.jpg",
-    "price": "0.75"
+    "price": "0.75",
+    "alt" : "A big yummy cookie"
 },
 
 { 
     "title": "Fruit Snacks",
     "imagepath": "img/products/fruitsnacks.jpg",
-    "price": "0.25"
+    "price": "0.25",
+    "alt" : "A 3 oz package of fruit snacks"
 },
 
 
 { 
     "title": "Orange Juice",
     "imagepath": "img/products/orangejuice.png",
-    "price": "1.50"
+    "price": "1.50",
+    "alt" : "A bottle of orange juice."
 }
 
 
