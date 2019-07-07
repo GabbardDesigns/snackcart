@@ -36,7 +36,8 @@ request.onload = function() {
         val.imagepath,
         val.price,
         val.type,
-        val.value
+        val.value,
+        val.alt
       ]);
     });
   } 
@@ -61,7 +62,8 @@ request.open('GET', './data/pay.json', true);
       val.imagepath,
       val.price,
       val.type,
-      val.value
+      val.value,
+      val.alt
     ]);
   });
 } 
@@ -84,7 +86,8 @@ function importInventory(){
       key,
       val.title,
       val.imagepath,
-      parseFloat(val.price, 10)
+      parseFloat(val.price, 10),
+      val.alt
     ]);
     output +=
       '<div class="product" id="product-' +
@@ -96,7 +99,7 @@ function importInventory(){
       '<div class="image_line noselect">' +
       '<img src="' +
       val.imagepath +
-      '">' +
+      '" alt="'+ val.alt +'">' +
       "</div>" +
       '<p class="price noselect">$' +
       val.price +
@@ -154,7 +157,6 @@ function scrollToBottom(id){
 function calculatePrice(priceAdd) {
   price += priceAdd;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
-
 }
 
 // Function moveToCart - Moves items to cart, calls redrawOrders to update cart contents and price
@@ -165,7 +167,8 @@ function moveToCart(p1) {
   var orderPrice = parseFloat(inventory_Array[key][3]);
   var orderImage = inventory_Array[key][2];
   var orderTitle = inventory_Array[key][1];
-  order_Array.push([key, orderTitle, orderImage, orderPrice]);
+  var orderAlt = inventory_Array[key][4];
+  order_Array.push([key, orderTitle, orderImage, orderPrice, orderAlt]);
   price = 0;
   redrawOrders();
 }
@@ -188,8 +191,8 @@ function redrawOrders() {
       "</p>" +
       '<div class="image_line noselect">' +
       '<img src="' +
-      myimage +
-      '">' +
+      myimage
+      + '" alt="'+ order_Array[i][4] +'">' +
       "</div>" +
       '<p class="price noselect">$' +
       formatMoney(myprice) +
@@ -237,8 +240,9 @@ function paymentView() {
       '" id="pay-' +
       paymentOptions_Array[i][0] +
       '" onclick="pay(this.id)"><div class="image_line noselect"><img src="' +
-      paymentOptions_Array[i][2] +
-      '"></div><p class="title noselect">' +
+      paymentOptions_Array[i][2]
+      + '" alt="'+ paymentOptions_Array[i][6] +'">' +
+      '</div><p class="title noselect">' +
       paymentOptions_Array[i][1];
       if (paymentOptions_Array[i][4]=='coin'){
         inventorySwitch += "<br>$";
@@ -273,7 +277,8 @@ function pay(id) {
   var payImage = paymentOptions_Array[key][2];
   var payTitle = paymentOptions_Array[key][1];
   var paymentClass = paymentOptions_Array[key][4];
-  paymentArray.push([key, payTitle, payImage, payValue, paymentClass]);
+  var paymentAlt =  paymentOptions_Array[key][6];
+  paymentArray.push([key, payTitle, payImage, payValue, paymentClass, paymentAlt]);
   redrawPayment();
   orderStatus();
 }
@@ -361,14 +366,15 @@ function redrawPayment() {
     var payTitle = paymentArray[i][1];
     var payImage = paymentArray[i][2];
     var payClass = paymentArray[i][4];
+    var payAlt = paymentArray[i][5];
     //  console.log("My value is " + payValue);
     paidIn +=
       '<div class="' + payClass+ ' paidIn" onclick="removePayment(this.id)" id="order-' +
       i +
       '"> <div class="image_line noselect">' +
       '<img src="' +
-      payImage +
-      '">' +
+      payImage 
+      + '" alt="'+ payAlt +'">' +
       "</div>" +
       '<p class="title noselect">' +
       payTitle +
@@ -413,8 +419,9 @@ function refundView() {
       '" id="pay-' +
       refundOptions_Array[i][0] +
       '" onclick="refund(this.id)"><div class="image_line noselect"><img src="' +
-      refundOptions_Array[i][2] +
-      '"></div><p class="title noselect">' +
+      refundOptions_Array[i][2] 
+      + '" alt="'+ refundOptions_Array[i][6] +'">' +
+      '</div><p class="title noselect">' +
       refundOptions_Array[i][1];
       if (refundOptions_Array[i][4]=='coin'){
         inventorySwitch += "<br/>$";
@@ -478,7 +485,8 @@ function refund(id) {
   var payImage = refundOptions_Array[key][2];
   var payTitle = refundOptions_Array[key][1];
   var payClass = refundOptions_Array[key][4];
-  refundArray.push([key, payTitle, payImage, payValue, payClass]);
+  var payAlt = refundOptions_Array[key][6];
+  refundArray.push([key, payTitle, payImage, payValue, payClass, payAlt]);
   redrawRefund();
   issueRefund();
 }
@@ -507,6 +515,7 @@ function redrawRefund() {
     var payTitle = refundArray[i][1];
     var payImage = refundArray[i][2];
     var payClass = refundArray[i][4];
+    var payAlt = refundArray[i][5];
     let showPrice = -1 * parseFloat(refundArray[i][3], 10);
     //  console.log("My value is " + payValue);
     refunded +=
@@ -516,7 +525,7 @@ function redrawRefund() {
       '<div class="image_line  noselect">' +
       '<img src="' +
       payImage +
-      '">' +
+      '" alt="'+ payAlt +'">' +
       "</div>" +'<p class="title noselect">' +
       payTitle +
      '   $' +
