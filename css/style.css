@@ -244,6 +244,7 @@ img {
   max-height: 18vh;
   min-width: 100px;
   justify-content: space-evenly;
+  border: 2px solid cornflowerblue;
 }
 
 #inventory_title {
@@ -308,12 +309,14 @@ img {
   height: 13vh;
   max-height: 13vh;
   text-align: center;
+  padding-top: 3px;
 }
 
 .coin > .image_line {
   height: 12vh;
   max-height: 12vh;
   text-align: center;
+  padding-top: 3px;
 }
 
 .coin > .title,

@@ -244,11 +244,7 @@ function paymentView() {
       + '" alt="'+ paymentOptions_Array[i][6] +'">' +
       '</div><p class="title noselect">' +
       paymentOptions_Array[i][1];
-      if (paymentOptions_Array[i][4]=='coin'){
-        inventorySwitch += "<br>$";
-      } else {
-        inventorySwitch += "   $";
-      }
+      inventorySwitch += "   $";    
       inventorySwitch += formatMoney(paymentOptions_Array[i][5]) +
       "</p></div>";
     }
@@ -423,11 +419,7 @@ function refundView() {
       + '" alt="'+ refundOptions_Array[i][6] +'">' +
       '</div><p class="title noselect">' +
       refundOptions_Array[i][1];
-      if (refundOptions_Array[i][4]=='coin'){
-        inventorySwitch += "<br/>$";
-      } else {
-        inventorySwitch += "   $";
-      }
+      inventorySwitch += "   $";
       inventorySwitch += formatMoney(refundOptions_Array[i][5]) +
       "</p></div>";
   }
