@@ -18,24 +18,43 @@ var refundDue;
 var modal = document.getElementById("modal");
 var overlay = document.getElementById("overlay");
 var modalPermissions = true;
+var paymentTotal=0;
 
-// Read JSON Datafile for refundOptions
-$.getJSON("./data/refund.json", function(data) {
-  $.each(data, function(key, val) {
-    refundOptions_Array.push([
-      key,
-      val.title,
-      val.imagepath,
-      val.price,
-      val.type,
-      val.value
-    ]);
-  });
-});
+// // Read JSON Datafile for refundOptions
+function getRefundOptions(){
+var request = new XMLHttpRequest();
+request.open('GET', './data/refund.json', true);
+request.onload = function() {
+  if (request.status >= 200 && request.status < 400) {
+    // Success!
+    var data = JSON.parse(request.responseText);
+    //  console.log(data);
+    data.forEach(function(val, key){
+      refundOptions_Array.push([
+        key,
+        val.title,
+        val.imagepath,
+        val.price,
+        val.type,
+        val.value
+      ]);
+    });
+  } 
+};
+request.send();
+}
+getRefundOptions();
 
 // Read JSON Datafile for paymentOptions
-$.getJSON("./data/pay.json", function(data) {
-  $.each(data, function(key, val) {
+function getPaymentOptions() {
+  var request = new XMLHttpRequest();  
+request.open('GET', './data/pay.json', true);
+  request.onload = function() {
+    if (request.status >= 200 && request.status < 400) {
+      // Success!
+      var data = JSON.parse(request.responseText);
+      //  console.log(data);
+      data.forEach(function(val, key){
     paymentOptions_Array.push([
       key,
       val.title,
@@ -45,12 +64,22 @@ $.getJSON("./data/pay.json", function(data) {
       val.value
     ]);
   });
-});
-
+} 
+};
+request.send();
+};
+getPaymentOptions();
 
 // Read JSON Datafile for starter inventory and define inventory section in the HTML
-$.getJSON("./data/inventory.json", function(data) {
-  $.each(data, function(key, val) {
+function importInventory(){
+    var request = new XMLHttpRequest();  
+    request.open('GET', './data/inventory.json', true);
+      request.onload = function() {
+        if (request.status >= 200 && request.status < 400) {
+          // Success!
+          var data = JSON.parse(request.responseText);
+          //  console.log(data);
+          data.forEach(function(val, key){
     inventory_Array.push([
       key,
       val.title,
@@ -75,9 +104,12 @@ $.getJSON("./data/inventory.json", function(data) {
       "</div>";
   });
   inventorySection = output;
-  $("#inventory").html(output);
-});
+  document.getElementById("inventory").innerHTML=output;
+}};
+request.send();
+}
 
+importInventory();
 
 // Function: formatMoney - beautiful borrowed script that parses the provided amount and applies a .fixed(decimal) to the it amoung other things (logic for thousands place operator)
 // May come back and trim the thousands place items out since this application does not need to worry about them.
@@ -108,7 +140,7 @@ function formatMoney(amount, decimalCount, decimal, thousands) {
         : "")
     );
   } catch (e) {
-    console.log(e);
+    //  console.log(e);
   }
 }
 
@@ -121,7 +153,8 @@ function scrollToBottom(id){
 // Function calculatePrice - Recalculates and rewrites price
 function calculatePrice(priceAdd) {
   price += priceAdd;
-  $("#order_total").html("$ " + formatMoney(price));
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
+
 }
 
 // Function moveToCart - Moves items to cart, calls redrawOrders to update cart contents and price
@@ -137,7 +170,6 @@ function moveToCart(p1) {
   redrawOrders();
 }
 
-
 // Function redrawOrders - Redraws order section after add or removal, wipes HTML container, loops through the orders array and rebuilds the HTML for the section.
 function redrawOrders() {
   ordersBlock = "";
@@ -146,7 +178,7 @@ function redrawOrders() {
     var myprice = parseFloat(order_Array[i][3], 10);
     var mytitle = order_Array[i][1];
     var myimage = order_Array[i][2];
-    console.log("My Price is " + myprice);
+    //  console.log("My Price is " + myprice);
     ordersBlock +=
       '<div class="product" onclick="removeFromCart(this.id)" id="order-' +
       i +
@@ -165,10 +197,10 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
-  buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button " onclick="paymentView()">Pay Now</button>';    
-  $("#paybutton").html(buttonswitch);
-  $("#orders").html(ordersBlock);
-  $("#order_total").html("$ " + formatMoney(price));
+  buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button cta" onclick="paymentView()">Pay Now</button>';    
+  document.getElementById("paybutton").innerHTML=buttonswitch;
+  document.getElementById("orders").innerHTML=ordersBlock;
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
   scrollToBottom('orders');
 }
 
@@ -176,16 +208,18 @@ function redrawOrders() {
 function clearOrder() {
   clearModal();
   order_Array = [];
-  console.log(order_Array);
+  //  console.log(order_Array);
   ordersBlock = "";
   productView();
   price = parseFloat("0.00");
-  $("#orders").html(ordersBlock);
-  $("#order_total").html("$ " + formatMoney(price));
+  paymentTotal=0;
+
   paymentArray = [];
   refundArray = [];
   buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>';    
-  $("#paybutton").html(buttonswitch);
+  document.getElementById("paybutton").innerHTML=buttonswitch;
+  document.getElementById("orders").innerHTML=ordersBlock;
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
 }
 
 // Function paymentView - Redraws the Screen when going from Inventory view to Payment view, saves the value of cart inventory in global productsPrice.
@@ -202,9 +236,9 @@ function paymentView() {
       paymentOptions_Array[i][4] +
       '" id="pay-' +
       paymentOptions_Array[i][0] +
-      '" onclick="pay(this.id)"><div class="image_line"><img src="' +
+      '" onclick="pay(this.id)"><div class="image_line noselect"><img src="' +
       paymentOptions_Array[i][2] +
-      '"></div><p class="title">' +
+      '"></div><p class="title noselect">' +
       paymentOptions_Array[i][1];
       if (paymentOptions_Array[i][4]=='coin'){
         inventorySwitch += "<br>$";
@@ -216,16 +250,17 @@ function paymentView() {
     }
  
     inventorySwitch += "</div>";
-    $("#first_container").html(inventorySwitch);
+ 
     var buttonswitch =
-      '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
-      $("#paybutton").html(buttonswitch);
+      '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
     orderSwitch +=
       '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
-    $("#second_container").html(orderSwitch);
 
-  $("#order_total_label").html("Amount Due: ");
-  $("#order_total").html("$ " + formatMoney(price));
+  document.getElementById("second_container").innerHTML=orderSwitch;
+  document.getElementById("order_total_label").innerHTML="Amount Due: ";
+  document.getElementById("first_container").innerHTML=inventorySwitch;
+  document.getElementById("paybutton").innerHTML=buttonswitch;
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
   refundArray = [];
 }
 
@@ -247,33 +282,33 @@ function pay(id) {
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
-    '<button class="button pale" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button " onclick="paymentView()">Pay Now</button>';
+    buttonswitch = '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>'; 
   } else if (paymentTotal < 0) {
     for (let i = 0; i < paymentOptions_Array.length; i++) {
       let payId = 'pay-'+[i];
-      console.log(payId);
+      //  console.log(payId);
       document.getElementById(payId).classList.add("disable");
     }
-    buttonswitch =
-      '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
+    buttonswitch ='<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
   } else {
-    document.getElementById("payOptions").classList.add("disable");
-    document.getElementById("paidIn").classList.add("disable");
-    buttonswitch =
-    '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
+      document.getElementById("payOptions").classList.add("disable");
+      document.getElementById("paidIn").classList.add("disable");
+      buttonswitch = '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
+    
     if(modalPermissions){
       document.getElementById("order_Completed").style.display='block';
       showModal();
      };
   }
-  $("#paybutton").html(buttonswitch);
+
+ document.getElementById("paybutton").innerHTML=buttonswitch;
 }
 
 //Function paymentEnable - Checks that previously disabled payment amounts are should still be disabled, enables if needed. 
 function paymentEnable(){
   for (let i = 0; i < paymentOptions_Array.length; i++) {
     let payId = 'pay-'+[i];
-    console.log(payId);
+    //  console.log(payId);
     document.getElementById(payId).classList.remove("disable");
   }
 }
@@ -284,8 +319,8 @@ function removePayment(id) {
   var mykey = parseInt(splits[1]);
   paymentArray.splice([mykey], 1);
   redrawPayment();
-  orderStatus();
   paymentEnable();
+  orderStatus();
 }
 
 // Function productView - Invoked when returning to product view from Payment view, redraws the Inventory and the cart, wipes payment and refund arrays
@@ -302,13 +337,14 @@ function productView() {
     '<div id="order_title" class="section_title">This Order</div><div class="order_list_section" id="orders">' +
     ordersBlock +
     "</div></div>";
-  $("#first_container").html(inventoryReturn);
-  $("#second_container").html(orderReturn);
-  $("#paybutton").html(buttonswitch);
-  $("#order_total").html("$ " + formatMoney(productsPrice));
-  paymentArray = [];
-  refundArray = [];
-  $("#order_total_label").html("Total:");
+
+    document.getElementById("first_container").innerHTML=inventoryReturn;
+    document.getElementById("second_container").innerHTML=orderReturn;
+    document.getElementById("paybutton").innerHTML=buttonswitch;
+    document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
+    paymentArray = [];
+    refundArray = [];
+    document.getElementById("order_total_label").innerHTML="Total: ";
 }
 
 // Function calculatePayment - receives amount paid, subtracts this from the total amount due.  
@@ -325,29 +361,29 @@ function redrawPayment() {
     var payTitle = paymentArray[i][1];
     var payImage = paymentArray[i][2];
     var payClass = paymentArray[i][4];
-    console.log("My value is " + payValue);
+    //  console.log("My value is " + payValue);
     paidIn +=
       '<div class="' + payClass+ ' paidIn" onclick="removePayment(this.id)" id="order-' +
       i +
-      '"> <div class="image_line">' +
+      '"> <div class="image_line noselect">' +
       '<img src="' +
       payImage +
       '">' +
       "</div>" +
-      '<p class="title">' +
+      '<p class="title noselect">' +
       payTitle +
       '   $' +
       formatMoney(payValue) +
       "</p>" +
       "</div>";
     paidAmount += parseFloat(payValue);
-    console.log("Total paid so far is " + paidAmount);
+    
   }
   
-  calculatePayment(parseFloat(paidAmount));
-  $("#paidIn").html(paidIn);
-   scrollToBottom('paidIn');
-  $("#order_total").html("$ " + formatMoney(paymentTotal));
+  calculatePayment(formatMoney(paidAmount,2));
+  document.getElementById("paidIn").innerHTML=paidIn;
+  scrollToBottom('paidIn');
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(paymentTotal));
 }
 
 // Function removeFromCart -  removes selected item from order_Array, calls redrawOrders  
@@ -357,8 +393,10 @@ function removeFromCart(p1) {
   var price_reduction = -1 * parseFloat(order_Array[mykey][3]);
   order_Array.splice([mykey], 1);
   redrawOrders();
-  if(order_Array.length == 0){$("#paybutton").html('<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>');}
-}
+  if(order_Array.length == 0){
+    buttonswitch='<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>';
+    document.getElementById("paybutton").innerHTML=buttonswitch;
+}}
 
 // Function refundView - Redraws page using refund information, invoked when moving from Payment view to Refund view, 
 function refundView() {
@@ -374,9 +412,9 @@ function refundView() {
       refundOptions_Array[i][4] +
       '" id="pay-' +
       refundOptions_Array[i][0] +
-      '" onclick="refund(this.id)"><div class="image_line"><img src="' +
+      '" onclick="refund(this.id)"><div class="image_line noselect"><img src="' +
       refundOptions_Array[i][2] +
-      '"></div><p class="title">' +
+      '"></div><p class="title noselect">' +
       refundOptions_Array[i][1];
       if (refundOptions_Array[i][4]=='coin'){
         inventorySwitch += "<br/>$";
@@ -388,17 +426,21 @@ function refundView() {
   }
 
   inventorySwitch += "</div>";
-  $("#first_container").html(inventorySwitch);
 
   var buttonswitch =
   '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
-  $("#paybutton").html(buttonswitch);
+ 
 
   refundSwitch +=
     '<div id="order_title" class="section_title">Refunded Amount</div> <div id="refunded" class="order_list_section"></div></div>';
-  $("#second_container").html(refundSwitch);
-  $("#order_total_label").html("Refund This Amount:");
-  $("#order_total").html("$ " + formatMoney(refundDue - refundAmount));
+
+
+  document.getElementById("first_container").innerHTML=inventorySwitch;
+  document.getElementById("second_container").innerHTML=refundSwitch;
+  document.getElementById("paybutton").innerHTML=buttonswitch;
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(refundDue - refundAmount));
+  document.getElementById("order_total_label").innerHTML="Refund This Amount:";
+
   issueRefund(refundDue);
 }
 
@@ -415,11 +457,11 @@ function issueRefund(stillDue) {
   if (stillDue == 0) {
     for (let i = 0; i < refundArray.length; i++) {
       let refundId = 'refund-'+[i];
-      console.log(refundId);
+      //  console.log(refundId);
       document.getElementById(refundId).classList.add("disable");
     }
     buttonswitch= '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
-    $("#paybutton").html(buttonswitch);
+     document.getElementById("paybutton").innerHTML=buttonswitch;
     if(modalPermissions){
      document.getElementById("order_Completed").style.display="block";
      showModal();
@@ -447,7 +489,7 @@ function removeRefund(id) {
   var mykey = parseInt(splits[1]);
   refundArray.splice([mykey], 1);
   redrawRefund();
-  console.log(refundTotal);
+  //  console.log(refundTotal);
   for (let i = 0; i < refundOptions_Array.length; i++) {
     if (refundOptions_Array[i][3] <= formatMoney(refundTotal)) {
       let name = "pay-" + [i];
@@ -466,30 +508,30 @@ function redrawRefund() {
     var payImage = refundArray[i][2];
     var payClass = refundArray[i][4];
     let showPrice = -1 * parseFloat(refundArray[i][3], 10);
-    console.log("My value is " + payValue);
+    //  console.log("My value is " + payValue);
     refunded +=
       '<div class="paidIn '+ payClass +'" onclick="removeRefund(this.id)" id="refund-' +
       i +
       '">' +
-      '<div class="image_line">' +
+      '<div class="image_line  noselect">' +
       '<img src="' +
       payImage +
       '">' +
-      "</div>" +'<p class="title">' +
+      "</div>" +'<p class="title noselect">' +
       payTitle +
      '   $' +
       formatMoney(showPrice) +
       "</p>" +
       "</div>";
     paidAmount += parseFloat(payValue);
-    console.log("Total paid so far is " + paidAmount);
+    //  console.log("Total paid so far is " + paidAmount);
   }
   calculateRefund(-1 * parseFloat(paidAmount));
-  $("#refunded").html(refunded);
+  document.getElementById("refunded").innerHTML=refunded;
   scrollToBottom('refunded');
   issueRefund(formatMoney(refundTotal));
-  console.log(refundTotal);
-  $("#order_total").html("$ " + formatMoney(refundTotal));
+  //  console.log(refundTotal);
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney(refundTotal));
 }
 
 // Function calculateRefund - Calculates the amount still needing to be returned as a refund

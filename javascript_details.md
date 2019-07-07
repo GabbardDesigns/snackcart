@@ -1,11 +1,10 @@
 <h1>javascript details</h1>
 <h2>Modified Existing Functions (2) </h2>
-  <div>
+  
 <h5>formatMoney</h5>
 <p>Beautiful borrowed script that parses the provided amount and applies a .fixed(decimal) to the it amoung other things (logic for thousands place operator).</p>
 <h5>scrollToBottom</h5>
 <p>Forces scroll to the bottom of container, used when payment, refund, or cart containers overflow on add.</p>
-</div>
 
 <h2>Custom Functions (24)</h2>
 
