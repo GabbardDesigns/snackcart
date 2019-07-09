@@ -44,6 +44,7 @@ request.onload = function() {
 };
 request.send();
 }
+
 getRefundOptions();
 
 // Read JSON Datafile for paymentOptions
@@ -70,6 +71,7 @@ request.open('GET', './data/pay.json', true);
 };
 request.send();
 };
+
 getPaymentOptions();
 
 // Read JSON Datafile for starter inventory and define inventory section in the HTML
@@ -147,7 +149,8 @@ function formatMoney(amount, decimalCount, decimal, thousands) {
   }
 }
 
-// Function scrollToBottom - Forces scroll to the bottom of container, used when payment, refund, or cart containers overflow on add.
+// Function scrollToBottom - Forces scroll to the bottom of container
+// Used when payment, refund, or cart containers overflow on add.
 function scrollToBottom(id){
   let scroll = document.getElementById(id);
   scroll.scrollTop = scroll.scrollHeight;
@@ -159,7 +162,12 @@ function calculatePrice(priceAdd) {
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
 }
 
-// Function moveToCart - Moves items to cart, calls redrawOrders to update cart contents and price
+// Function moveToCart - Moves items to cart
+  // Parses the id passed to the function and uses that value to get the array key for the item clicked
+  // Reads the information from the inventoryArray for that item
+  // Pushes this information to the end of the orderArray.
+  // Redraws the orders section using redrawOrders() (This function updates cart contents and price)
+
 function moveToCart(p1) {
   var splits = p1.split("-");
   var mykey = parseInt(splits[1]);
@@ -173,7 +181,8 @@ function moveToCart(p1) {
   redrawOrders();
 }
 
-// Function redrawOrders - Redraws order section after add or removal, wipes HTML container, loops through the orders array and rebuilds the HTML for the section.
+// Function redrawOrders- Redraws order section after add or removal
+// Wipes HTML container, loops through the orders array and rebuilds the HTML for the section.
 function redrawOrders() {
   ordersBlock = "";
   price = 0;
@@ -181,7 +190,7 @@ function redrawOrders() {
     var myprice = parseFloat(order_Array[i][3], 10);
     var mytitle = order_Array[i][1];
     var myimage = order_Array[i][2];
-    //  console.log("My Price is " + myprice);
+
     ordersBlock +=
       '<div class="product" onclick="removeFromCart(this.id)" id="order-' +
       i +
@@ -200,18 +209,19 @@ function redrawOrders() {
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
-  buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button cta" onclick="paymentView()">Pay Now</button>';    
+  buttonswitch = '<button class="button disable" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button cta" onclick="paymentView()">Pay Now</button>';    
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("orders").innerHTML=ordersBlock;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
   scrollToBottom('orders');
 }
 
-// Function clearOrder - Clears entire order, clears and redraws Orders Section and resets price
+// Function clearOrder - Clears entire order
+  // Clears order array, payment Array, and refund Array.  | Redraws Orders Section and resets price
 function clearOrder() {
   clearModal();
   order_Array = [];
-  //  console.log(order_Array);
+
   ordersBlock = "";
   productView();
   price = parseFloat("0.00");
@@ -219,13 +229,15 @@ function clearOrder() {
 
   paymentArray = [];
   refundArray = [];
+
   buttonswitch = '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>';    
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("orders").innerHTML=ordersBlock;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
 }
 
-// Function paymentView - Redraws the Screen when going from Inventory view to Payment view, saves the value of cart inventory in global productsPrice.
+// Function paymentView - Redraws the screen when going from Inventory view to Payment view
+  // Saves the value of cart inventory in global productsPrice.
 function paymentView() {
   productsPrice = price;
   var orderSwitch = "";
@@ -255,16 +267,22 @@ function paymentView() {
       '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
     orderSwitch +=
       '<div id="order_title" class="section_title">Amount Paid</div> <div id="paidIn" class="order_list_section"></div></div>';
-
+  
+  // Redraws the entire screen 
   document.getElementById("second_container").innerHTML=orderSwitch;
   document.getElementById("order_total_label").innerHTML="Amount Due: ";
   document.getElementById("first_container").innerHTML=inventorySwitch;
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
-  refundArray = [];
+  
 }
 
-// Function Pay - Calculates Payment, Parses the id passed to the function, reads the information from the paymentOptions array, pushes that information to the end of the payment array.
+// Function Pay - Calculates Payments
+  // Parses the id passed to the function and uses that value to get the array key for the item clicked
+  // Reads the information from the paymentOptions array for that item
+  // Pushes this information to the end of the payment array.
+  // Redraws the payments section
+
 function pay(id) {
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
@@ -279,7 +297,10 @@ function pay(id) {
   orderStatus();
 }
 
-// Function Order Status - Checks for state of cart, if amount is greater than 0 prompt to pay, if less than 0 refund, if 0 new order. 
+// Function Order Status -  Checks for state of cart
+  // If amount is greater than 0 prompt to pay or clear order 
+  // If less than 0, prompt to issue refund (activate Issue Refund button and pale New Order button) 
+  // Otherwise payment total equals zero, so activate New Order button and show modal for Order Completed. 
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
@@ -287,7 +308,6 @@ function orderStatus() {
   } else if (paymentTotal < 0) {
     for (let i = 0; i < paymentOptions_Array.length; i++) {
       let payId = 'pay-'+[i];
-      //  console.log(payId);
       document.getElementById(payId).classList.add("disable");
     }
     buttonswitch ='<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
@@ -305,26 +325,33 @@ function orderStatus() {
  document.getElementById("paybutton").innerHTML=buttonswitch;
 }
 
-//Function paymentEnable - Checks that previously disabled payment amounts are should still be disabled, enables if needed. 
+//Function paymentEnable
+  // Checks that previously disabled payment amounts are should still be disabled, enables if needed. 
 function paymentEnable(){
   for (let i = 0; i < paymentOptions_Array.length; i++) {
     let payId = 'pay-'+[i];
-    //  console.log(payId);
     document.getElementById(payId).classList.remove("disable");
   }
 }
 
-// Function removePayment - removes payment from Array, calls redrawPayment and OrderStatus 
+// Function removePayment 
+  // Receives the Payment's ID as an argument | Parses the payment ID to get the array key
+  // Removes the specific payment from the paymentArray | Redraws Payment section using the updated array
+
 function removePayment(id) {
+  // Pulls the array key from the payment's ID.
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
   paymentArray.splice([mykey], 1);
+
+  // Redraws the payment section using the updated array
   redrawPayment();
   paymentEnable();
   orderStatus();
 }
 
-// Function productView - Invoked when returning to product view from Payment view, redraws the Inventory and the cart, wipes payment and refund arrays
+// Function productView - Invoked when returning to product view from Payment or refund view
+  // Redraws the Inventory and the cart  | Wipes payment and refund arrays
 function productView() {
   var orderReturn = "";
   var inventoryReturn = "";
@@ -339,12 +366,15 @@ function productView() {
     ordersBlock +
     "</div></div>";
 
+    // Clears the payment and refund arrays (if you go back to the Edit the order, all payment and refund progress is wiped)
+    paymentArray = [];
+    refundArray = [];
+
+    // Redraws the entire screen 
     document.getElementById("first_container").innerHTML=inventoryReturn;
     document.getElementById("second_container").innerHTML=orderReturn;
     document.getElementById("paybutton").innerHTML=buttonswitch;
     document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
-    paymentArray = [];
-    refundArray = [];
     document.getElementById("order_total_label").innerHTML="Total: ";
 }
 
@@ -363,7 +393,8 @@ function redrawPayment() {
     var payImage = paymentArray[i][2];
     var payClass = paymentArray[i][4];
     var payAlt = paymentArray[i][5];
-    //  console.log("My value is " + payValue);
+
+    // Draws the payment unit.
     paidIn +=
       '<div class="' + payClass+ ' paidIn" onclick="removePayment(this.id)" id="order-' +
       i +
@@ -382,10 +413,16 @@ function redrawPayment() {
     
   }
   
+
   calculatePayment(formatMoney(paidAmount,2));
+
+  // Redraws the payment area screen 
   document.getElementById("paidIn").innerHTML=paidIn;
-  scrollToBottom('paidIn');
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(paymentTotal));
+  
+  // Forces scroll so that you see they item you just added
+  scrollToBottom('paidIn');
+
 }
 
 // Function removeFromCart -  removes selected item from order_Array, calls redrawOrders  
@@ -429,10 +466,8 @@ function refundView() {
   var buttonswitch =
   '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
  
-
   refundSwitch +=
     '<div id="order_title" class="section_title">Refunded Amount</div> <div id="refunded" class="order_list_section"></div></div>';
-
 
   document.getElementById("first_container").innerHTML=inventorySwitch;
   document.getElementById("second_container").innerHTML=refundSwitch;

@@ -6,14 +6,12 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round" type="text/css" />
 
     <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/> -->
-    <!-- <script src="js/jquery-3.4.1.js"></script> -->
-
     <link rel="stylesheet" href="css/style.css?v=9"/>
   </head>
 
   <body>
 
-    <!-- 
+    <!--  This area is not in use currently, it will be used once the admin section of the application is ready.
       <header class="main-header">
       <div class="icon-bar" id="flex-menu">
         <div class="flex-home">
@@ -28,19 +26,20 @@
         </div>
       </div>
     </header>
-    /.main-header 
-    -->
+    /.main-header -->
 
-    <div class="phone">
-    </div>
-    <div class="message">
-      Please rotate your device!
-    </div>
+    <!-- Divs Phone and Message are hidden initially, these show only when the device is in landscape and smaller than -->
+    <div class="phone"> </div>
+    <div class="message"> Please rotate your device! </div>
 
+    <!-- Overlay and Modal sections are not displayed initially, triggered by functions when order is completed or cleared (newOrder()) -->
     <div id="overlay"></div>
+
+     <!--#modal-->
     <div id="modal">
       <div id="modal_X" onclick="closeModal()">&times;</div>
       
+      <!--Modal content for #order_Completed-->
       <div class="modal_message" id="order_Completed" >
           <h1>Congratulations!</h1>
           <p class="modalText" > You completed the order. </p>  
@@ -48,36 +47,46 @@
           <button class="button new" onclick="clearOrder()">New Order</button><br/> 
           <a href="#" onclick="clearPermissions()">Do not show again.</a>
       </div>
+      <!--/#order_Completed-->
 
+      <!--Modal content for #new_Order-->
       <div class="modal_message" id="new_Order" >
           <h1>Clear current order and start a new one?</h1>
           <p class="modalText modalButtons">
-          <button class="clear_Yes" onclick="clearOrder()">Yes</button>
-          <button class="clear_No" onclick="closeModal()">No</button>
-          <br/>
-          <br/>
+          <button class="clearBut yesBut" onclick="clearOrder()">Yes</button>
+          <button class="clearBut noBut" onclick="closeModal()">No</button>
+          <br/><br/>
           <a href="#" onclick="clearPermissions()">Clear order and do not show again</a>.
         </p>
       </div>
+       <!--/#new_Order-->
 
     </div>
+    <!--/#modal-->
 
+    <!-- main-container -->
     <div class="main-container">
   
+         <!-- Start of redrawable #first_container (top or left depending on orientation) -->
       <div class="inv_column" id="first_container" >
         <div id="inventory_title" class="section_title">Our Products</div>
         <div id="inventory" class="inventory_list_section"></div>
       </div>
+         <!-- /#first_container -->
 
+      <!-- Start of redrawable #second_container (middle or right depending on orientation) -->
       <div class="order_column" id="second_container">
         <div id="order_title" class="section_title">This Order</div>
         <div class="order_list_section" id="orders" aria-live="polite"></div>
       </div>
+       <!-- /#second_container -->
 
+      <!-- Start of redrawable .pay_section (bottom in all orientations) -->
       <div class="pay_section">
         <div class="total_section">
           <div aria-live="polite" class="total_label" id="order_total_label">Order Total:</div> <div class="total_amount" id="order_total">$ 0.00</div>
         </div>
+
 
         <div class="pay_button" id="paybutton">
           <button class="button disable" onclick="paymentView()">New Order</button>
@@ -85,16 +94,19 @@
           <button class="button disable" onclick="paymentView()">Pay Now</button>
         </div>
       </div>
+      <!-- /#pay_section-->
 
+      <!-- Static footer section -->
       <footer class="main-footer">
         <div class="footer-inner">
           <span>&copy; 2019 GabbardDesigns</span>
         </div>
       </footer>
+      <!-- /footer-->
 
     </div>
-    <!--/.main-container-->
- 
+    <!--/main-container-->
+
     <script src="js/core.js?v=1"></script>
   </body>
 </html>
