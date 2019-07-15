@@ -5,13 +5,17 @@
     <title>Snack Cart Plus</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round" type="text/css" />
 
-    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/> -->
+    <!-- NOT IN USE FOR CURRENT VERSION - FONT USED FOR ICONS IN NAV BAR IN LATER VERSION 
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/> 
+    -->
     <link rel="stylesheet" href="css/style.css?v=9"/>
   </head>
 
   <body>
 
-    <!--  This area is not in use currently, it will be used once the admin section of the application is ready.
+    <!--  Main Header Section
+      NOTE: This area is not in use currently, it will be used once the admin section of the application is ready.
+
       <header class="main-header">
       <div class="icon-bar" id="flex-menu">
         <div class="flex-home">
@@ -26,16 +30,23 @@
         </div>
       </div>
     </header>
-    /.main-header -->
+  
+  </.main-header -->
 
-    <!-- Divs Phone and Message are hidden initially, these show only when the device is in landscape and smaller than -->
-    <div class="phone"> </div>
-    <div class="message"> Please rotate your device! </div>
+    <!-- CHANGE ORIENTATION SECTION
+      Divs Phone and Message are hidden initially, these show only when the device is in landscape and smaller than -->
+      <section id="changeOrientation">
+      <div class="phone"> </div>
+      <div class="message"> Please rotate your device! </div>
+      </section>
+<!--/#CHANGE ORIENTAION-->
 
-    <!-- Overlay and Modal sections are not displayed initially, triggered by functions when order is completed or cleared (newOrder()) -->
+<!--#ModalPopUps-->    
+<!-- Overlay and Modal sections are not displayed initially, triggered by functions when order is completed or cleared (newOrder()) -->
+    
+    <section id="ModalPopUps">
     <div id="overlay"></div>
-
-     <!--#modal-->
+  
     <div id="modal">
       <div id="modal_X" onclick="closeModal()">&times;</div>
       
@@ -62,7 +73,9 @@
        <!--/#new_Order-->
 
     </div>
-    <!--/#modal-->
+    </section>
+    <!--/#ModalPopUps-->
+
 
     <!-- main-container -->
     <div class="main-container">

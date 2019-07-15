@@ -92,22 +92,6 @@ img {
   text-align: center;
 }
 
-/* .new_order_section {
-  order: -2;
-  flex: 1 0 50%;
-  flex-wrap: wrap;
-  display: flex;
-  min-height: 15vh;
-  max-height: 15vh;
-  overflow-y: scroll;
-  overscroll-behavior-y: contain;
-  justify-content: left;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  background-color: transparent;
-  border-top: 1vh lightgray solid;
-} */
-
 .pay_section {
   order: 0;
   flex: 1 0 30%;

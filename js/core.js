@@ -413,7 +413,6 @@ function redrawPayment() {
     
   }
   
-
   calculatePayment(formatMoney(paidAmount,2));
 
   // Redraws the payment area screen 
@@ -422,6 +421,8 @@ function redrawPayment() {
   
   // Forces scroll so that you see they item you just added
   scrollToBottom('paidIn');
+  document.getElementById("paidIn").setAttribute('aria-hidden', true);
+  document.getElementById("paidIn").focus();
 
 }
 
@@ -503,10 +504,14 @@ function issueRefund(stillDue) {
   }
 }
 
-// Function refund - Intakes refund, parses the id passed to the function, reads the information from the refundOptions array, pushes that information to the end of the refundArray.
+// Function refund 
+// Intakes refund, parses the id passed to the function, reads the information from the refundOptions array, pushes that information to the end of the refundArray.
 function refund(id) {
+  // Breaks up the ID fed in on "-"
   var splits = id.split("-");
   var mykey = parseInt(splits[1]);
+
+  // Finds the split part inside of the refundOptions Array
   var key = parseInt(refundOptions_Array[mykey][0], 10);
   var payValue = -1 * formatMoney(refundOptions_Array[key][3], 2);
   var payImage = refundOptions_Array[key][2];
@@ -514,6 +519,8 @@ function refund(id) {
   var payClass = refundOptions_Array[key][4];
   var payAlt = refundOptions_Array[key][6];
   refundArray.push([key, payTitle, payImage, payValue, payClass, payAlt]);
+  
+  //Redraws the refund section
   redrawRefund();
   issueRefund();
 }
@@ -524,7 +531,7 @@ function removeRefund(id) {
   var mykey = parseInt(splits[1]);
   refundArray.splice([mykey], 1);
   redrawRefund();
-  //  console.log(refundTotal);
+  
   for (let i = 0; i < refundOptions_Array.length; i++) {
     if (refundOptions_Array[i][3] <= formatMoney(refundTotal)) {
       let name = "pay-" + [i];
@@ -544,8 +551,7 @@ function redrawRefund() {
     var payClass = refundArray[i][4];
     var payAlt = refundArray[i][5];
     let showPrice = -1 * parseFloat(refundArray[i][3], 10);
-    //  console.log("My value is " + payValue);
-    refunded +=
+      refunded +=
       '<div class="paidIn '+ payClass +'" onclick="removeRefund(this.id)" id="refund-' +
       i +
       '">' +
@@ -560,13 +566,13 @@ function redrawRefund() {
       "</p>" +
       "</div>";
     paidAmount += parseFloat(payValue);
-    //  console.log("Total paid so far is " + paidAmount);
+  
   }
   calculateRefund(-1 * parseFloat(paidAmount));
   document.getElementById("refunded").innerHTML=refunded;
   scrollToBottom('refunded');
   issueRefund(formatMoney(refundTotal));
-  //  console.log(refundTotal);
+  
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(refundTotal));
 }
 
@@ -612,5 +618,4 @@ function areYouSure(){
    }else{
      clearOrder();
    }
-
 }
