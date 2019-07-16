@@ -637,3 +637,29 @@ ROTATE PHONE MESSAGE
   filter: grayscale(100%), blur(20%);
   background-color: #ccc;
 }
+
+
+/* NO SCRIPT MODAL */
+
+#noScriptOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  z-index: 10;
+}
+
+#noScriptMessage{
+    width: 50%;
+    line-height: 3em;
+    position: fixed;
+    top: 25%;
+    left: 25%;
+    background-color: #fff;
+    border: #426de2 3px solid;
+    border-radius: 20px;
+    text-align: center;
+    z-index: 11;
+}

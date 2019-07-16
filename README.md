@@ -28,7 +28,7 @@ Design Considerations
 Distribution
 
      - The initial version will be a web-based application with a set inventory.  
-     
+
 Future Improvements
 
 The full version of this application will be deployed on Android and iOS mobile devices using react-native and react-fs.  This version will feature an admin interface that will allow users with the admin code (a set code initially, changeable within the admin interface) to:
