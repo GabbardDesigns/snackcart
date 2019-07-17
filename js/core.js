@@ -195,7 +195,7 @@ function redrawOrders() {
       '<div class="product" onclick="removeFromCart(this.id)" id="order-' +
       i +
       '">' +
-      '<p class="title noselect">' +
+      '<p class="title noselect" aria-live="polite">' +
       mytitle +
       "</p>" +
       '<div class="image_line noselect">' +
@@ -212,7 +212,10 @@ function redrawOrders() {
   buttonswitch = '<button class="button disable" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button cta" onclick="paymentView()">Pay Now</button>';    
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("orders").innerHTML=ordersBlock;
-  document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
+  document.getElementById("payHolder").innerHTML= `<div aria-live="polite" class="total_label" id="order_total_label">Amount Due:</div> <div aria-live="polite" class="total_amount"  id="order_total">`+("$ " + formatMoney(price))+`</div>`;
+  // document.getElementById("order_total_label").innerHTML="Amount Due:";
+  // document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
+
   scrollToBottom('orders');
 }
 
@@ -243,8 +246,8 @@ function paymentView() {
   var orderSwitch = "";
   var inventorySwitch = "";
   inventorySwitch +=
-    '<div id="inventory_title" class="section_title">Payment Options</div> <div id="payOptions" class="inventory_list_section">';
- 
+    '<div id="inventory_title" aria-live="polite" class="section_title">Payment Options</div> <div id="payOptions" aria-live="polite" class="inventory_list_section">';
+   // Reads the payment_Array and redraws the payment options
   for (let i = 0; i < paymentOptions_Array.length; i++) {
     inventorySwitch +=
       '<div class="' +
@@ -304,17 +307,17 @@ function pay(id) {
 function orderStatus() {
   var buttonswitch;
   if (paymentTotal > 0) {
-    buttonswitch = '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>'; 
+    buttonswitch = '<button class="button pale" onclick="areYouSure()">New Order</button> <button aria-live="polite" class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>'; 
   } else if (paymentTotal < 0) {
     for (let i = 0; i < paymentOptions_Array.length; i++) {
       let payId = 'pay-'+[i];
       document.getElementById(payId).classList.add("disable");
     }
-    buttonswitch ='<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
+    buttonswitch ='<button class="button pale" onclick="areYouSure()">New Order</button> <button aria-live="polite" class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
   } else {
       document.getElementById("payOptions").classList.add("disable");
       document.getElementById("paidIn").classList.add("disable");
-      buttonswitch = '<button class="button new" onclick="clearOrder()">New Order</button> <button class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
+      buttonswitch = '<button class="button new" onclick="clearOrder()">New Order</button> <button aria-live="polite" class="button disable" onclick="refundView()">Issue Refund</button> <button class="button disable" onclick="paymentView()">Pay Now</button>'; 
     
     if(modalPermissions){
       document.getElementById("order_Completed").style.display='block';
@@ -375,7 +378,7 @@ function productView() {
     document.getElementById("second_container").innerHTML=orderReturn;
     document.getElementById("paybutton").innerHTML=buttonswitch;
     document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
-    document.getElementById("order_total_label").innerHTML="Total: ";
+    document.getElementById("order_total_label").innerHTML="Amount Due: ";
 }
 
 // Function calculatePayment - receives amount paid, subtracts this from the total amount due.  
@@ -417,8 +420,7 @@ function redrawPayment() {
 
   // Redraws the payment area screen 
   document.getElementById("paidIn").innerHTML=paidIn;
-  document.getElementById("order_total").innerHTML=("$ " + formatMoney(paymentTotal));
-  
+  document.getElementById("payHolder").innerHTML= `<div aria-live="polite" class="total_label" id="order_total_label">Amount Due:</div> <div aria-live="polite" class="total_amount"  id="order_total">`+("$ " + formatMoney(paymentTotal))+`</div>`;
   // Forces scroll so that you see they item you just added
   scrollToBottom('paidIn');
   document.getElementById("paidIn").setAttribute('aria-hidden', true);
@@ -473,7 +475,7 @@ function refundView() {
   document.getElementById("first_container").innerHTML=inventorySwitch;
   document.getElementById("second_container").innerHTML=refundSwitch;
   document.getElementById("paybutton").innerHTML=buttonswitch;
-  document.getElementById("order_total").innerHTML=("$ " + formatMoney(refundDue - refundAmount));
+  document.getElementById("order_total").innerHTML=("$ " + formatMoney((refundDue - refundAmount)));
   document.getElementById("order_total_label").innerHTML="Refund This Amount:";
 
   issueRefund(refundDue);

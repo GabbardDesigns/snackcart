@@ -88,28 +88,28 @@
 
 
     <!-- main-container -->
-    <div class="main-container">
+    <main class="main-container">
   
          <!-- Start of redrawable #first_container (top or left depending on orientation) -->
-      <div class="inv_column" id="first_container" >
-        <div id="inventory_title" class="section_title">Our Products</div>
-        <div id="inventory" class="inventory_list_section"></div>
+      <div class="inv_column" id="first_container" aria-atomic="true" >
+        <div id="inventory_title" aria-live="polite" class="section_title">Our Products</div>
+        <div id="inventory" aria-live="polite" class="inventory_list_section"></div>
       </div>
+      
          <!-- /#first_container -->
 
       <!-- Start of redrawable #second_container (middle or right depending on orientation) -->
-      <div class="order_column" id="second_container">
-        <div id="order_title" class="section_title">This Order</div>
-        <div class="order_list_section" id="orders" aria-live="polite"></div>
+      <div class="order_column" id="second_container" aria-atomic="true">
+        <div id="order_title" class="section_title" aria-live="polite" >This Order</div>
+        <div class="order_list_section" id="orders" aria-relevant="additions removals" aria-live="polite"></div>
       </div>
        <!-- /#second_container -->
 
       <!-- Start of redrawable .pay_section (bottom in all orientations) -->
       <div class="pay_section">
-        <div class="total_section">
-          <div aria-live="polite" class="total_label" id="order_total_label">Order Total:</div> <div class="total_amount" id="order_total">$ 0.00</div>
+        <div id="payHolder" class="total_section" aria-live="assertive"  aria-atomic="true"> 
+          <div aria-live="polite" class="total_label" id="order_total_label">Amount Due:</div> <div aria-live="polite" class="total_amount"  id="order_total">$ 0.00</div>
         </div>
-
 
         <div class="pay_button" id="paybutton">
           <button class="button disable" onclick="paymentView()">New Order</button>
@@ -120,14 +120,14 @@
       <!-- /#pay_section-->
 
       <!-- Static footer section -->
-      <footer class="main-footer">
+      <footer class="main-footer" role="contentinfo">
         <div class="footer-inner">
           <span>&copy; 2019 GabbardDesigns</span>
         </div>
       </footer>
       <!-- /footer-->
 
-    </div>
+    </main>
     <!--/main-container-->
 
     <script src="js/core.js?v=1"></script>
