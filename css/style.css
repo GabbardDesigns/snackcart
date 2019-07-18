@@ -648,8 +648,9 @@ ROTATE PHONE MESSAGE
   }
 
 @media (orientation: landscape) {
-  .modalText {
-    font-size: 3vh;
+  .modal_message {
+    padding: 0 10%;
+      font-size: 3vh;
     line-height: 3vh;
   }
 
@@ -661,6 +662,7 @@ ROTATE PHONE MESSAGE
     font-size: 4vh;
     line-height: 5vh;
 }
+
 
 
 .inventory_list_section > .product {
