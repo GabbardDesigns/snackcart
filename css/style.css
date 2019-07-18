@@ -686,10 +686,24 @@ ROTATE PHONE MESSAGE
     line-height: 3vh;
   }
 
+
   .modal_message h1 {
     font-size: 4vh;
     line-height: 5vh;
 }
+.pay_section {
+  max-height:15vh;
+  min-height:15vh;
+}
+
+.pay_section {
+  max-height:15vh;
+  min-height:15vh;
+}
+.main-footer{
+  margin-bottom: 5vh;
+}
+
 
   #modal {
     width: 80%;
