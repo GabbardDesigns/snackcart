@@ -18,6 +18,7 @@ var refundDue;
 var modal = document.getElementById("modal");
 var overlay = document.getElementById("overlay");
 var modalPermissions = true;
+var refundModalPermissions = true;
 var paymentTotal=0;
 
 // // Read JSON Datafile for refundOptions
@@ -95,17 +96,17 @@ function importInventory(){
       '<div class="product" id="product-' +
       inventory_Array[key][0] +
       '" onClick="moveToCart(this.id)">' +
-      '<p class="title noselect">' +
+      '<div class="title noselect">' +
       val.title +
-      "</p>" +
+      "</div>" +
       '<div class="image_line noselect">' +
       '<img src="' +
       val.imagepath +
       '" alt="'+ val.alt +'">' +
       "</div>" +
-      '<p class="price noselect">$' +
+      '<div class="price noselect">$' +
       val.price +
-      "</p>" +
+      "</div>" +
       "</div>";
   });
   inventorySection = output;
@@ -195,17 +196,17 @@ function redrawOrders() {
       '<div class="product" onclick="removeFromCart(this.id)" id="order-' +
       i +
       '">' +
-      '<p class="title noselect" aria-live="polite">' +
+      '<div class="title noselect" aria-live="polite">' +
       mytitle +
-      "</p>" +
+      "</div>" +
       '<div class="image_line noselect">' +
       '<img src="' +
       myimage
       + '" alt="'+ order_Array[i][4] +'">' +
       "</div>" +
-      '<p class="price noselect">$' +
+      '<div class="price noselect">$' +
       formatMoney(myprice) +
-      "</p>" +
+      "</div>" +
       "</div>";
     calculatePrice(parseFloat(myprice));
   }
@@ -264,7 +265,7 @@ function paymentView() {
       "</p></div>";
     }
  
-    inventorySwitch += "</div>";
+    inventorySwitch += `</div><div id="inventoryBottom" aria-live="polite"></div> `;
  
     var buttonswitch =
       '<button class="button pale" onclick="areYouSure()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
@@ -312,8 +313,15 @@ function orderStatus() {
     for (let i = 0; i < paymentOptions_Array.length; i++) {
       let payId = 'pay-'+[i];
       document.getElementById(payId).classList.add("disable");
+      document.getElementById("paidIn").classList.add("disable");
     }
     buttonswitch ='<button class="button pale" onclick="areYouSure()">New Order</button> <button aria-live="polite" class="button refund" onclick="refundView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';    
+    
+    if(refundModalPermissions){
+      document.getElementById("issue_Refund").style.display='block';
+      showModal();
+     }
+
   } else {
       document.getElementById("payOptions").classList.add("disable");
       document.getElementById("paidIn").classList.add("disable");
@@ -363,7 +371,7 @@ function productView() {
   inventoryReturn +=
     '<div id="inventory_title" class="section_title">Our Products</div> <div id="payOptions" class="inventory_list_section">' +
     inventorySection +
-    "</div>";
+    `</div><div id="inventoryBottom" aria-live="polite"></div> `;
   orderReturn +=
     '<div id="order_title" class="section_title">This Order</div><div class="order_list_section" id="orders">' +
     ordersBlock +
@@ -464,7 +472,7 @@ function refundView() {
       "</p></div>";
   }
 
-  inventorySwitch += "</div>";
+  inventorySwitch += `</div><div id="inventoryBottom" aria-live="polite"></div> `;
 
   var buttonswitch =
   '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
@@ -603,14 +611,29 @@ function clearModal(){
   overlay.style.display = "none";
   document.getElementById("order_Completed").style.display="none";
   document.getElementById("new_Order").style.display="none";
+  document.getElementById("issue_Refund").style.display="none";
 };
 
 // Function:  ClearPermissions:  If the user decides not to see the modal pop-ups anymore, this changes the permission flag to false, clears and hides teh modal HTML and closes the modal popup.
 function clearPermissions() {
   modalPermissions = false;
+  refundModalPermissions = false;
   clearModal();
   clearOrder();
 }
+
+function clickToRefund(){
+  clearModal();
+  refundView();
+}
+
+function clearToRefund() {
+  refundModalPermissions = false;
+  clearModal();
+  refundView();
+}
+
+
 
 // Function: areYouSure: If modal viewing flag is true, sets the content of the modal to the Are You Sure You Want to Clear this order message.
 function areYouSure(){

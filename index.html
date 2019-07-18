@@ -3,8 +3,8 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Snack Cart Plus</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round" type="text/css" />
-
+    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Varela+Round" type="text/css" /> -->
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap" rel="stylesheet"> 
     <!-- NOT IN USE FOR CURRENT VERSION - FONT USED FOR ICONS IN NAV BAR IN LATER VERSION 
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/> 
     -->
@@ -82,6 +82,18 @@
       </div>
        <!--/#new_Order-->
 
+        <!--Modal content for #new_Order-->
+      <div class="modal_message" id="issue_Refund" >
+        <h1>Time to issue a refund. </h1>
+        <p>You can click either Issue Refund buttons to issue the refund.</p>
+        <p class="modalText modalButtons">
+        <button class="clearBut RefundBut" onclick="clickToRefund()">Issue Refund</button>
+        <br/><br/>
+        <a href="#" onclick="clearToRefund()">Close this message and do not show again</a>.
+      </p>
+    </div>
+     <!--/#new_Order-->
+
     </div>
     </section>
     <!--/#ModalPopUps-->
@@ -94,6 +106,8 @@
       <div class="inv_column" id="first_container" aria-atomic="true" >
         <div id="inventory_title" aria-live="polite" class="section_title">Our Products</div>
         <div id="inventory" aria-live="polite" class="inventory_list_section"></div>
+        <div id="inventoryBottom" aria-live="polite"></div>
+        
       </div>
       
          <!-- /#first_container -->

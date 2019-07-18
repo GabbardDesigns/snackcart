@@ -2,17 +2,21 @@
   Base Element Styles
 ==================================== */
 
+html {
+  height:100vh;
+}
+
 * {
   box-sizing: border-box;
 }
 body {
-  font-family: "Varela Round", sans-serif;
+  font-family: "Roboto",sans-serif;
   line-height: 1.6;
-  color: #3a3a3a;
+  color: #000;
   margin: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 99vh;
 }
 
 .main-footer {
@@ -22,12 +26,13 @@ body {
   max-height: 5vh;
   min-height: 5vh;
   width: 100%;
-  background-color: slategrey;
+  background-color: #2B7A78;
 }
 
 .footer-inner {
   padding-top: 1vh;
   color: white;
+  font-size: 1.8vh;
 }
 
 p {
@@ -59,14 +64,20 @@ img {
 .inv_column,
 .order_column {
   width: 100vw;
+  padding-right: 1.5vw;
+  padding-left: 1.5vw;
 }
 
-.title,
-.price {
-  text-align: center;
-  font-size: 2vh;
-  width: 100%;
-  line-height: 1em;
+.title, .price {
+    text-align: center;
+    height: 4vh;
+    max-height: 4vh;
+    font-size: 1.8vh;
+    width: 100%;
+    line-height: 1em;
+    padding-left: 0.5vw;
+    padding-right: .5vw;
+    padding-top: 0.5vh;
 }
 
 .noselect {
@@ -105,10 +116,13 @@ img {
   overscroll-behavior-y: contain;
   justify-content: left;
   align-items: center;
-  padding-right: 1vw;
-  padding-left: 1vw;
+
   background-color: transparent;
-  border-top: 1vh lightgray solid;
+  border-top: 1vh #fff solid;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border: 1px solid rgba(0,0,0,.125);
+
 }
 
 /* .new_order, */
@@ -154,49 +168,60 @@ img {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  min-height: 100vh;
-  background-color: rgba(245, 247, 251, 1);
+  min-height: 99vh;
+  background-color: #17252A;
 }
 
 .inv_column {
-  max-height: 45vh;
-  min-height: 45vh;
+  max-height: 44vh;
+  min-height: 44vh;
+
 }
 
 .order_column {
-  max-height: 30vh;
-  min-height: 30vh;
+  max-height: 29.5vh;
+  min-height: 29.5vh;
+  
+  padding-top: .5vh;
 }
 
 .pay_section {
   max-height: 20vh;
   min-height: 20vh;
+  background-color: #FEFFFF;
 }
 
 .section_title {
   
-  font-size: 3vh;
-  max-height: 5vh;
-  min-height: 5vh;
-  line-height: 1.5em;
-  color: #707070;
-  background-color: #dce2ee;
-  padding-left: 2vw;
+font-size: 2.6vh;
+  
+max-height: 5vh;
+  
+min-height: 5vh;
+  
+line-height: 1.9em;
+  
+color: #fff;
+  
+background-color: #3AAFA9;
+  
+padding-left: 3vw;
+  
+border-top-left-radius: 40px;
+  
+border-top-right-radius: 40px;
 }
 
 .inventory_list_section {
   order: -5;
-  /* flex: 0 0 100%; */
   flex-wrap: wrap;
   display: flex;
-  min-height: 40vh;
-  max-height: 40vh;
+  min-height: 39vh;
+  max-height: 39vh;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   justify-content: flex-start;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  background-color: rgba(245, 247, 251, 1);
+  background-color: #FeFFFF;
 }
 
 .order_list_section {
@@ -204,14 +229,13 @@ img {
   flex: 1 0 100%;
   flex-wrap: wrap;
   display: flex;
-  min-height: 25vh;
-  max-height: 25vh;
+  min-height: 24vh;
+  max-height: 24vh;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   justify-content: left;
-  padding-right: 1vw;
-  padding-left: 1vw;
-  background-color: rgba(245, 247, 251, 1);
+
+  background-color: #def2f1;
 }
 .product{
 	flex: 0 14vh;
@@ -222,18 +246,21 @@ img {
 .dollar {
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
   background-color: #ffffff;
   margin: 0.5vh;
   max-height: 18vh;
   min-width: 100px;
   justify-content: space-evenly;
-  border: 2px solid cornflowerblue;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: .25rem;
 }
 
 #inventory_title {
   order: -6;
   flex: 1 0 100%;
+  background-color: #2B7A78;
 }
 
 #order_title {
@@ -243,7 +270,6 @@ img {
 
 .total_label {
   font-size: 3.5vh;
-  /* font-size: 1.4em; */
   color: #0e0e0e;
   line-height: 1;
   padding-left: 3vw;
@@ -253,7 +279,6 @@ img {
 
 .total_amount {
   font-size: 3.5vh;
-  /* font-size: 1.4em; */
   color: #0e0e0e;
   line-height: 1;
   padding-right: 2vw;
@@ -276,17 +301,16 @@ img {
 .dollar {
   display: flex;
   flex-direction: column;
-  border-radius: 20px;
-  background-color: #ffffff;
   margin: 0.5vw;
   max-height: 18vh;
+  
 }
 
 .dollar > .image_line {
   height: 13vh;
   max-height: 13vh;
   text-align: center;
-  padding-top: 3px;
+  padding-top: 1vh;
 }
 
 .coin > .image_line {
@@ -327,6 +351,9 @@ button.refund {
   background-color: orange;
 }
 
+#modal, #issue_Refund{
+  display:none;
+}
 
 /* ================================= 
 ROTATE PHONE MESSAGE
@@ -409,33 +436,46 @@ ROTATE PHONE MESSAGE
   .order_column {
     max-height: 70vh;
     min-height: 70vh;
+    padding: 0;
   }
 
   .inv_column {
-    border-right: 1vw lightgray solid;
-    width: 60vw;
+    width: 59vw;
+    background-color: #B9E3E3;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    margin-left: 1vw;
   }
   
   .order_column {
-    width: 40vw;
+    max-width: 38vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    background-color: #def2f1;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
   }
 
   #inventory_title {
     order: 0;
     flex: initial;
-    min-width: 60vw;
-    max-width: 60vw;
+    min-width: 59vw;
+    max-width: 59vw;
     max-height: 8vh;
     min-height: 8vh;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
   }
 
   #order_title {
     order: 0;
     flex: initial;
-    min-width: 40vw;
-    max-width: 40vw;
+    min-width: 38vw;
+    max-width: 38vw;
     max-height: 8vh;
     min-height: 8vh;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
   }
 
   .inventory_list_section {
@@ -443,10 +483,13 @@ ROTATE PHONE MESSAGE
     flex: initial;
     min-height: 25vh;
     max-height: 62vh;
-    min-width: 60vw;
-    max-width: 60vw;
+    min-width: 58vw;
+    max-width: 58vw;
     background-color: transparent;
+    padding-left: 1vw;
+
   }
+  
 
   .product {
     flex: 0 11vw;
@@ -457,10 +500,11 @@ ROTATE PHONE MESSAGE
     flex: initial;
     min-height: 1vh;
     max-height: 62vh;
-    min-width: 40vw;
-    max-width: 40vw;
+    min-width: 37vw;
+    max-width: 37vw;
     justify-content: flex-start;
     background-color: transparent;
+    padding-left:.5vw;
   }
 
   .pay_section {
@@ -481,14 +525,14 @@ ROTATE PHONE MESSAGE
     padding-right: 1vw;
     padding-top: 1vh;
     padding-bottom: 1vh;
-    max-width: 225px;
+    max-width: 20%;
   }
 
   .section_title {
     font-size: 3vw;
     line-height: 8vh;
-    color: lightgrey;
-    background-color: slategray;
+    color: #fff;
+    background-color: #3aaFA9;
   }
 
   .icon-bar a {
@@ -533,17 +577,15 @@ ROTATE PHONE MESSAGE
 }
 
 #modal {
-  display: none;
-  width: 50%;
-  line-height: 3em;
   position: fixed;
   top: 25%;
   left: 25%;
   background-color: #fff;
-  border: #426de2 3px solid;
   border-radius: 20px;
   text-align: center;
   z-index: 11;
+  padding: 1rem;
+  border: 1px solid rgba(0,0,0,.125);
 }
 
 #modal_X {
@@ -581,10 +623,15 @@ ROTATE PHONE MESSAGE
 }
 
 .noBut {
-  margin-left: 3%;
-  width: 40%;
-  height: 100%;
+
   background-color: coral;
+}
+
+.RefundBut{
+  margin-left: 3%;
+  width: 60%;
+  height: 100%;
+  background-color: orange;
   color: #fff;
   font-size: 2.5vh;
   border-radius: 20px;
@@ -607,9 +654,26 @@ ROTATE PHONE MESSAGE
     line-height: 3vh;
   }
 
-  .modal_message h1 {
-    font-size: 5vh;
+  #modal {
+    width: 50%;
   }
+
+  .modal_message h1 {
+    font-size: 4vh;
+    line-height: 5vh;
+}
+
+
+.inventory_list_section > .product {
+    min-width: calc((100%/7) - (.25rem - 2px));
+    max-width: calc((100%/5) - (.25rem - 2px));
+}
+
+.order_list_section.product{
+  min-width: calc((100%/3) - (.25rem - 2px));
+  max-width: calc((100%/3) - (.25rem - 2px));
+}
+
 
   .modal_message a {
     font-size: 2vh;
@@ -617,17 +681,45 @@ ROTATE PHONE MESSAGE
 }
 
 @media (orientation: portrait) {
-  .modalText {
-    font-size: 3vw;
-    line-height: 3vw;
+  .modal_message {
+    font-size: 3vh;
+    line-height: 3vh;
   }
 
   .modal_message h1 {
-    font-size: 3vw;
+    font-size: 4vh;
+    line-height: 5vh;
+}
+
+  #modal {
+    width: 80%;
+    left: 10%;
   }
 
+  .inventory_list_section {
+    min-height: 38vh;
+    max-height: 38vh;
+    background-color: #B9E3E3;
+  }
+    .main-container {
+    padding-top: 1.5vh;
+  }
+
+.section_title{
+  padding-left: 5vw;
+}
+
   .modal_message a {
-    font-size: 2vw;
+    font-size: 2vh;
+  }
+
+  #inventoryBottom {
+    order: 0;
+    background-color:#B9E3E3;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    min-height:1vh;
+    max-height:1vh;
   }
 }
 
@@ -663,3 +755,4 @@ ROTATE PHONE MESSAGE
     text-align: center;
     z-index: 11;
 }
+
