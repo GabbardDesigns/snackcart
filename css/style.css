@@ -48,11 +48,9 @@ img {
   max-width: 100%;
 }
 
-
 /* ================================= 
 Main Content Styles
 ==================================== */
-
 
 .main-container {
   display: flex;
@@ -109,7 +107,6 @@ Main Content Styles
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   border: 1px solid rgba(0,0,0,.125);
-
 }
 
 .button {
@@ -161,7 +158,6 @@ Main Content Styles
 .inv_column {
   max-height: 44vh;
   min-height: 44vh;
-
 }
 
 .order_column {
@@ -182,7 +178,7 @@ max-height: 5vh;
 min-height: 5vh;
 line-height: 1.9em;
 color: #fff;
-background-color: #3AAFA9;
+background-color: #2B7A78;
 padding-left: 3vw;
 border-top-left-radius: 40px;
 border-top-right-radius: 40px;
@@ -210,7 +206,6 @@ border-top-right-radius: 40px;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   justify-content: left;
-
   background-color: #def2f1;
 }
 .product{
@@ -226,7 +221,6 @@ border-top-right-radius: 40px;
   margin: 0.5vh;
   max-height: 18vh;
   justify-content: space-evenly;
-  background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0,0,0,.125);
   border-radius: .25rem;
@@ -235,7 +229,6 @@ border-top-right-radius: 40px;
 #inventory_title {
   order: -6;
   flex: 1 0 100%;
-  background-color: #2B7A78;
 }
 
 #order_title {
@@ -334,32 +327,6 @@ button.refund {
 
 
 /* ================================= 
-Functional and Scripting Styles
-==================================== */
-
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Chrome and all newer browsers */
-  pointer-events: none;
-}
-
-.pale {
-  filter: saturate(50%);
-}
-
-.inventory_list_section::-webkit-scrollbar,
-.order_list_section::-webkit-scrollbar
-.total_section::-webkit-scrollbar
- {
-  display: none;
-}
-
-
-/* ================================= 
 ROTATE PHONE MESSAGE
 **********************************/
 .phone {
@@ -452,6 +419,45 @@ REFUND SCREEN
  GENERAL MEDIA QUERIES
 ==================================== */
 
+@media (orientation: portrait) {
+
+.pay_section {
+  max-height:15vh;
+  min-height:15vh;
+}
+
+.pay_section {
+  max-height:15vh;
+  min-height:15vh;
+}
+.main-footer{
+  margin-bottom: 5vh;
+}
+ 
+.inventory_list_section {
+  min-height: 38vh;
+  max-height: 38vh;
+  background-color: #B9E3E3;
+}
+  .main-container {
+  padding-top: 1.5vh;
+}
+
+.section_title{
+padding-left: 5vw;
+}
+
+#inventoryBottom {
+  order: 0;
+  background-color:#B9E3E3;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  min-height:1vh;
+  max-height:1vh;
+}
+
+}
+
 @media (orientation: landscape) {
   body {
     font-size: 0.8em;
@@ -500,8 +506,6 @@ REFUND SCREEN
     max-width: 59vw;
     max-height: 8vh;
     min-height: 8vh;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
   }
 
   #order_title {
@@ -511,8 +515,6 @@ REFUND SCREEN
     max-width: 38vw;
     max-height: 8vh;
     min-height: 8vh;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
   }
 
   .inventory_list_section {
@@ -550,7 +552,6 @@ REFUND SCREEN
     justify-content: flex-start;
 }
  
-
   .button {
     flex: initial;
     font-size: 2.5vh;
@@ -567,7 +568,6 @@ REFUND SCREEN
     font-size: 3vw;
     line-height: 8vh;
     color: #fff;
-    background-color: #3aaFA9;
   }
 
   .icon-bar a {
@@ -598,11 +598,23 @@ REFUND SCREEN
     flex: 0 10vw;
   }
 
+  .inventory_list_section > .product {
+    min-width: calc((100%/7) - (.25rem - 2px));
+    max-width: calc((100%/5) - (.25rem - 2px));
+}
 
+.order_list_section.product{
+  min-width: calc((100%/3) - (.25rem - 2px));
+  max-width: calc((100%/3) - (.25rem - 2px));
 }
 
 
-/* modal styles */
+}
+
+/* =================================================
+              MODAL STYLES
+===================================================*/ 
+
 #overlay {
   position: absolute;
   top: 0;
@@ -690,6 +702,8 @@ REFUND SCREEN
     margin:15px 0px;
 }
 
+/* landscape specific modal styles */
+
 @media (orientation: landscape) {
   .modal_message {
     padding: 0 10%;
@@ -706,21 +720,13 @@ REFUND SCREEN
     line-height: 5vh;
 }
 
-.inventory_list_section > .product {
-    min-width: calc((100%/7) - (.25rem - 2px));
-    max-width: calc((100%/5) - (.25rem - 2px));
-}
-
-.order_list_section.product{
-  min-width: calc((100%/3) - (.25rem - 2px));
-  max-width: calc((100%/3) - (.25rem - 2px));
-}
-
-
   .modal_message a {
     font-size: 2vh;
   }
 }
+
+
+/* portrait specific modal styles */
 
 @media (orientation: portrait) {
   .modal_message {
@@ -728,68 +734,24 @@ REFUND SCREEN
     line-height: 3vh;
   }
 
-
   .modal_message h1 {
     font-size: 4vh;
     line-height: 5vh;
 }
-.pay_section {
-  max-height:15vh;
-  min-height:15vh;
-}
 
-.pay_section {
-  max-height:15vh;
-  min-height:15vh;
-}
-.main-footer{
-  margin-bottom: 5vh;
-}
-
-
-  #modal {
+#modal {
     width: 80%;
     left: 10%;
   }
-
-  .inventory_list_section {
-    min-height: 38vh;
-    max-height: 38vh;
-    background-color: #B9E3E3;
-  }
-    .main-container {
-    padding-top: 1.5vh;
-  }
-
-.section_title{
-  padding-left: 5vw;
-}
 
   .modal_message a {
     font-size: 2vh;
   }
 
-  #inventoryBottom {
-    order: 0;
-    background-color:#B9E3E3;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-    min-height:1vh;
-    max-height:1vh;
-  }
-}
-
-.disable {
-  pointer-events: none;
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%), blur(20%);
-  background-color: #ccc;
-  color: lightslategrey;
 }
 
 
 /* NO SCRIPT MODAL */
-
 #noScriptOverlay {
   position: absolute;
   top: 0;
@@ -813,3 +775,40 @@ REFUND SCREEN
     z-index: 11;
 }
 
+/* ================================= 
+Functional and Scripting Styles
+==================================== */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Chrome and all newer browsers */
+  pointer-events: none;
+}
+
+.pale {
+  filter: saturate(50%);
+}
+
+.inventory_list_section::-webkit-scrollbar,
+.order_list_section::-webkit-scrollbar
+.total_section::-webkit-scrollbar
+ {
+  display: none;
+}
+
+.disable {
+  pointer-events: none;
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%), blur(20%);
+  background-color: #ccc;
+  color: lightslategrey;
+}
+
+.dollar:hover, .coin:hover, .product:hover{
+  background-color:#eee;
+  border: 1px solid rgba(0,0,0,1);
+}
