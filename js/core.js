@@ -238,6 +238,13 @@ function clearOrder() {
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("orders").innerHTML=ordersBlock;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
+
+  // Removes color from refund rebadging
+  document.getElementById("first_container").classList.remove("refund_inv_column");
+  document.getElementById("second_container").classList.remove("refund_order_column");
+  document.getElementById("payOptions").classList.remove("refund_list_section");
+  document.getElementById("refunded").classList.remove("refund_list_section");
+  document.getElementById("inventoryBottom").classList.remove("refund_list_section");
 }
 
 // Function paymentView - Redraws the screen when going from Inventory view to Payment view
@@ -387,6 +394,13 @@ function productView() {
     document.getElementById("paybutton").innerHTML=buttonswitch;
     document.getElementById("order_total").innerHTML=("$ " + formatMoney(price));
     document.getElementById("order_total_label").innerHTML="Amount Due: ";
+
+   // Removes color from refund rebadging
+   document.getElementById("first_container").classList.remove("refund_inv_column");
+   document.getElementById("second_container").classList.remove("refund_order_column");
+   document.getElementById("payOptions").classList.remove("refund_list_section");
+   document.getElementById("refunded").classList.remove("refund_list_section");
+   document.getElementById("inventoryBottom").classList.remove("refund_list_section");
 }
 
 // Function calculatePayment - receives amount paid, subtracts this from the total amount due.  
@@ -473,7 +487,7 @@ function refundView() {
   }
 
   inventorySwitch += `</div><div id="inventoryBottom" aria-live="polite"></div> `;
-
+  
   var buttonswitch =
   '<button class="button disable" onclick="paymentView()">New Order</button> <button class="button disable" onclick="paymentView()">Issue Refund</button> <button class="button" onclick="productView()">Edit Order</button>';
  
@@ -485,7 +499,18 @@ function refundView() {
   document.getElementById("paybutton").innerHTML=buttonswitch;
   document.getElementById("order_total").innerHTML=("$ " + formatMoney((refundDue - refundAmount)));
   document.getElementById("order_total_label").innerHTML="Refund This Amount:";
-
+  document.getElementById("inventory_title").classList.add("refund_section_title");
+  document.getElementById("order_title").classList.add("refund_section_title");
+ 
+  document.getElementById("first_container").classList.add("refund_inv_column");
+  document.getElementById("second_container").classList.add("refund_order_column");
+  document.getElementById("order_title").classList.add("refund_section_title");
+  document.getElementById("payOptions").classList.add("refund_list_section");
+  document.getElementById("refunded").classList.add("refund_list_section");
+  document.getElementById("inventoryBottom").classList.add("refund_list_section");
+  
+  
+  
   issueRefund(refundDue);
 }
 

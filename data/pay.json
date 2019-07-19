@@ -2,7 +2,7 @@
 
 { 
     "title": "Five Dollars",
-    "imagepath": "img/money/Fivedollar.svg",
+    "imagepath": "img/money/Fivedollar.gif",
     "price": 5.00,
     "type" : "dollar",
     "value" : "5.00",
@@ -11,7 +11,7 @@
 
 { 
     "title": "One Dollar",
-    "imagepath": "img/money/onedollar.svg",
+    "imagepath": "img/money/onedollar.gif",
     "price": 1.00,
     "type" : "dollar",
     "value" : "1.00",
@@ -20,7 +20,7 @@
 
 { 
     "title": "Quarter",
-    "imagepath": "img/money/Quarter.svg",
+    "imagepath": "img/money/Quarter.gif",
     "price": 0.25,
     "type" : "coin",
     "value" : "0.25",
@@ -29,7 +29,7 @@
 
 { 
     "title": "Dime",
-    "imagepath": "img/money/Dime.svg",
+    "imagepath": "img/money/Dime.gif",
     "price": 0.10,
     "type" : "coin",
     "value" : "0.10",
@@ -38,7 +38,7 @@
 
 { 
     "title": "Nickel",
-    "imagepath": "img/money/Nickel.svg",
+    "imagepath": "img/money/Nickel.gif",
     "price": 0.05,
     "type" : "coin",
     "value" : "0.05",
@@ -47,7 +47,7 @@
 
 { 
     "title": "Penny",
-    "imagepath": "img/money/Penny.svg",
+    "imagepath": "img/money/Penny.gif",
     "price": 0.01,
     "type" : "coin",
     "value" : "0.01",

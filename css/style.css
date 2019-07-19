@@ -48,11 +48,11 @@ img {
   max-width: 100%;
 }
 
+
 /* ================================= 
-  Base Layout Styles
+Main Content Styles
 ==================================== */
 
-/* ---- Navigation ---- */
 
 .main-container {
   display: flex;
@@ -80,16 +80,6 @@ img {
     padding-top: 0.5vh;
 }
 
-.noselect {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-  -khtml-user-select: none; /* Konqueror HTML */
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* Internet Explorer/Edge */
-  user-select: none; /* Chrome and all newer browsers */
-  pointer-events: none;
-}
-
 .product > img,
 .product > .image_line > img {
   max-height: 100%;
@@ -112,11 +102,8 @@ img {
   max-height: 12vh;
   min-width: 100vw;
   max-width: 100vw;
-  overflow-y: scroll;
-  overscroll-behavior-y: contain;
   justify-content: left;
   align-items: center;
-
   background-color: transparent;
   border-top: 1vh #fff solid;
   border-top-left-radius: 10px;
@@ -125,7 +112,6 @@ img {
 
 }
 
-/* .new_order, */
 .button {
   font-size: 2vh;
   border-radius: 20px;
@@ -181,7 +167,6 @@ img {
 .order_column {
   max-height: 29.5vh;
   min-height: 29.5vh;
-  
   padding-top: .5vh;
 }
 
@@ -192,23 +177,14 @@ img {
 }
 
 .section_title {
-  
 font-size: 2.6vh;
-  
 max-height: 5vh;
-  
 min-height: 5vh;
-  
 line-height: 1.9em;
-  
 color: #fff;
-  
 background-color: #3AAFA9;
-  
 padding-left: 3vw;
-  
 border-top-left-radius: 40px;
-  
 border-top-right-radius: 40px;
 }
 
@@ -285,16 +261,7 @@ border-top-right-radius: 40px;
   max-width: 35vw;
 }
 
-.pale {
-  filter: saturate(50%);
-}
-
-.inventory_list_section::-webkit-scrollbar,
-.order_list_section::-webkit-scrollbar {
-  display: none;
-}
-
-/* Payment section */
+/* Payment Screen */
 
 .coin,
 .dollar {
@@ -337,9 +304,20 @@ border-top-right-radius: 40px;
   justify-self: center;
 }
 
+/* Button Definitions */
+
+button{
+  border: 1px solid rgba(0,0,0,.125);
+}
+
 button.button {
   background-color: #426de2;
   color: #fff;
+}
+
+button.button.disable {
+  background-color: #ccc;
+  color: lightslategrey;
 }
 
 button.new {
@@ -353,6 +331,33 @@ button.refund {
 #modal, #issue_Refund{
   display:none;
 }
+
+
+/* ================================= 
+Functional and Scripting Styles
+==================================== */
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Chrome and all newer browsers */
+  pointer-events: none;
+}
+
+.pale {
+  filter: saturate(50%);
+}
+
+.inventory_list_section::-webkit-scrollbar,
+.order_list_section::-webkit-scrollbar
+.total_section::-webkit-scrollbar
+ {
+  display: none;
+}
+
 
 /* ================================= 
 ROTATE PHONE MESSAGE
@@ -373,9 +378,9 @@ ROTATE PHONE MESSAGE
   display: none;
 }
 
-/* ================================= 
-  Media Queries
-==================================== */
+/* =============================================== 
+ROTATE YOUR SCREEN MESSAGE FOR PHONES IN LANDSCAPE
+**************************************************/
 
 @media (max-height: 541px) and (orientation: landscape) {
   html,
@@ -396,6 +401,11 @@ ROTATE PHONE MESSAGE
     flex-direction: column;
   }
 
+  .phone,
+  .message {
+    display: block;
+  }
+
   @keyframes rotate {
     0% {
       transform: rotate(0deg);
@@ -408,11 +418,39 @@ ROTATE PHONE MESSAGE
     }
   }
 
-  .phone,
-  .message {
-    display: block;
-  }
 }
+
+/* ================================= 
+REFUND SCREEN
+**********************************/
+
+/* REFUND COLOR CHANGE */
+@media (orientation: portrait) {
+#payOptions.refund_list_section, #refunded.refund_list_section, #inventoryBottom.refund_list_section  {
+  background-color: #fff8e7;
+}
+}
+
+@media (orientation: landscape) {
+#first_container.refund_inv_column {
+    background-color: #fff8e7;
+}
+
+#second_container.refund_order_column {
+  background-color: #fffaf0;
+}
+
+}
+
+#inventory_title.refund_section_title, #order_title.refund_section_title {
+  background-color: #ff9a40;
+}
+
+
+
+/* ================================= 
+ GENERAL MEDIA QUERIES
+==================================== */
 
 @media (orientation: landscape) {
   body {
@@ -486,10 +524,8 @@ ROTATE PHONE MESSAGE
     max-width: 58vw;
     background-color: transparent;
     padding-left: 1vw;
-
   }
   
-
   .product {
     flex: 0 11vw;
   }
@@ -514,7 +550,7 @@ ROTATE PHONE MESSAGE
     justify-content: flex-start;
 }
  
-  /* .new_order, */
+
   .button {
     flex: initial;
     font-size: 2.5vh;
@@ -561,7 +597,10 @@ ROTATE PHONE MESSAGE
   .coin.paidIn {
     flex: 0 10vw;
   }
+
+
 }
+
 
 /* modal styles */
 #overlay {
@@ -603,7 +642,6 @@ ROTATE PHONE MESSAGE
 
 .modal_message {
   padding:0 5%;
-  
 }
 
 .clearBut {  
@@ -638,7 +676,6 @@ ROTATE PHONE MESSAGE
   padding: 1vh 1vw;
 }
 
-
 .modalButtons{
   text-align:center;
 }
@@ -646,6 +683,12 @@ ROTATE PHONE MESSAGE
 .modal_message a {
     text-decoration: underline;
   }
+
+  .modal_message button.new {
+    background-color: #5cb85c;
+    max-width: 50%;
+    margin:15px 0px;
+}
 
 @media (orientation: landscape) {
   .modal_message {
@@ -662,8 +705,6 @@ ROTATE PHONE MESSAGE
     font-size: 4vh;
     line-height: 5vh;
 }
-
-
 
 .inventory_list_section > .product {
     min-width: calc((100%/7) - (.25rem - 2px));
@@ -743,6 +784,7 @@ ROTATE PHONE MESSAGE
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%), blur(20%);
   background-color: #ccc;
+  color: lightslategrey;
 }
 
 

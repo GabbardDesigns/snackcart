@@ -2,49 +2,49 @@
 
 { 
     "title": "Animal Crackers",
-    "imagepath": "img/products/animalcrackers.jpg",
+    "imagepath": "img/products/animalcrackers.gif",
     "price": "0.50",
     "alt" : "Bag Animal Crackers"
 },
 
 { 
     "title": "Apple Juice",
-    "imagepath": "img/products/applejuice.png",
+    "imagepath": "img/products/applejuice.gif",
     "price": "0.50",
     "alt" : "12 ounce bottle of Apple Juice"
 },
 
 { 
     "title": "Banana",
-    "imagepath": "img/products/banana.jpg",
+    "imagepath": "img/products/banana.gif",
     "price": "0.50",
     "alt" : "A single banana"
 },
 
 { 
     "title": "Bottled Water",
-    "imagepath": "img/products/bottledwater.png",
+    "imagepath": "img/products/bottledwater.gif",
     "price": "0.50",
     "alt" : "16 ounce bottle of water"
 },
 
 { 
     "title": "Cake",
-    "imagepath": "img/products/cake.png",
+    "imagepath": "img/products/cake.gif",
     "price": "1.50",
     "alt" : "Slice of chocolate cake"
 },
 
 { 
     "title": "Chips",
-    "imagepath": "img/products/chips.jpg",
+    "imagepath": "img/products/chips.gif",
     "price": "0.50",
     "alt" : "10 oz bag of plain chips"
 },
 
 { 
     "title": "Coke",
-    "imagepath": "img/products/soda.png",
+    "imagepath": "img/products/soda.gif",
     "price": "0.75",
     "alt" : "12 oz can of Coke"
 },
@@ -52,14 +52,14 @@
 
 { 
     "title": "Cookie",
-    "imagepath": "img/products/cookie.jpg",
+    "imagepath": "img/products/cookie.gif",
     "price": "0.75",
     "alt" : "A big yummy cookie"
 },
 
 { 
     "title": "Fruit Snacks",
-    "imagepath": "img/products/fruitsnacks.jpg",
+    "imagepath": "img/products/fruitsnacks.gif",
     "price": "0.25",
     "alt" : "Package of fruit snacks 3 oz"
 },
@@ -67,7 +67,7 @@
 
 { 
     "title": "Orange Juice",
-    "imagepath": "img/products/orangejuice.png",
+    "imagepath": "img/products/orangejuice.gif",
     "price": "1.50",
     "alt" : "12oz bottle of orange juice."
 }
