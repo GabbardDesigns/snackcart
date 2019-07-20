@@ -809,6 +809,6 @@ Functional and Scripting Styles
 }
 
 .dollar:focus, .coin:focus, .product:focus{
-  border: 1px solid rgba(0,0,0,1);
+  border: 12px solid rgba(0,0,0,1);
 }
 
