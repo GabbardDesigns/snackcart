@@ -808,13 +808,7 @@ Functional and Scripting Styles
   color: lightslategrey;
 }
 
-.dollar:hover, .coin:hover, .product:hover{
-  background-color:#eee;
-  border: 1px solid rgba(0,0,0,1);
-}
-
-
-.dollar:focus, .coin:focus, .product:focus{
+.dollar:focus, .coin:focus, .product:focus, .dollar:hover, .coin:hover, .product:hover{
   background-color:#eee;
   border: 1px solid rgba(0,0,0,1);
 }
