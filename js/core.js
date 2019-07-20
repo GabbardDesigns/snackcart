@@ -243,8 +243,6 @@ function clearOrder() {
   document.getElementById("first_container").classList.remove("refund_inv_column");
   document.getElementById("second_container").classList.remove("refund_order_column");
   document.getElementById("payOptions").classList.remove("refund_list_section");
-  document.getElementById("refunded").classList.remove("refund_list_section");
-  document.getElementById("inventoryBottom").classList.remove("refund_list_section");
 }
 
 // Function paymentView - Redraws the screen when going from Inventory view to Payment view
@@ -399,8 +397,6 @@ function productView() {
    document.getElementById("first_container").classList.remove("refund_inv_column");
    document.getElementById("second_container").classList.remove("refund_order_column");
    document.getElementById("payOptions").classList.remove("refund_list_section");
-   document.getElementById("refunded").classList.remove("refund_list_section");
-   document.getElementById("inventoryBottom").classList.remove("refund_list_section");
 }
 
 // Function calculatePayment - receives amount paid, subtracts this from the total amount due.  
