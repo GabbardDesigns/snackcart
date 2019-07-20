@@ -808,12 +808,15 @@ Functional and Scripting Styles
   color: lightslategrey;
 }
 
-.dollar:hover:active, .coin:hover:active, .product:hover:active{
-  border: 1px solid rgba(0,0,0,.35);
-  background-color: #eee;
+.product:active:hover, .dollar:active:hover, .coin:active:hover{
+    /* border-style: inset; */
+  transform: scale(0.95, 0.95); 
+  
 }
 
-.dollar:focus, .coin:focus, .product:focus{
-  border: 1px solid rgba(0,0,0,.35);
-}
 
+.product:focus, .dollar:focus, .coin:focus{
+  /* border-style: inset; */
+transform: scale(0.95, 0.95); 
+
+}
