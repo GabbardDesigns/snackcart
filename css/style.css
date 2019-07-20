@@ -820,3 +820,16 @@ Functional and Scripting Styles
 transform: scale(0.95, 0.95); 
 
 }
+
+button:active:hover{
+  /* border-style: inset; */
+transform: scale(0.95, 0.95); 
+
+}
+
+
+button:focus{
+/* border-style: inset; */
+transform: scale(0.95, 0.95); 
+
+}
