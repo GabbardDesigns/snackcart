@@ -17,7 +17,6 @@ Functional Requirements
      - There must be a way to reset the register once the transaction is completed. 
 
 Nice to Have
-
      - Pay options/Pay Aid - Graphical interface to track payment received and show students how much they still need to receive.
      - Overpayment/Refund - The system should help students determine if change is needed and how much.  
 

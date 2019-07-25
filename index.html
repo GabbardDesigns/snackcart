@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Snack Cart Plus</title>
-    <link rel="icon" type="image/png" href="favicon.png">
-    <link href="css/fonts.css" rel="stylesheet"> 
-    <!-- NOT IN USE FOR CURRENT VERSION - FONT USED FOR ICONS IN NAV BAR IN LATER VERSION 
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snack Cart Plus</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="css/fonts.css" rel="stylesheet">
+  <!-- NOT IN USE FOR CURRENT VERSION - FONT USED FOR ICONS IN NAV BAR IN LATER VERSION 
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous"/> 
     -->
-    <link rel="stylesheet" href="css/style.css?v=9"/>
-  </head>
+  <link rel="stylesheet" href="css/style.css?v=9" />
+</head>
 
-  <body>
+<body>
 
-    <!--  Main Header Section
+  <!--  Main Header Section
       NOTE: This area is not in use currently, it will be used once the admin section of the application is ready.
 
       <header class="main-header">
@@ -33,117 +34,118 @@
   
   </.main-header -->
 
-
- <noscript>
+  <!-- IF NO JAVASCRIPT, NO APPLICATION :( -->
+  <noscript>
     <section id="noScriptOverlay">
-        <div id="noScriptMessage"> 
-            <h1>JAVASCRIPT IS REQUIRED FOR SNACKCART TO FUNCTION</h1>
-            <p>Please enable JAVASCRIPT and reload this page</p>
-        </div>
-        </section>
+      <div id="noScriptMessage">
+        <h1>JAVASCRIPT IS REQUIRED FOR SNACKCART TO FUNCTION</h1>
+        <p>Please enable JAVASCRIPT and reload this page</p>
+      </div>
+    </section>
   </noscript>
 
-    <!-- CHANGE ORIENTATION SECTION
+  <!-- CHANGE ORIENTATION SECTION
       Divs Phone and Message are hidden initially, these show only when the device is in landscape and smaller than -->
-      <section id="changeOrientation">
-      <div class="phone"> </div>
-      <div class="message"> Please rotate your device! </div>
-      </section>
-<!--/#CHANGE ORIENTAION-->
+  <section id="changeOrientation">
+    <div class="phone"> </div>
+    <div class="message"> Please rotate your device! </div>
+  </section>
+  <!--/#CHANGE ORIENTATION-->
 
-<!--#ModalPopUps-->    
-<!-- Overlay and Modal sections are not displayed initially, triggered by functions when order is completed or cleared (newOrder()) -->
-    
-    <section id="ModalPopUps">
+  <!--#ModalPopUps-->
+  <!-- Overlay and Modal sections are not displayed initially, triggered by functions when order is completed or cleared (newOrder()) -->
+  <section id="ModalPopUps">
     <div id="overlay"></div>
-  
+
     <div id="modal">
       <div id="modal_X" onclick="closeModal()">&times;</div>
-      
-      <!--Modal content for #order_Completed-->
-      <div class="modal_message" id="order_Completed" >
-          <h1>Congratulations!</h1>
-          <p class="modalText" > You completed the order. </p>  
-          <p class="modalText" > Please start a new order.</p>  
-          <button class="button new" onclick="clearOrder()">New Order</button><br/> 
-          <a href="#" onclick="clearPermissions()">Do not show again.</a>
+
+      <!--Modal content for alerting an order is complete-->
+      <div class="modal_message" id="order_Completed">
+        <h1>Congratulations!</h1>
+        <p class="modalText"> You completed the order. </p>
+        <p class="modalText"> Please start a new order.</p>
+        <button class="button new" onclick="clearOrder()">New Order</button><br />
+        <a href="#" onclick="clearPermissions()">Do not show again.</a>
       </div>
       <!--/#order_Completed-->
 
-      <!--Modal content for #new_Order-->
-      <div class="modal_message" id="new_Order" >
-          <h1>Clear current order and start a new one?</h1>
-          <p class="modalText modalButtons">
+      <!--Modal content for alert when creating a new order-->
+      <div class="modal_message" id="new_Order">
+        <h1>Clear current order and start a new one?</h1>
+        <p class="modalText modalButtons">
           <button class="clearBut yesBut" onclick="clearOrder()">Yes</button>
           <button class="clearBut noBut" onclick="closeModal()">No</button>
-          <br/><br/>
+          <br /><br />
           <a href="#" onclick="clearPermissions()">Clear order and do not show again</a>.
         </p>
       </div>
-       <!--/#new_Order-->
+      <!--/#new_Order-->
 
-        <!--Modal content for #new_Order-->
-      <div class="modal_message" id="issue_Refund" >
+      <!--Modal content to alert need to issue refund-->
+      <div class="modal_message" id="issue_Refund">
         <h1>Time to issue a refund. </h1>
         <p>You can click either Issue Refund buttons to issue the refund.</p>
         <p class="modalText modalButtons">
-        <button class="clearBut RefundBut" onclick="clickToRefund()">Issue Refund</button>
-        <br/><br/>
-        <a href="#" onclick="clearToRefund()">Close this message and do not show again</a>.
-      </p>
+          <button class="clearBut RefundBut" onclick="clickToRefund()">Issue Refund</button>
+          <br /><br />
+          <a href="#" onclick="clearToRefund()">Close this message and do not show again</a>.
+        </p>
+      </div>
+      <!--/#new_Order-->
+
     </div>
-     <!--/#new_Order-->
+  </section>
+  <!--/#ModalPopUps-->
 
+
+  <!-- main-container -->
+  <main class="main-container">
+
+    <!-- Start of redrawable #first_container (top or left depending on orientation) -->
+    <div class="inv_column" id="first_container" aria-atomic="true">
+      <div id="inventory_title" aria-live="polite" class="section_title">Our Products</div>
+      <div id="inventory" aria-live="polite" class="inventory_list_section"></div>
+      <div id="inventoryBottom" aria-live="polite"></div>
     </div>
-    </section>
-    <!--/#ModalPopUps-->
 
+    <!-- /#first_container -->
 
-    <!-- main-container -->
-    <main class="main-container">
-  
-         <!-- Start of redrawable #first_container (top or left depending on orientation) -->
-      <div class="inv_column" id="first_container" aria-atomic="true" >
-        <div id="inventory_title" aria-live="polite" class="section_title">Our Products</div>
-        <div id="inventory" aria-live="polite" class="inventory_list_section"></div>
-        <div id="inventoryBottom" aria-live="polite"></div>
-        
+    <!-- Start of redrawable #second_container (middle or right depending on orientation) -->
+    <div class="order_column" id="second_container" aria-atomic="true">
+      <div id="order_title" class="section_title" aria-live="polite">This Order</div>
+      <div class="order_list_section" id="orders" aria-relevant="additions removals" aria-live="polite"></div>
+    </div>
+    <!-- /#second_container -->
+
+    <!-- Start of redrawable .pay_section (bottom in all orientations) -->
+    <div class="pay_section">
+      <div id="payHolder" class="total_section" aria-live="assertive" aria-atomic="true">
+        <div aria-live="polite" class="total_label" id="order_total_label">Amount Due:</div>
+        <div aria-live="polite" class="total_amount" id="order_total">$ 0.00</div>
       </div>
-      
-         <!-- /#first_container -->
 
-      <!-- Start of redrawable #second_container (middle or right depending on orientation) -->
-      <div class="order_column" id="second_container" aria-atomic="true">
-        <div id="order_title" class="section_title" aria-live="polite" >This Order</div>
-        <div class="order_list_section" id="orders" aria-relevant="additions removals" aria-live="polite"></div>
+      <div class="pay_button" id="paybutton">
+        <button class="button disable" onclick="paymentView()">New Order</button>
+        <button class="button disable" onclick="paymentView()">Issue Refund</button>
+        <button class="button disable" onclick="paymentView()">Pay Now</button>
       </div>
-       <!-- /#second_container -->
+    </div>
+    <!-- /#pay_section-->
 
-      <!-- Start of redrawable .pay_section (bottom in all orientations) -->
-      <div class="pay_section">
-        <div id="payHolder" class="total_section" aria-live="assertive"  aria-atomic="true"> 
-          <div aria-live="polite" class="total_label" id="order_total_label">Amount Due:</div> <div aria-live="polite" class="total_amount"  id="order_total">$ 0.00</div>
-        </div>
-
-        <div class="pay_button" id="paybutton">
-          <button class="button disable" onclick="paymentView()">New Order</button>
-          <button class="button disable" onclick="paymentView()">Issue Refund</button>
-          <button class="button disable" onclick="paymentView()">Pay Now</button>
-        </div>
+    <!-- Static footer section -->
+    <footer class="main-footer" role="contentinfo">
+      <div class="footer-inner">
+        <span>&copy; 2019 GabbardDesigns</span>
       </div>
-      <!-- /#pay_section-->
+    </footer>
+    <!-- /footer-->
 
-      <!-- Static footer section -->
-      <footer class="main-footer" role="contentinfo">
-        <div class="footer-inner">
-          <span>&copy; 2019 GabbardDesigns</span>
-        </div>
-      </footer>
-      <!-- /footer-->
+  </main>
+  <!--/main-container-->
 
-    </main>
-    <!--/main-container-->
+  <script src="js/core.js?v=1"></script>
 
-    <script src="js/core.js?v=1"></script>
-  </body>
+</body>
+
 </html>

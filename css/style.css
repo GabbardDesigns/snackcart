@@ -3,14 +3,14 @@
 ==================================== */
 
 html {
-  height:100vh;
+  height: 100vh;
 }
 
 * {
   box-sizing: border-box;
 }
 body {
-  font-family: "Roboto",sans-serif;
+  font-family: "Roboto", sans-serif;
   line-height: 1.6;
   color: #000;
   margin: 0;
@@ -26,7 +26,7 @@ body {
   max-height: 5vh;
   min-height: 5vh;
   width: 100%;
-  background-color: #2B7A78;
+  background-color: #2b7a78;
 }
 
 .footer-inner {
@@ -66,16 +66,17 @@ Main Content Styles
   padding-left: 1.5vw;
 }
 
-.title, .price {
-    text-align: center;
-    height: 4vh;
-    max-height: 4vh;
-    font-size: 1.8vh;
-    width: 100%;
-    line-height: 1em;
-    padding-left: 0.5vw;
-    padding-right: .5vw;
-    padding-top: 0.5vh;
+.title,
+.price {
+  text-align: center;
+  height: 4vh;
+  max-height: 4vh;
+  font-size: 1.8vh;
+  width: 100%;
+  line-height: 1em;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  padding-top: 0.5vh;
 }
 
 .product > img,
@@ -106,13 +107,13 @@ Main Content Styles
   border-top: 1vh #fff solid;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .button {
   font-size: 2vh;
   border-radius: 20px;
-  border:none;
+  border: none;
   height: 100%;
   padding-left: 1vw;
   padding-top: 1vh;
@@ -152,7 +153,7 @@ Main Content Styles
   flex-wrap: wrap;
   flex-direction: row;
   min-height: 99vh;
-  background-color: #17252A;
+  background-color: #17252a;
 }
 
 .inv_column {
@@ -163,25 +164,25 @@ Main Content Styles
 .order_column {
   max-height: 29.5vh;
   min-height: 29.5vh;
-  padding-top: .5vh;
+  padding-top: 0.5vh;
 }
 
 .pay_section {
   max-height: 20vh;
   min-height: 20vh;
-  background-color: #FEFFFF;
+  background-color: #feffff;
 }
 
 .section_title {
-font-size: 2.6vh;
-max-height: 5vh;
-min-height: 5vh;
-line-height: 1.9em;
-color: #fff;
-background-color: #2B7A78;
-padding-left: 3vw;
-border-top-left-radius: 40px;
-border-top-right-radius: 40px;
+  font-size: 2.6vh;
+  max-height: 5vh;
+  min-height: 5vh;
+  line-height: 1.9em;
+  color: #fff;
+  background-color: #2b7a78;
+  padding-left: 3vw;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
 }
 
 .inventory_list_section {
@@ -193,7 +194,7 @@ border-top-right-radius: 40px;
   overflow-y: scroll;
   overscroll-behavior-y: contain;
   justify-content: flex-start;
-  background-color: #FeFFFF;
+  background-color: #feffff;
 }
 
 .order_list_section {
@@ -208,8 +209,8 @@ border-top-right-radius: 40px;
   justify-content: left;
   background-color: #def2f1;
 }
-.product{
-	flex: 0 14vh;
+.product {
+  flex: 0 14vh;
 }
 
 .product,
@@ -222,8 +223,8 @@ border-top-right-radius: 40px;
   max-height: 18vh;
   justify-content: space-evenly;
   background-clip: border-box;
-  border: 1px solid rgba(0,0,0,.125);
-  border-radius: .25rem;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
 }
 
 #inventory_title {
@@ -262,7 +263,6 @@ border-top-right-radius: 40px;
   flex-direction: column;
   margin: 0.5vw;
   max-height: 18vh;
-  
 }
 
 .dollar > .image_line {
@@ -299,8 +299,8 @@ border-top-right-radius: 40px;
 
 /* Button Definitions */
 
-button{
-  border: 1px solid rgba(0,0,0,.125);
+button {
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 button.button {
@@ -321,10 +321,10 @@ button.refund {
   background-color: orange;
 }
 
-#modal, #issue_Refund{
-  display:none;
+#modal,
+#issue_Refund {
+  display: none;
 }
-
 
 /* ================================= 
 ROTATE PHONE MESSAGE
@@ -384,7 +384,6 @@ ROTATE YOUR SCREEN MESSAGE FOR PHONES IN LANDSCAPE
       transform: rotate(-90deg);
     }
   }
-
 }
 
 /* ================================= 
@@ -393,69 +392,67 @@ REFUND SCREEN
 
 /* REFUND COLOR CHANGE */
 @media (orientation: portrait) {
-#payOptions.refund_list_section, #refunded.refund_list_section, #inventoryBottom.refund_list_section  {
-  background-color: #fff8e7;
-}
+  #payOptions.refund_list_section,
+  #refunded.refund_list_section,
+  #inventoryBottom.refund_list_section {
+    background-color: #fff8e7;
+  }
 }
 
 @media (orientation: landscape) {
-#first_container.refund_inv_column {
+  #first_container.refund_inv_column {
     background-color: #fff8e7;
+  }
+
+  #second_container.refund_order_column {
+    background-color: #fffaf0;
+  }
 }
 
-#second_container.refund_order_column {
-  background-color: #fffaf0;
-}
-
-}
-
-#inventory_title.refund_section_title, #order_title.refund_section_title {
+#inventory_title.refund_section_title,
+#order_title.refund_section_title {
   background-color: #ff9a40;
 }
-
-
 
 /* ================================= 
  GENERAL MEDIA QUERIES
 ==================================== */
 
 @media (orientation: portrait) {
+  .pay_section {
+    max-height: 15vh;
+    min-height: 15vh;
+  }
 
-.pay_section {
-  max-height:15vh;
-  min-height:15vh;
-}
+  .pay_section {
+    max-height: 15vh;
+    min-height: 15vh;
+  }
+  .main-footer {
+    margin-bottom: 5vh;
+  }
 
-.pay_section {
-  max-height:15vh;
-  min-height:15vh;
-}
-.main-footer{
-  margin-bottom: 5vh;
-}
- 
-.inventory_list_section {
-  min-height: 38vh;
-  max-height: 38vh;
-  background-color: #B9E3E3;
-}
+  .inventory_list_section {
+    min-height: 38vh;
+    max-height: 38vh;
+    background-color: #b9e3e3;
+  }
   .main-container {
-  padding-top: 1.5vh;
-}
+    padding-top: 1.5vh;
+  }
 
-.section_title{
-padding-left: 5vw;
-}
+  .section_title {
+    padding-left: 5vw;
+  }
 
-#inventoryBottom {
-  order: 0;
-  background-color:#B9E3E3;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
-  min-height:1vh;
-  max-height:1vh;
-}
-
+  #inventoryBottom {
+    order: 0;
+    background-color: #b9e3e3;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    min-height: 1vh;
+    max-height: 1vh;
+  }
 }
 
 @media (orientation: landscape) {
@@ -484,12 +481,12 @@ padding-left: 5vw;
 
   .inv_column {
     width: 59vw;
-    background-color: #B9E3E3;
+    background-color: #b9e3e3;
     border-top-left-radius: 40px;
     border-top-right-radius: 40px;
     margin-left: 1vw;
   }
-  
+
   .order_column {
     max-width: 38vw;
     margin-left: 1vw;
@@ -527,7 +524,7 @@ padding-left: 5vw;
     background-color: transparent;
     padding-left: 1vw;
   }
-  
+
   .product {
     flex: 0 11vw;
   }
@@ -541,7 +538,7 @@ padding-left: 5vw;
     max-width: 37vw;
     justify-content: flex-start;
     background-color: transparent;
-    padding-left:.5vw;
+    padding-left: 0.5vw;
   }
 
   .pay_section {
@@ -550,8 +547,8 @@ padding-left: 5vw;
     min-height: 25vh;
     max-height: 25vh;
     justify-content: flex-start;
-}
- 
+  }
+
   .button {
     flex: initial;
     font-size: 2.5vh;
@@ -599,21 +596,19 @@ padding-left: 5vw;
   }
 
   .inventory_list_section > .product {
-    min-width: calc((100%/7) - (.25rem - 2px));
-    max-width: calc((100%/5) - (.25rem - 2px));
-}
+    min-width: calc((100% / 7) - (0.25rem - 2px));
+    max-width: calc((100% / 5) - (0.25rem - 2px));
+  }
 
-.order_list_section.product{
-  min-width: calc((100%/3) - (.25rem - 2px));
-  max-width: calc((100%/3) - (.25rem - 2px));
-}
-
-
+  .order_list_section.product {
+    min-width: calc((100% / 3) - (0.25rem - 2px));
+    max-width: calc((100% / 3) - (0.25rem - 2px));
+  }
 }
 
 /* =================================================
               MODAL STYLES
-===================================================*/ 
+===================================================*/
 
 #overlay {
   position: absolute;
@@ -635,7 +630,7 @@ padding-left: 5vw;
   text-align: center;
   z-index: 11;
   padding: 1rem;
-  border: 1px solid rgba(0,0,0,.125);
+  border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 #modal_X {
@@ -648,22 +643,23 @@ padding-left: 5vw;
   text-align: right;
 }
 
-#order_Completed, #new_Order {
-	display: none;
+#order_Completed,
+#new_Order {
+  display: none;
 }
 
 .modal_message {
-  padding:0 5%;
+  padding: 0 5%;
 }
 
-.clearBut {  
+.clearBut {
   margin-left: 3%;
   width: 40%;
   height: 100%;
   color: #fff;
   font-size: 2.5vh;
   border-radius: 20px;
-  border:none;
+  border: none;
   padding: 1vh 1vw;
 }
 
@@ -672,11 +668,10 @@ padding-left: 5vw;
 }
 
 .noBut {
-
   background-color: coral;
 }
 
-.RefundBut{
+.RefundBut {
   margin-left: 3%;
   width: 60%;
   height: 100%;
@@ -684,22 +679,22 @@ padding-left: 5vw;
   color: #fff;
   font-size: 2.5vh;
   border-radius: 20px;
-  border:none;
+  border: none;
   padding: 1vh 1vw;
 }
 
-.modalButtons{
-  text-align:center;
+.modalButtons {
+  text-align: center;
 }
 
 .modal_message a {
-    text-decoration: underline;
-  }
+  text-decoration: underline;
+}
 
-  .modal_message button.new {
-    background-color: #5cb85c;
-    max-width: 50%;
-    margin:15px 0px;
+.modal_message button.new {
+  background-color: #5cb85c;
+  max-width: 50%;
+  margin: 15px 0px;
 }
 
 /* landscape specific modal styles */
@@ -707,7 +702,7 @@ padding-left: 5vw;
 @media (orientation: landscape) {
   .modal_message {
     padding: 0 10%;
-      font-size: 3vh;
+    font-size: 3vh;
     line-height: 3vh;
   }
 
@@ -718,13 +713,12 @@ padding-left: 5vw;
   .modal_message h1 {
     font-size: 4vh;
     line-height: 5vh;
-}
+  }
 
   .modal_message a {
     font-size: 2vh;
   }
 }
-
 
 /* portrait specific modal styles */
 
@@ -737,9 +731,9 @@ padding-left: 5vw;
   .modal_message h1 {
     font-size: 4vh;
     line-height: 5vh;
-}
+  }
 
-#modal {
+  #modal {
     width: 80%;
     left: 10%;
   }
@@ -747,9 +741,7 @@ padding-left: 5vw;
   .modal_message a {
     font-size: 2vh;
   }
-
 }
-
 
 /* NO SCRIPT MODAL */
 #noScriptOverlay {
@@ -762,17 +754,17 @@ padding-left: 5vw;
   z-index: 10;
 }
 
-#noScriptMessage{
-    width: 50%;
-    line-height: 3em;
-    position: fixed;
-    top: 25%;
-    left: 25%;
-    background-color: #fff;
-    border: #426de2 3px solid;
-    border-radius: 20px;
-    text-align: center;
-    z-index: 11;
+#noScriptMessage {
+  width: 50%;
+  line-height: 3em;
+  position: fixed;
+  top: 25%;
+  left: 25%;
+  background-color: #fff;
+  border: #426de2 3px solid;
+  border-radius: 20px;
+  text-align: center;
+  z-index: 11;
 }
 
 /* ================================= 
@@ -794,9 +786,7 @@ Functional and Scripting Styles
 }
 
 .inventory_list_section::-webkit-scrollbar,
-.order_list_section::-webkit-scrollbar
-.total_section::-webkit-scrollbar
- {
+.order_list_section::-webkit-scrollbar .total_section::-webkit-scrollbar {
   display: none;
 }
 
@@ -808,28 +798,22 @@ Functional and Scripting Styles
   color: lightslategrey;
 }
 
-.product:active:hover, .dollar:active:hover, .coin:active:hover{
-    /* border-style: inset; */
-  transform: scale(0.95, 0.95); 
-  
+.product:active:hover,
+.dollar:active:hover,
+.coin:active:hover {
+  transform: scale(0.95, 0.95);
 }
 
-
-.product:focus, .dollar:focus, .coin:focus{
-  /* border-style: inset; */
-transform: scale(0.95, 0.95); 
-
+.product:focus,
+.dollar:focus,
+.coin:focus {
+  transform: scale(0.95, 0.95);
 }
 
-button:active:hover{
-  /* border-style: inset; */
-transform: scale(0.95, 0.95); 
-
+button:active:hover {
+  transform: scale(0.95, 0.95);
 }
 
-
-button:focus{
-/* border-style: inset; */
-transform: scale(0.95, 0.95); 
-
+button:focus {
+  transform: scale(0.95, 0.95);
 }
