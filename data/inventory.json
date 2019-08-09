@@ -1,77 +1,151 @@
 [
 
+    { 
+        "title": "Bottled Water",
+        "imagepath": "img/products/bottledwater.gif",
+        "price": "0.50",
+        "alt" : "16 ounce bottle of water"
+    },
+
+    { 
+        "title": "Frappuccino",
+        "imagepath": "img/products/frap.gif",
+        "price": "1.00",
+        "alt" : "12 ounce bottle of Frappuccino"
+    },
+
+
+    { 
+        "title": "Gatorade",
+        "imagepath": "img/products/gatorade.gif",
+        "price": "1.00",
+        "alt" : "16 ounce bottle of Gatorade"
+    },
+
+    { 
+        "title": "Monster Energy",
+        "imagepath": "img/products/monster-energy.gif",
+        "price": "2.00",
+        "alt" : "16 ounce can of Monster Energy drink"
+    },
+
+    { 
+        "title": "Monster Energy x2",
+        "imagepath": "img/products/monster-energy2.gif",
+        "price": "3.50",
+        "alt" : "16 ounce cans of Monster Energy drink"
+    },
+
+    { 
+        "title": "Soda",
+        "imagepath": "img/products/soda.gif",
+        "price": "0.50",
+        "alt" : "12 oz can of Soda"
+    },
+
+    { 
+        "title": "Tea",
+        "imagepath": "img/products/tea.gif",
+        "price": "1.00",
+        "alt" : "16 ounce bottle of tea"
+    },
+
+    { 
+        "title": "Vitamin Water",
+        "imagepath": "img/products/vitamin-water.gif",
+        "price": "1.00",
+        "alt" : "16 ounce bottle of Vitamin Water"
+    },
+
 { 
-    "title": "Animal Crackers",
-    "imagepath": "img/products/animalcrackers.gif",
-    "price": "0.50",
+    "title": "Blow Pop",
+    "imagepath": "img/products/blowpop.gif",
+    "price": "0.25",
     "alt" : "Bag Animal Crackers"
 },
 
 { 
-    "title": "Apple Juice",
-    "imagepath": "img/products/applejuice.gif",
-    "price": "0.50",
+    "title": "Laffy Taffy (3)",
+    "imagepath": "img/products/laffy-taffy.gif",
+    "price": "0.25",
     "alt" : "12 ounce bottle of Apple Juice"
 },
 
 { 
-    "title": "Banana",
-    "imagepath": "img/products/banana.gif",
-    "price": "0.50",
-    "alt" : "A single banana"
+    "title": "Candy Bar",
+    "imagepath": "img/products/kitkat.gif",
+    "price": "1.00",
+    "alt" : "A single candy bar"
 },
 
 { 
-    "title": "Bottled Water",
-    "imagepath": "img/products/bottledwater.gif",
-    "price": "0.50",
-    "alt" : "16 ounce bottle of water"
-},
-
-{ 
-    "title": "Cake",
-    "imagepath": "img/products/cake.gif",
+    "title": "Candy Bar x 2",
+    "imagepath": "img/products/2candy.gif",
     "price": "1.50",
-    "alt" : "Slice of chocolate cake"
+    "alt" : "2 candy bars"
+},
+
+{ 
+    "title": "Banana Bread",
+    "imagepath": "img/products/Banana-Bread.gif",
+    "price": "0.50",
+    "alt" : "A package of crackers"
 },
 
 { 
     "title": "Chips",
     "imagepath": "img/products/chips.gif",
     "price": "0.50",
-    "alt" : "10 oz bag of plain chips"
+    "alt" : "10 oz bag of chips"
 },
 
 { 
-    "title": "Coke",
-    "imagepath": "img/products/soda.gif",
-    "price": "0.75",
-    "alt" : "12 oz can of Coke"
+    "title": "Cinnamon Roll",
+    "imagepath": "img/products/Cinnamon-Rolls.gif",
+    "price": "1.00",
+    "alt" : "A cinnamon roll"
 },
 
-
 { 
-    "title": "Cookie",
+    "title": "Cookies",
     "imagepath": "img/products/cookie.gif",
-    "price": "0.75",
+    "price": "0.50",
     "alt" : "A big yummy cookie"
 },
 
 { 
-    "title": "Fruit Snacks",
-    "imagepath": "img/products/fruitsnacks.gif",
-    "price": "0.25",
-    "alt" : "Package of fruit snacks 3 oz"
+    "title": "Crackers",
+    "imagepath": "img/products/crackers.gif",
+    "price": "0.50",
+    "alt" : "A package of crackers"
 },
 
+{ 
+    "title": "Granola Bar",
+    "imagepath": "img/products/granola.gif",
+    "price": "0.50",
+    "alt" : "A granola bar"
+},
 
 { 
-    "title": "Orange Juice",
-    "imagepath": "img/products/orangejuice.gif",
-    "price": "1.50",
-    "alt" : "12oz bottle of orange juice."
+    "title": "Peanuts",
+    "imagepath": "img/products/peanuts.gif",
+    "price": "0.75",
+    "alt" : "A package of peanuts"
+},
+
+{ 
+    "title": "Pickle",
+    "imagepath": "img/products/dill-pickle.gif",
+    "price": "1.00",
+    "alt" : "A Pickle"
+},
+
+{ 
+    "title": "Rice Krispy Treat",
+    "imagepath": "img/products/ricetreat.gif",
+    "price": "0.50",
+    "alt" : "A Rice Krispy Treat"
 }
-
-
 
 ]
